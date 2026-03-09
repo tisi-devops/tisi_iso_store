@@ -15,8 +15,15 @@ function AddProductPage() {
     e.preventDefault();
     const el = e.target.elements;
 
+    const p1 = "100";
+    const p2 = "200";
+    const p3 = "180";
+
     // รวบรวมข้อมูลเป็น Object ตัวเดียว
     const formData = {
+      princitem1: p1,
+      princitem2: p2,
+      princitem3: p3,
       comp_name: el.comp_name.value,
       comp_add: el.comp_add.value,
       comp_phone: el.comp_phone.value,
@@ -195,8 +202,10 @@ function AddProductPage() {
             type="text" 
             name="comp_tax" 
             required
+            pattern="[0-9]{13}"
+            title="กรุณากรอกหมายเลขประจำตัวผู้เสียภาษี 13 หลัก"
             className="w-full p-3 border border-slate-200 rounded-xl outline-none transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10"
-            placeholder="เลข 13 หลัก"
+            placeholder="หมายเลขประจำตัวผู้เสียภาษี 13 หลัก"
           />
         </div>
 
