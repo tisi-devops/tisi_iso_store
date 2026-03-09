@@ -1,5 +1,5 @@
 //*page 2
-
+import { useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react'
 
 function App() {
@@ -13,6 +13,8 @@ function App() {
     currency2: 0
   });
 
+  const [customer, setCustomer] = useState(null);
+
   // จำลองการดึงข้อมูลจาก Node.js
   useEffect(() => {
     fetch('http://localhost:5000/api/hello')
@@ -20,7 +22,16 @@ function App() {
       .then(data => {setData(data);
                      setServerStatus("Online");})
       .catch(() => setServerStatus("Offline"));
+
+    // 1. ดึงข้อมูลจาก sessionStorage ด้วย key เดิม
+    const savedData = sessionStorage.getItem('customerData');
+
+    // 2. ถ้ามีข้อมูล ให้แปลงกลับจาก String เป็น Object (JSON.parse)
+    if (savedData) {
+      setCustomer(JSON.parse(savedData));
+    }
   }, []);
+
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans antialiased text-slate-900">
@@ -29,7 +40,15 @@ function App() {
         
         {/* Header Section */}
         <header className="mb-10">
-
+        
+      <div>
+        <p>ชื่อ: {customer?.comp_name}</p>
+        <p>ที่อยู่: {customer?.comp_add}</p>
+        <p>เบอร์โทร: {customer?.comp_phone}</p>
+        <p>เลขเสียภาษี: {customer?.comp_tax}</p>
+        <p>ติดต่อ: {customer?.comp_contact}</p>
+        <p>Email: {customer?.comp_email}</p>
+      </div>
         {/* Search Button */}
         <div className="flex mt-12 rounded-2xl p-8 border-slate-200 text-center">
           <input 
