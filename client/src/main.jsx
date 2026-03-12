@@ -3,24 +3,24 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './index.css'
 import App from './Store.jsx'
-import AddProductPage from './firstform.jsx'
-import Navb from './Navbar.jsx'
+import AddTransaction from './Transaction.jsx'
+import Topbar from './Topbar.jsx'
 import ProductDetail from './Productdetail.jsx'
-import Cart from './cart.jsx'
+import Cart from './Cart.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     {/* <App /> */}
     <BrowserRouter>
-      <Navb/>
+      <Topbar/>
       <Routes>
         {/* หน้าแรกให้โชว์ฟอร์ม */}
-        <Route path="/" element={<AddProductPage />} />
+        <Route path="/" element={<AddTransaction/>} />
         {/* เมื่อ navigate('/Store') จะมาโชว์หน้าที่นี่ */}
         <Route path="/Store" element={<App />} />
 
-        <Route path="/product/:id" element={<ProductDetail />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route path="/product/:id" element={<ProductDetail/>} />
+        <Route path="/Cart" element={<Cart/>} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,
