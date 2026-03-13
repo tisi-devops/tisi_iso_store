@@ -23,8 +23,8 @@ function Cart() {
 
   // 3. คำนวณราคารวม
   const subtotal = cartItems.reduce((acc, item) => acc + item.price, 0);
-  const tax = subtotal * 0.07; // ภาษี 7%
-  const total = subtotal + tax;
+  //const tax = subtotal * 0.07; // ภาษี 7%
+  const total = subtotal;
 
   return (
     <div className="min-h-screen bg-slate-50 p-6 md:p-12 font-sans">
@@ -85,10 +85,6 @@ function Cart() {
                 <div className="flex justify-between text-slate-500 font-medium">
                   <span>ราคาสินค้า</span>
                   <span>{subtotal.toLocaleString()} ฿</span>
-                </div>
-                <div className="flex justify-between text-slate-500 font-medium">
-                  <span>ภาษี (7%)</span>
-                  <span>{tax.toLocaleString()} ฿</span>
                 </div>
                 <div className="border-t border-slate-100 pt-4 flex justify-between items-end">
                   <span className="font-bold text-slate-900">ยอดรวมสุทธิ</span>

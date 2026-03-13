@@ -2,9 +2,10 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './index.css'
-import App from './Store.jsx'
-import AddTransaction from './Transaction.jsx'
+
 import Topbar from './Topbar.jsx'
+import AddTransaction from './Transaction.jsx'
+import App from './Store.jsx'
 import ProductDetail from './Productdetail.jsx'
 import Cart from './Cart.jsx'
 

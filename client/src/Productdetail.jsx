@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Swal from 'sweetalert2';
 
 const prototypeItem = {
   id: "ISO-9001-2015",
@@ -48,8 +49,15 @@ function ProductDetail() {
 
     // 4. *** สำคัญมาก *** ส่งสัญญาณบอกหน้าอื่นๆ ว่าตะกร้าเปลี่ยนแล้ว
     window.dispatchEvent(new Event("cartUpdated"));
-    
-    alert(`เพิ่ม ${prototypeItem.code} (${selectedOption.label}) ลงในตะกร้าแล้ว!`);
+    // แทนที่จะใช้ alert แบบเดิม ให้ใช้ Swal.fire แบบนี้แทนครับ
+    Swal.fire({
+      title: 'สำเร็จ!', // หัวข้อหลัก (เปลี่ยนเป็นอะไรก็ได้)
+      text: `เพิ่ม ${prototypeItem.code} (${selectedOption.label}) ลงในตะกร้าแล้ว!`, // ข้อความรายละเอียด
+      icon: 'success', // รูปไอคอน (success, error, warning, info)
+      confirmButtonText: 'ตกลง',
+      confirmButtonColor: '#2563eb', // สีปุ่มให้เข้ากับเว็บ (สีน้ำเงิน)
+      timer: 2000 // (ออปชันเสริม) ให้มันปิดตัวเองอัตโนมัติใน 2 วินาที
+    });
   };
 
   return (

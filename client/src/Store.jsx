@@ -3,8 +3,11 @@ import { useNavigate } from 'react-router-dom';
 
 function App() {
   const navigate = useNavigate();
+
+  const [inputValue, setInputValue] = useState('');
   const [customer, setCustomer] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [loading, setLoading] = useState(false);
 
   // ข้อมูล Prototype สำหรับแสดงหน้า Store
   const products = [
@@ -19,6 +22,11 @@ function App() {
     if (savedData) {
       setCustomer(JSON.parse(savedData));
     }
+
+    const handleSearchClick = () => {
+    // เอาค่าจากช่อง Input โยนใส่ searchQuery เพื่อกระตุ้นให้ useEffect ทำงาน
+    setSearchQuery(inputValue);
+  };
   }, []);
 
   // Filter ข้อมูลตามการค้นหา
@@ -37,10 +45,15 @@ function App() {
               type="text" 
               className="flex-1 p-3 ml-4 outline-none text-lg" 
               placeholder="ค้นหามาตรฐาน ISO..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              // value={searchQuery}
+              value={inputValue}
+              // onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) => setInputValue(e.target.value)}
+
             />
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl transition-colors font-bold">
+            <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl transition-colors font-bold"
+                    // onClick={handleSearchClick}
+                    disabled={loading}>
               Search
             </button>
           </div>
