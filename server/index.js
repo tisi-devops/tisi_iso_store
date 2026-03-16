@@ -16,7 +16,7 @@ app.use(express.json());
 
 // 3. โหลดค่าจาก .env มาเก็บไว้ในตัวแปร
 const PORT = process.env.PORT || 5000;
-const USE_MOCK_API = process.env.USE_MOCK_API === 'false'; // สวิตช์สลับโหมด
+const USE_MOCK_API = process.env.USE_MOCK_API === 'true'; // สวิตช์สลับโหมด
 const ISO_API_KEY = process.env.ISO_API_KEY;
 const ISO_SECRET_KEY = process.env.ISO_SECRET_KEY;
 const ISO_GEN_TOKEN = process.env.ISO_GEN_TOKEN;
@@ -54,20 +54,33 @@ async function initDatabase() {
 async function getExchangeRate() {
     let exchangeData = null;
     let daysOffset = 1;
-    while (!exchangeData && daysOffset <= 7) {
+    //let formatStr = "";
+    while (!exchangeData && daysOffset <= 10) {
         const targetDate = new Date();
         targetDate.setDate(targetDate.getDate() - daysOffset);
         const formatStr = targetDate.toISOString().slice(0, 10);
+
         try {
             const response = await axios.get(BOT_BASE_URL, {
                 params: { start_period: formatStr, end_period: formatStr, currency: 'CHF' },
-                headers: { 'Accept': 'application/json', 'Authorization': `Bearer ${BOT_CLIENT_ID}` }
+                headers: { 'Accept': '*/*', 'Authorization': BOT_CLIENT_ID }
             });
             const detail = response.data.result?.data?.data_detail?.[0];
             if (detail && detail.mid_rate) {
-                exchangeData = { mid_rate: detail.mid_rate, selling_rate: detail.selling, period: detail.period };
-            } else { daysOffset++; }
-        } catch (error) { daysOffset++; }
+                exchangeData = { mid_rate: detail.mid_rate,
+                                selling_rate: detail.selling,
+                                period: detail.period,
+                                start_day: formatStr,
+                                CHK_date: targetDate};
+            } else {
+                console.error(`❌ ยิง API พังในวันที่ ${formatStr}:`, error.message);
+                daysOffset++; 
+            }
+            // console.log("formatStr: ", formatStr);
+        } catch (error) { 
+            console.error(`❌ ยิง API พังในวันที่ ${formatStr}:`, error.message);
+            daysOffset++; 
+        }
     }
     return exchangeData;
 }
@@ -215,12 +228,19 @@ app.get('/api/hello', async (req, res) => {
 // 🔥 START SERVER
 // ==========================================
 initDatabase().then(async () => {
-    await cachingExhangRate(); 
+    // await cachingExhangRate(); 
+    const initialExchangeData = await cachingExhangRate();
     app.listen(PORT, () => {
         console.log(`\n=============================================`);
         console.log(`🚀 TISI BACKEND SERVER STARTED`);
         console.log(`📍 URL: http://localhost:${PORT}`);
         console.log(`🛠️  MODE: ${USE_MOCK_API ? '🟡 MOCK DATA' : '🟢 REAL API'}`);
+
+        // 🌟 ดึง fetch_date ออกมาโชว์ตรงนี้!
+        const start_day = initialExchangeData ? initialExchangeData.start_day : 'N/A';
+        console.log(`💱 BOT Exchange Rate Date: ${start_day}`);
+
+
         console.log("Test API ISO : ",`http://localhost:5000/api/search-iso?q=9001`);
         console.log(`=============================================\n`);
     });
