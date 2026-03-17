@@ -1,0 +1,1613 @@
+{
+    "source": {
+        "organization": "ISO",
+        "generated": "2026-03-17T06:59:58.420",
+        "schemaVersion": "1.10.1"
+    },
+    "publication": [
+        {
+            "urn": "iso:pub:std:IS:62085",
+            "urnAlt": [
+                "iso:std:iso:9001:ed-5"
+            ],
+            "publicationType": "STANDARD",
+            "reference": "ISO 9001:2015",
+            "originator": "ISO",
+            "stdType": "IS",
+            "stdNumber": "9001",
+            "edition": "5",
+            "version": 1,
+            "title": [
+                {
+                    "value": "Quality management systems — Requirements",
+                    "lang": "en"
+                },
+                {
+                    "value": "Systèmes de management de la qualité — Exigences",
+                    "lang": "fr"
+                }
+            ],
+            "committee": {
+                "urn": "iso:committee:53896",
+                "urnAlt": [],
+                "reference": "ISO/TC 176/SC 2"
+            },
+            "abstract": [
+                {
+                    "format": "text/html",
+                    "content": "<p>ISO 9001:2015 specifies requirements for a quality management system when an organization:</p>\n<p>a)    needs to demonstrate its ability to consistently provide products and services that meet customer and applicable statutory and regulatory requirements, and</p>\n<p>b)    aims to enhance customer satisfaction through the effective application of the system, including processes for improvement of the system and the assurance of conformity to customer and applicable statutory and regulatory requirements.</p>\n<p>All the requirements of ISO 9001:2015 are generic and are intended to be applicable to any organization, regardless of its type or size, or the products and services it provides.</p>\n",
+                    "lang": "en"
+                },
+                {
+                    "format": "text/html",
+                    "content": "<p>L'ISO 9001:2015 spécifie les exigences relatives au système de management de la qualité lorsqu'un organisme:</p>\n<p>a)    doit démontrer son aptitude à fournir constamment des produits et des services conformes aux exigences des clients et aux exigences légales et réglementaires applicables, et</p>\n<p>b)    vise à accroître la satisfaction de ses clients par l'application efficace du système, y compris les processus pour l'amélioration du système et l'assurance de la conformité aux exigences des clients et aux exigences légales et réglementaires applicables.</p>\n<p>Toutes les exigences de l'ISO 9001:2015 sont génériques et prévues pour s'appliquer à tout organisme, quels que soient son type ou sa taille, ou les produits et services qu'il fournit.</p>\n",
+                    "lang": "fr"
+                }
+            ],
+            "classifications": [
+                {
+                    "type": "ICS",
+                    "value": "03.100.70"
+                },
+                {
+                    "type": "ICS",
+                    "value": "03.120.10"
+                },
+                {
+                    "type": "LOGO",
+                    "value": "ISO"
+                },
+                {
+                    "type": "SUSTAINABLE_DEVELOPMENT_GOAL",
+                    "value": "1"
+                },
+                {
+                    "type": "SUSTAINABLE_DEVELOPMENT_GOAL",
+                    "value": "12"
+                },
+                {
+                    "type": "SUSTAINABLE_DEVELOPMENT_GOAL",
+                    "value": "14"
+                },
+                {
+                    "type": "SUSTAINABLE_DEVELOPMENT_GOAL",
+                    "value": "9"
+                }
+            ],
+            "status": "PUBLISHED",
+            "publicationStage": "IS",
+            "publicationDate": "2015-09-22",
+            "priceInfo": {
+                "priceCode": "iso:EPL",
+                "basePrice": {
+                    "amount": 179,
+                    "currency": "CHF"
+                }
+            },
+            "releaseItems": [
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "EPUB",
+                    "contentLanguage": [
+                        "en"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2015-09-22",
+                    "version": 1,
+                    "pages": 29,
+                    "rfc5141urn": "iso:std:iso:9001:ed-5:v1:en",
+                    "contentRef": {
+                        "id": "b58c4ea4-44bf-488b-9a93-7cbde2607423",
+                        "url": "https://data.iso.org/publications/std/dms/b58c4ea4-44bf-488b-9a93-7cbde2607423",
+                        "contentLength": 1430134,
+                        "mimeType": "application/epub+zip",
+                        "fileName": "ISO 9001;2015 ed.5 - id.62085 Publication ePub (en)",
+                        "fileExtension": "epub",
+                        "checksum": "SHA-256=F74CA7B6DC1602738DAFA6756CE8576FAF04A2C265A99FD8238407CF26CB201C"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "EPUB",
+                    "contentLanguage": [
+                        "es"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2015-09-22",
+                    "version": 1,
+                    "pages": 30,
+                    "rfc5141urn": "iso:std:iso:9001:ed-5:v1:es",
+                    "contentRef": {
+                        "id": "2664c400-a3ea-4f56-b080-7473c1fac7de",
+                        "url": "https://data.iso.org/publications/std/dms/2664c400-a3ea-4f56-b080-7473c1fac7de",
+                        "contentLength": 1824956,
+                        "mimeType": "application/epub+zip",
+                        "fileName": "ISO 9001;2015 ed.5 - id.62085 Publication ePub (es)",
+                        "fileExtension": "epub",
+                        "checksum": "SHA-256=21CBDBFB9BDF99307519AF9A3374B0F58B974B75CA57B48A288D2AC7F0F86481"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "EPUB",
+                    "contentLanguage": [
+                        "fr"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2015-09-24",
+                    "version": 2,
+                    "pages": 31,
+                    "rfc5141urn": "iso:std:iso:9001:ed-5:v2:fr",
+                    "contentRef": {
+                        "id": "8e44b6c7-fed4-437b-9f5d-77e1a52627e2",
+                        "url": "https://data.iso.org/publications/std/dms/8e44b6c7-fed4-437b-9f5d-77e1a52627e2",
+                        "contentLength": 1559317,
+                        "mimeType": "application/epub+zip",
+                        "fileName": "ISO 9001;2015 ed.5 - id.62085 Publication ePub (fr) v2",
+                        "fileExtension": "epub",
+                        "checksum": "SHA-256=FC5C5CE049B839A1A09CE478FA5647CE3E2735F1EE646014AA4281C0F471832A"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "PDF",
+                    "formatVariant": "CPDF",
+                    "contentLanguage": [
+                        "ar"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2017-02-01",
+                    "version": 1,
+                    "pages": 31,
+                    "rfc5141urn": "iso:std:iso:9001:ed-5:v1:ar",
+                    "contentRef": {
+                        "id": "07d859ad-2fe0-41eb-8834-308e9896b90b",
+                        "url": "https://data.iso.org/publications/std/dms/07d859ad-2fe0-41eb-8834-308e9896b90b",
+                        "contentLength": 863928,
+                        "mimeType": "application/pdf",
+                        "fileName": "ISO 9001;2015 ed.5 - id.62085 Publication PDF (ar)",
+                        "fileExtension": "pdf",
+                        "checksum": "SHA-256=5DFB75E9C898B2CC997BACC11B12DFF8B0A5CA01F871D427F1441FACC841A3B8"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "PDF",
+                    "formatVariant": "CPDF",
+                    "contentLanguage": [
+                        "en"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2015-09-22",
+                    "version": 1,
+                    "pages": 29,
+                    "rfc5141urn": "iso:std:iso:9001:ed-5:v1:en",
+                    "contentRef": {
+                        "id": "83acb4d9-f9a3-492f-96e2-2bf34829cd79",
+                        "url": "https://data.iso.org/publications/std/dms/83acb4d9-f9a3-492f-96e2-2bf34829cd79",
+                        "contentLength": 887206,
+                        "mimeType": "application/pdf",
+                        "fileName": "ISO 9001;2015 ed.5 - id.62085 Publication PDF (en)",
+                        "fileExtension": "pdf",
+                        "checksum": "SHA-256=47732851522725A58B5DCA3FFB7C2B539C706B0D8F9BFE10CF1DEAD9178738D2"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "PDF",
+                    "formatVariant": "CPDF",
+                    "contentLanguage": [
+                        "es"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2015-09-22",
+                    "version": 1,
+                    "pages": 30,
+                    "rfc5141urn": "iso:std:iso:9001:ed-5:v1:es",
+                    "contentRef": {
+                        "id": "c6db4971-bbde-44f0-aa8e-ba43510c522d",
+                        "url": "https://data.iso.org/publications/std/dms/c6db4971-bbde-44f0-aa8e-ba43510c522d",
+                        "contentLength": 946477,
+                        "mimeType": "application/pdf",
+                        "fileName": "ISO 9001;2015 ed.5 - id.62085 Publication PDF (es)",
+                        "fileExtension": "pdf",
+                        "checksum": "SHA-256=EDAF9B24F7559E7E6AD638C0F9644BBFBD13369627626F90EEB67C95AD01A4F4"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "PDF",
+                    "formatVariant": "CPDF",
+                    "contentLanguage": [
+                        "fr"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2015-09-24",
+                    "version": 2,
+                    "pages": 31,
+                    "rfc5141urn": "iso:std:iso:9001:ed-5:v2:fr",
+                    "contentRef": {
+                        "id": "442e16dc-c007-420d-8d3a-b06575c6a4c3",
+                        "url": "https://data.iso.org/publications/std/dms/442e16dc-c007-420d-8d3a-b06575c6a4c3",
+                        "contentLength": 966835,
+                        "mimeType": "application/pdf",
+                        "fileName": "ISO 9001;2015 ed.5 - id.62085 Publication PDF (fr) v2",
+                        "fileExtension": "pdf",
+                        "checksum": "SHA-256=AD131EB623DC69081B754D83848AC5474BD5CB3F986101B1E96443D64C0FD836"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "PDF",
+                    "formatVariant": "CPDF",
+                    "contentLanguage": [
+                        "ru"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2015-11-20",
+                    "version": 1,
+                    "pages": 29,
+                    "rfc5141urn": "iso:std:iso:9001:ed-5:v1:ru",
+                    "contentRef": {
+                        "id": "5b706b77-4a15-45ae-9652-193abbefd297",
+                        "url": "https://data.iso.org/publications/std/dms/5b706b77-4a15-45ae-9652-193abbefd297",
+                        "contentLength": 464119,
+                        "mimeType": "application/pdf",
+                        "fileName": "ISO 9001;2015 ed.5 - id.62085 Publication PDF (ru)",
+                        "fileExtension": "pdf",
+                        "checksum": "SHA-256=6689AC87BE7DA015D5FA3B4F717E582B38BB09F686DF77AE2C1EBC498EBD9110"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "REDLINE",
+                    "format": "PDF",
+                    "contentLanguage": [
+                        "en"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2015-09-22",
+                    "version": 1,
+                    "pages": 29,
+                    "rfc5141urn": "iso:std:iso:9001:ed-5:v1:en",
+                    "contentRef": {
+                        "id": "bda51e08-a488-4bca-be60-c52aee5acb65",
+                        "url": "https://data.iso.org/publications/std/dms/bda51e08-a488-4bca-be60-c52aee5acb65",
+                        "contentLength": 1414008,
+                        "mimeType": "application/pdf",
+                        "fileName": "ISO 9001;2015 ed.5 - id.62085 Publication Redline PDF (en)",
+                        "fileExtension": "pdf",
+                        "checksum": "SHA-256=FCB48CFE8D69274C6A2D882EDD02B36E60BDA5A5DBB97149433034F62137F138"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "REDLINE",
+                    "format": "PDF",
+                    "contentLanguage": [
+                        "es"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2015-09-22",
+                    "version": 1,
+                    "pages": 30,
+                    "rfc5141urn": "iso:std:iso:9001:ed-5:v1:es",
+                    "contentRef": {
+                        "id": "29160665-7232-4d5c-a266-9c375ffa38b0",
+                        "url": "https://data.iso.org/publications/std/dms/29160665-7232-4d5c-a266-9c375ffa38b0",
+                        "contentLength": 1542172,
+                        "mimeType": "application/pdf",
+                        "fileName": "ISO 9001;2015 ed.5 - id.62085 Publication Redline PDF (es)",
+                        "fileExtension": "pdf",
+                        "checksum": "SHA-256=477A4B426AE91222850476DF7E1008D26C252591E835326AF49B0919BBAFAA18"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "REDLINE",
+                    "format": "PDF",
+                    "contentLanguage": [
+                        "fr"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2015-09-24",
+                    "version": 2,
+                    "pages": 31,
+                    "rfc5141urn": "iso:std:iso:9001:ed-5:v2:fr",
+                    "contentRef": {
+                        "id": "5b52b9ce-e912-42d0-8040-bb0907bde5e0",
+                        "url": "https://data.iso.org/publications/std/dms/5b52b9ce-e912-42d0-8040-bb0907bde5e0",
+                        "contentLength": 1569113,
+                        "mimeType": "application/pdf",
+                        "fileName": "ISO 9001;2015 ed.5 - id.62085 Publication Redline PDF (fr) v2",
+                        "fileExtension": "pdf",
+                        "checksum": "SHA-256=10770E18131C31C7CD9D8FDEF423C6A186C1C2AE6C0FC7D040AD7C0C7990AE17"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "WORD",
+                    "contentLanguage": [
+                        "ar"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2017-02-01",
+                    "version": 1,
+                    "pages": 31,
+                    "rfc5141urn": "iso:std:iso:9001:ed-5:v1:ar",
+                    "contentRef": {
+                        "id": "1a69f5a8-a83c-4acd-ba5c-6e8bc451ef67",
+                        "url": "https://data.iso.org/publications/std/dms/1a69f5a8-a83c-4acd-ba5c-6e8bc451ef67",
+                        "contentLength": 786150,
+                        "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                        "fileName": "ISO 9001;2015 ed.5 - id.62085 Publication Word (ar)",
+                        "fileExtension": "docx",
+                        "checksum": "SHA-256=4AA6F31F3767CD04EF60115A0B2065E6764D518B9B3C6E4DD05F2DA2AF7834A6"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "WORD",
+                    "contentLanguage": [
+                        "en"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2015-09-22",
+                    "version": 1,
+                    "pages": 29,
+                    "rfc5141urn": "iso:std:iso:9001:ed-5:v1:en",
+                    "contentRef": {
+                        "id": "389c5bde-35d6-4688-9f4b-b9db7dbbd2da",
+                        "url": "https://data.iso.org/publications/std/dms/389c5bde-35d6-4688-9f4b-b9db7dbbd2da",
+                        "contentLength": 2035200,
+                        "mimeType": "application/msword",
+                        "fileName": "ISO 9001;2015 ed.5 - id.62085 Publication Word (en)",
+                        "fileExtension": "doc",
+                        "checksum": "SHA-256=335FBF941C0B0B3383DFAB4074D45197501E3DA12C1B624B5AD6FF5B99A0266E"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "WORD",
+                    "contentLanguage": [
+                        "es"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2015-09-22",
+                    "version": 1,
+                    "pages": 30,
+                    "rfc5141urn": "iso:std:iso:9001:ed-5:v1:es",
+                    "contentRef": {
+                        "id": "5b1cd23a-0bec-47a1-99ad-7be10216e837",
+                        "url": "https://data.iso.org/publications/std/dms/5b1cd23a-0bec-47a1-99ad-7be10216e837",
+                        "contentLength": 2177024,
+                        "mimeType": "application/msword",
+                        "fileName": "ISO 9001;2015 ed.5 - id.62085 Publication Word (es)",
+                        "fileExtension": "doc",
+                        "checksum": "SHA-256=4BDFF8FA44201FE408432A921C50F70AC91152DA27ED5916B0CF0C6034396EEF"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "WORD",
+                    "contentLanguage": [
+                        "fr"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2015-09-24",
+                    "version": 2,
+                    "pages": 31,
+                    "rfc5141urn": "iso:std:iso:9001:ed-5:v2:fr",
+                    "contentRef": {
+                        "id": "7280c512-e07c-4fa0-b584-5998d8b8f66c",
+                        "url": "https://data.iso.org/publications/std/dms/7280c512-e07c-4fa0-b584-5998d8b8f66c",
+                        "contentLength": 2255360,
+                        "mimeType": "application/msword",
+                        "fileName": "ISO 9001;2015 ed.5 - id.62085 Publication Word (fr) v2",
+                        "fileExtension": "doc",
+                        "checksum": "SHA-256=9532AB55A82291032965B1023A6B11542688B236696CBD64B33FDE23A0AA97C0"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "WORD",
+                    "contentLanguage": [
+                        "ru"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2015-11-20",
+                    "version": 1,
+                    "pages": 29,
+                    "rfc5141urn": "iso:std:iso:9001:ed-5:v1:ru",
+                    "contentRef": {
+                        "id": "31f8a20f-ee61-4833-8c9a-654f56ae6b55",
+                        "url": "https://data.iso.org/publications/std/dms/31f8a20f-ee61-4833-8c9a-654f56ae6b55",
+                        "contentLength": 753664,
+                        "mimeType": "application/msword",
+                        "fileName": "ISO 9001;2015 ed.5 - id.62085 Publication Word (ru)",
+                        "fileExtension": "doc",
+                        "checksum": "SHA-256=E543E4EC7E49D827E65F4AE34BB50632CDCE3E599EFD5C96DE0F82FB2CC0D442"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "XML",
+                    "formatVariant": "ISOSTS",
+                    "contentLanguage": [
+                        "en"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2015-09-22",
+                    "version": 1,
+                    "pages": 29,
+                    "rfc5141urn": "iso:std:iso:9001:ed-5:v1:en",
+                    "contentRef": {
+                        "id": "58968861-3515-498f-b64b-37cf58247cec",
+                        "url": "https://data.iso.org/publications/std/dms/58968861-3515-498f-b64b-37cf58247cec",
+                        "contentLength": 1750796,
+                        "mimeType": "application/zip",
+                        "fileName": "ISO 9001;2015 ed.5 - id.62085 Publication XML (ISO-STS) (en)",
+                        "fileExtension": "zip",
+                        "checksum": "SHA-256=0339652341A29BC4438EE49B6426A5143D434A4FC3471DE140998C3BF76A16C7"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "XML",
+                    "formatVariant": "ISOSTS",
+                    "contentLanguage": [
+                        "es"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2015-09-22",
+                    "version": 1,
+                    "pages": 30,
+                    "rfc5141urn": "iso:std:iso:9001:ed-5:v1:es",
+                    "contentRef": {
+                        "id": "0f1fb4bd-1784-438f-959b-d7dfd692994f",
+                        "url": "https://data.iso.org/publications/std/dms/0f1fb4bd-1784-438f-959b-d7dfd692994f",
+                        "contentLength": 1862075,
+                        "mimeType": "application/zip",
+                        "fileName": "ISO 9001;2015 ed.5 - id.62085 Publication XML (ISO-STS) (es)",
+                        "fileExtension": "zip",
+                        "checksum": "SHA-256=AC40F0D6192B6A3E837F6E99C4AA67723AB6729949AE2F6104666A01CA96AD5A"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "XML",
+                    "formatVariant": "ISOSTS",
+                    "contentLanguage": [
+                        "fr"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2015-09-24",
+                    "version": 2,
+                    "pages": 31,
+                    "rfc5141urn": "iso:std:iso:9001:ed-5:v2:fr",
+                    "contentRef": {
+                        "id": "5bb1dc2c-b46d-4e94-8baa-077272fa52da",
+                        "url": "https://data.iso.org/publications/std/dms/5bb1dc2c-b46d-4e94-8baa-077272fa52da",
+                        "contentLength": 1953947,
+                        "mimeType": "application/zip",
+                        "fileName": "ISO 9001;2015 ed.5 - id.62085 Publication XML (ISO-STS) (fr) v2",
+                        "fileExtension": "zip",
+                        "checksum": "SHA-256=730BC6EBFE7A51F19BDF2EBECC23411845D1BE4852D99DA0D2977743CC19FD46"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "XML",
+                    "formatVariant": "ISOSTS",
+                    "contentLanguage": [
+                        "ru"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2015-11-20",
+                    "version": 1,
+                    "pages": 29,
+                    "rfc5141urn": "iso:std:iso:9001:ed-5:v1:ru",
+                    "contentRef": {
+                        "id": "a5ba5479-59ba-4aa2-9542-43ba392d9f35",
+                        "url": "https://data.iso.org/publications/std/dms/a5ba5479-59ba-4aa2-9542-43ba392d9f35",
+                        "contentLength": 408887,
+                        "mimeType": "application/zip",
+                        "fileName": "ISO 9001;2015 ed.5 - id.62085 Publication XML (ISO-STS) (ru)",
+                        "fileExtension": "zip",
+                        "checksum": "SHA-256=AC33D58127D852E824BB9D0404B18F8B5F0BE78D825F81AAD04B3842BA8D7BB1"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "XML",
+                    "formatVariant": "NISOSTS",
+                    "contentLanguage": [
+                        "en"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2015-09-22",
+                    "version": 1,
+                    "pages": 29,
+                    "rfc5141urn": "iso:std:iso:9001:ed-5:v1:en",
+                    "contentRef": {
+                        "id": "2b9fb47f-ec92-4b54-b2f4-7e948d6514b5",
+                        "url": "https://data.iso.org/publications/std/dms/2b9fb47f-ec92-4b54-b2f4-7e948d6514b5",
+                        "contentLength": 1751194,
+                        "mimeType": "application/zip",
+                        "fileName": "ISO 9001;2015 ed.5 - id.62085 Publication XML (NISO-STS) (en)",
+                        "fileExtension": "zip",
+                        "checksum": "SHA-256=EB648A7BBA38E3FB1AF50ABA9DCEF5DC870AC014FE636010C14CE1C8B7A1B87D"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "XML",
+                    "formatVariant": "NISOSTS",
+                    "contentLanguage": [
+                        "es"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2015-09-22",
+                    "version": 1,
+                    "pages": 30,
+                    "rfc5141urn": "iso:std:iso:9001:ed-5:v1:es",
+                    "contentRef": {
+                        "id": "c259b8b9-0166-41b4-8fa4-873e00a30387",
+                        "url": "https://data.iso.org/publications/std/dms/c259b8b9-0166-41b4-8fa4-873e00a30387",
+                        "contentLength": 1862540,
+                        "mimeType": "application/zip",
+                        "fileName": "ISO 9001;2015 ed.5 - id.62085 Publication XML (NISO-STS) (es)",
+                        "fileExtension": "zip",
+                        "checksum": "SHA-256=99841142743D91CC1D9F74C1B909CE08C65008D847FC3F889C6158F80902B99E"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "XML",
+                    "formatVariant": "NISOSTS",
+                    "contentLanguage": [
+                        "fr"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2015-09-24",
+                    "version": 2,
+                    "pages": 31,
+                    "rfc5141urn": "iso:std:iso:9001:ed-5:v2:fr",
+                    "contentRef": {
+                        "id": "026da105-f5cb-4bbd-a2e5-5e32461388dc",
+                        "url": "https://data.iso.org/publications/std/dms/026da105-f5cb-4bbd-a2e5-5e32461388dc",
+                        "contentLength": 1954437,
+                        "mimeType": "application/zip",
+                        "fileName": "ISO 9001;2015 ed.5 - id.62085 Publication XML (NISO-STS) (fr) v2",
+                        "fileExtension": "zip",
+                        "checksum": "SHA-256=D77D502EA646C56EF0B7811E01B74F1FDC4E894CEB2BE83BB3E335624CE41F7C"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "XML",
+                    "formatVariant": "NISOSTS",
+                    "contentLanguage": [
+                        "ru"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2015-11-20",
+                    "version": 1,
+                    "pages": 29,
+                    "rfc5141urn": "iso:std:iso:9001:ed-5:v1:ru",
+                    "contentRef": {
+                        "id": "2cd5e405-3113-49df-803f-fed875852e91",
+                        "url": "https://data.iso.org/publications/std/dms/2cd5e405-3113-49df-803f-fed875852e91",
+                        "contentLength": 409110,
+                        "mimeType": "application/zip",
+                        "fileName": "ISO 9001;2015 ed.5 - id.62085 Publication XML (NISO-STS) (ru)",
+                        "fileExtension": "zip",
+                        "checksum": "SHA-256=BBBDACB94D5DEEB44A9670D9383B015EDCD9AE8DBA677955DC4551CF25D76789"
+                    }
+                }
+            ],
+            "project": {
+                "urn": "iso:proj:62085",
+                "urnAlt": []
+            },
+            "lastChangeTimestamp": "2026-01-05T17:46:38.108"
+        },
+        {
+            "urn": "iso:pub:std:FDIS:62085",
+            "urnAlt": [
+                "iso:std:iso:9001:fdis:ed-5"
+            ],
+            "publicationType": "STANDARD",
+            "reference": "ISO 9001:2015",
+            "originator": "ISO",
+            "stdType": "IS",
+            "stdNumber": "9001",
+            "edition": "5",
+            "version": 1,
+            "title": [
+                {
+                    "value": "Quality management systems — Requirements",
+                    "lang": "en"
+                },
+                {
+                    "value": "Systèmes de management de la qualité — Exigences",
+                    "lang": "fr"
+                }
+            ],
+            "committee": {
+                "urn": "iso:committee:53896",
+                "urnAlt": [],
+                "reference": "ISO/TC 176/SC 2"
+            },
+            "abstract": [
+                {
+                    "format": "text/html",
+                    "content": "<p>ISO 9001:2015 specifies requirements for a quality management system when an organization:</p>\n<p>a)    needs to demonstrate its ability to consistently provide products and services that meet customer and applicable statutory and regulatory requirements, and</p>\n<p>b)    aims to enhance customer satisfaction through the effective application of the system, including processes for improvement of the system and the assurance of conformity to customer and applicable statutory and regulatory requirements.</p>\n<p>All the requirements of ISO 9001:2015 are generic and are intended to be applicable to any organization, regardless of its type or size, or the products and services it provides.</p>\n",
+                    "lang": "en"
+                },
+                {
+                    "format": "text/html",
+                    "content": "<p>L'ISO 9001:2015 spécifie les exigences relatives au système de management de la qualité lorsqu'un organisme:</p>\n<p>a)    doit démontrer son aptitude à fournir constamment des produits et des services conformes aux exigences des clients et aux exigences légales et réglementaires applicables, et</p>\n<p>b)    vise à accroître la satisfaction de ses clients par l'application efficace du système, y compris les processus pour l'amélioration du système et l'assurance de la conformité aux exigences des clients et aux exigences légales et réglementaires applicables.</p>\n<p>Toutes les exigences de l'ISO 9001:2015 sont génériques et prévues pour s'appliquer à tout organisme, quels que soient son type ou sa taille, ou les produits et services qu'il fournit.</p>\n",
+                    "lang": "fr"
+                }
+            ],
+            "classifications": [
+                {
+                    "type": "ICS",
+                    "value": "03.100.70"
+                },
+                {
+                    "type": "ICS",
+                    "value": "03.120.10"
+                },
+                {
+                    "type": "LOGO",
+                    "value": "ISO"
+                },
+                {
+                    "type": "SUSTAINABLE_DEVELOPMENT_GOAL",
+                    "value": "1"
+                },
+                {
+                    "type": "SUSTAINABLE_DEVELOPMENT_GOAL",
+                    "value": "12"
+                },
+                {
+                    "type": "SUSTAINABLE_DEVELOPMENT_GOAL",
+                    "value": "14"
+                },
+                {
+                    "type": "SUSTAINABLE_DEVELOPMENT_GOAL",
+                    "value": "9"
+                }
+            ],
+            "status": "PUBLISHED",
+            "publicationStage": "FDIS",
+            "publicationDate": "2015-09-22",
+            "priceInfo": {
+                "priceCode": "iso:E",
+                "basePrice": {
+                    "amount": 159,
+                    "currency": "CHF"
+                }
+            },
+            "releaseItems": [
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "PDF",
+                    "formatVariant": "CPDF",
+                    "contentLanguage": [
+                        "en"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2015-05-09",
+                    "version": 1,
+                    "pages": 29,
+                    "rfc5141urn": "iso:std:iso:9001:fdis:ed-5:v1:en",
+                    "contentRef": {
+                        "id": "fe5c8c45-fbc4-433a-8960-03e436bf1a7c",
+                        "url": "https://data.iso.org/publications/std/dms/fe5c8c45-fbc4-433a-8960-03e436bf1a7c",
+                        "contentLength": 1128204,
+                        "mimeType": "application/pdf",
+                        "fileName": "ISO 9001;2015 ed.5 - id.62085 Approval PDF (en)",
+                        "fileExtension": "pdf",
+                        "checksum": "SHA-256=F92F4499BFD5161FE305921CEB9781C57ACB1C9BF690827953E1BE59847FF415"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "PDF",
+                    "formatVariant": "CPDF",
+                    "contentLanguage": [
+                        "fr"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2015-05-09",
+                    "version": 1,
+                    "pages": 31,
+                    "rfc5141urn": "iso:std:iso:9001:fdis:ed-5:v1:fr",
+                    "contentRef": {
+                        "id": "0bf17f65-17d3-4ef7-9c15-fccf336b9386",
+                        "url": "https://data.iso.org/publications/std/dms/0bf17f65-17d3-4ef7-9c15-fccf336b9386",
+                        "contentLength": 1552569,
+                        "mimeType": "application/pdf",
+                        "fileName": "ISO 9001;2015 ed.5 - id.62085 Approval PDF (fr)",
+                        "fileExtension": "pdf",
+                        "checksum": "SHA-256=509A14210BC57E75FE367AB7F8E215965DA3557C3263A12F9DC25C41A4A4BFD0"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "TRACK_CHANGES",
+                    "format": "PDF",
+                    "contentLanguage": [
+                        "en"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2015-05-09",
+                    "version": 1,
+                    "pages": 29,
+                    "rfc5141urn": "iso:std:iso:9001:fdis:ed-5:v1:en",
+                    "contentRef": {
+                        "id": "2de445e9-85f2-4e5f-9d25-c73cae3f2a4b",
+                        "url": "https://data.iso.org/publications/std/dms/2de445e9-85f2-4e5f-9d25-c73cae3f2a4b",
+                        "contentLength": 1212324,
+                        "mimeType": "application/pdf",
+                        "fileName": "ISO 9001;2015 ed.5 - id.62085 Approval Trackchange PDF (en)",
+                        "fileExtension": "pdf",
+                        "checksum": "SHA-256=2F83024E717944AD22306428142B29999472C375155C94CA863EE00B147D1FE2"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "WORD",
+                    "contentLanguage": [
+                        "en"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2015-05-09",
+                    "version": 1,
+                    "pages": 29,
+                    "rfc5141urn": "iso:std:iso:9001:fdis:ed-5:v1:en",
+                    "contentRef": {
+                        "id": "789296c2-40ca-419d-952c-ff291e98e701",
+                        "url": "https://data.iso.org/publications/std/dms/789296c2-40ca-419d-952c-ff291e98e701",
+                        "contentLength": 978944,
+                        "mimeType": "application/msword",
+                        "fileName": "ISO 9001;2015 ed.5 - id.62085 Approval Word (en)",
+                        "fileExtension": "doc",
+                        "checksum": "SHA-256=DAA243BE0458F3BA0FCE6A6F83FE87EF237FCBF6CD16DB8C29B6EF6A168B411F"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "WORD",
+                    "contentLanguage": [
+                        "fr"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2015-05-09",
+                    "version": 1,
+                    "pages": 31,
+                    "rfc5141urn": "iso:std:iso:9001:fdis:ed-5:v1:fr",
+                    "contentRef": {
+                        "id": "f73329c0-1e49-42e3-8e17-1fc8949e6fe0",
+                        "url": "https://data.iso.org/publications/std/dms/f73329c0-1e49-42e3-8e17-1fc8949e6fe0",
+                        "contentLength": 7761408,
+                        "mimeType": "application/msword",
+                        "fileName": "ISO 9001;2015 ed.5 - id.62085 Approval Word (fr)",
+                        "fileExtension": "doc",
+                        "checksum": "SHA-256=23762D1BA3D03D17CA716D0FF2F7B7D94B8759EA7C76A834BAA1B79D04CE823D"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "XML",
+                    "formatVariant": "ISOSTS",
+                    "contentLanguage": [
+                        "en"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2015-05-09",
+                    "version": 1,
+                    "pages": 29,
+                    "rfc5141urn": "iso:std:iso:9001:fdis:ed-5:v1:en",
+                    "contentRef": {
+                        "id": "17a6d50a-5c77-4e1d-8ac8-c6e6ccf16245",
+                        "url": "https://data.iso.org/publications/std/dms/17a6d50a-5c77-4e1d-8ac8-c6e6ccf16245",
+                        "contentLength": 542889,
+                        "mimeType": "application/zip",
+                        "fileName": "ISO 9001;2015 ed.5 - id.62085 Approval XML (ISO-STS) (en)",
+                        "fileExtension": "zip",
+                        "checksum": "SHA-256=702D1EAD46DDF31577FF73DE8F267DF32DA0BCD27F6179B2D0C00F6A890DE801"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "XML",
+                    "formatVariant": "ISOSTS",
+                    "contentLanguage": [
+                        "fr"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2015-05-09",
+                    "version": 1,
+                    "pages": 31,
+                    "rfc5141urn": "iso:std:iso:9001:fdis:ed-5:v1:fr",
+                    "contentRef": {
+                        "id": "aa10487c-f411-47e2-abe1-78a3a8b36179",
+                        "url": "https://data.iso.org/publications/std/dms/aa10487c-f411-47e2-abe1-78a3a8b36179",
+                        "contentLength": 5040574,
+                        "mimeType": "application/zip",
+                        "fileName": "ISO 9001;2015 ed.5 - id.62085 Approval XML (ISO-STS) (fr)",
+                        "fileExtension": "zip",
+                        "checksum": "SHA-256=230C02A847FD5F8A4FDF8B7CD1A6A11E3FCB521C5760EBD0A2DD8092FED52E63"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "XML",
+                    "formatVariant": "NISOSTS",
+                    "contentLanguage": [
+                        "en"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2015-05-09",
+                    "version": 1,
+                    "pages": 29,
+                    "rfc5141urn": "iso:std:iso:9001:fdis:ed-5:v1:en",
+                    "contentRef": {
+                        "id": "94d6c593-d5a7-416c-a920-6cc262bff7ed",
+                        "url": "https://data.iso.org/publications/std/dms/94d6c593-d5a7-416c-a920-6cc262bff7ed",
+                        "contentLength": 543126,
+                        "mimeType": "application/zip",
+                        "fileName": "ISO 9001;2015 ed.5 - id.62085 Approval XML (NISO-STS) (en)",
+                        "fileExtension": "zip",
+                        "checksum": "SHA-256=2949F8E9E5C4FB6F1F2F92B8A81AEFBF8FE9D57AB79D5CA2D3D6C6B3AEB0068F"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "XML",
+                    "formatVariant": "NISOSTS",
+                    "contentLanguage": [
+                        "fr"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2015-05-09",
+                    "version": 1,
+                    "pages": 31,
+                    "rfc5141urn": "iso:std:iso:9001:fdis:ed-5:v1:fr",
+                    "contentRef": {
+                        "id": "09e14899-b64e-4006-901a-a9232a0fa87b",
+                        "url": "https://data.iso.org/publications/std/dms/09e14899-b64e-4006-901a-a9232a0fa87b",
+                        "contentLength": 5040815,
+                        "mimeType": "application/zip",
+                        "fileName": "ISO 9001;2015 ed.5 - id.62085 Approval XML (NISO-STS) (fr)",
+                        "fileExtension": "zip",
+                        "checksum": "SHA-256=7B72479C842DC209A54A931B3AC2B77D4D9D0EE558F58DD3A57ED3DC0EFED2B4"
+                    }
+                }
+            ],
+            "project": {
+                "urn": "iso:proj:62085",
+                "urnAlt": []
+            },
+            "lastChangeTimestamp": "2026-01-05T16:32:15.003"
+        },
+        {
+            "urn": "iso:pub:std:DIS:62085",
+            "urnAlt": [
+                "iso:std:iso:9001:dis:ed-5"
+            ],
+            "publicationType": "STANDARD",
+            "reference": "ISO 9001:2015",
+            "originator": "ISO",
+            "stdType": "IS",
+            "stdNumber": "9001",
+            "edition": "5",
+            "version": 1,
+            "title": [
+                {
+                    "value": "Quality management systems — Requirements",
+                    "lang": "en"
+                },
+                {
+                    "value": "Systèmes de management de la qualité — Exigences",
+                    "lang": "fr"
+                }
+            ],
+            "committee": {
+                "urn": "iso:committee:53896",
+                "urnAlt": [],
+                "reference": "ISO/TC 176/SC 2"
+            },
+            "abstract": [
+                {
+                    "format": "text/html",
+                    "content": "<p>ISO 9001:2015 specifies requirements for a quality management system when an organization:</p>\n<p>a)    needs to demonstrate its ability to consistently provide products and services that meet customer and applicable statutory and regulatory requirements, and</p>\n<p>b)    aims to enhance customer satisfaction through the effective application of the system, including processes for improvement of the system and the assurance of conformity to customer and applicable statutory and regulatory requirements.</p>\n<p>All the requirements of ISO 9001:2015 are generic and are intended to be applicable to any organization, regardless of its type or size, or the products and services it provides.</p>\n",
+                    "lang": "en"
+                },
+                {
+                    "format": "text/html",
+                    "content": "<p>L'ISO 9001:2015 spécifie les exigences relatives au système de management de la qualité lorsqu'un organisme:</p>\n<p>a)    doit démontrer son aptitude à fournir constamment des produits et des services conformes aux exigences des clients et aux exigences légales et réglementaires applicables, et</p>\n<p>b)    vise à accroître la satisfaction de ses clients par l'application efficace du système, y compris les processus pour l'amélioration du système et l'assurance de la conformité aux exigences des clients et aux exigences légales et réglementaires applicables.</p>\n<p>Toutes les exigences de l'ISO 9001:2015 sont génériques et prévues pour s'appliquer à tout organisme, quels que soient son type ou sa taille, ou les produits et services qu'il fournit.</p>\n",
+                    "lang": "fr"
+                }
+            ],
+            "classifications": [
+                {
+                    "type": "ICS",
+                    "value": "03.100.70"
+                },
+                {
+                    "type": "ICS",
+                    "value": "03.120.10"
+                },
+                {
+                    "type": "LOGO",
+                    "value": "ISO"
+                },
+                {
+                    "type": "SUSTAINABLE_DEVELOPMENT_GOAL",
+                    "value": "1"
+                },
+                {
+                    "type": "SUSTAINABLE_DEVELOPMENT_GOAL",
+                    "value": "12"
+                },
+                {
+                    "type": "SUSTAINABLE_DEVELOPMENT_GOAL",
+                    "value": "14"
+                },
+                {
+                    "type": "SUSTAINABLE_DEVELOPMENT_GOAL",
+                    "value": "9"
+                }
+            ],
+            "status": "PUBLISHED",
+            "publicationStage": "DIS",
+            "publicationDate": "2015-09-22",
+            "priceInfo": {
+                "priceCode": "iso:E",
+                "basePrice": {
+                    "amount": 159,
+                    "currency": "CHF"
+                }
+            },
+            "releaseItems": [
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "PDF",
+                    "formatVariant": "CPDF",
+                    "contentLanguage": [
+                        "en"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2014-05-09",
+                    "version": 1,
+                    "pages": 48,
+                    "rfc5141urn": "iso:std:iso:9001:dis:ed-5:v1:en",
+                    "contentRef": {
+                        "id": "194b695b-30c2-46ed-8fc1-bcf10fadf82f",
+                        "url": "https://data.iso.org/publications/std/dms/194b695b-30c2-46ed-8fc1-bcf10fadf82f",
+                        "contentLength": 1200752,
+                        "mimeType": "application/pdf",
+                        "fileName": "ISO 9001;2015 ed.5 - id.62085 Enquiry PDF (en)",
+                        "fileExtension": "pdf",
+                        "checksum": "SHA-256=22F9B04CB93967E283E5CA8C232BDAED87AF0E48BAC0233B1B971D1E077E9F80"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "PDF",
+                    "formatVariant": "CPDF",
+                    "contentLanguage": [
+                        "fr"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2014-05-28",
+                    "version": 1,
+                    "pages": 42,
+                    "rfc5141urn": "iso:std:iso:9001:dis:ed-5:v1:fr",
+                    "contentRef": {
+                        "id": "5ebcc1e9-ba3a-4aa5-a2f9-e9b285ea56d4",
+                        "url": "https://data.iso.org/publications/std/dms/5ebcc1e9-ba3a-4aa5-a2f9-e9b285ea56d4",
+                        "contentLength": 645888,
+                        "mimeType": "application/pdf",
+                        "fileName": "ISO 9001;2015 ed.5 - id.62085 Enquiry PDF (fr)",
+                        "fileExtension": "pdf",
+                        "checksum": "SHA-256=2281C812B4022B00E105B8116568FD7494730B606C7C1239A14E90E4AC18586A"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "REDLINE",
+                    "format": "PDF",
+                    "contentLanguage": [
+                        "en"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2014-05-09",
+                    "version": 1,
+                    "pages": 48,
+                    "rfc5141urn": "iso:std:iso:9001:dis:ed-5:v1:en",
+                    "contentRef": {
+                        "id": "3bd99276-f565-499a-a8b1-6ff7003c4c40",
+                        "url": "https://data.iso.org/publications/std/dms/3bd99276-f565-499a-a8b1-6ff7003c4c40",
+                        "contentLength": 1543773,
+                        "mimeType": "application/pdf",
+                        "fileName": "ISO 9001;2015 ed.5 - id.62085 Enquiry Redline PDF (en)",
+                        "fileExtension": "pdf",
+                        "checksum": "SHA-256=D84E3DC76D04540C8DEBD8CFAF9604D11E8BA4CE5077DD4674EF973FA28EDE35"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "WORD",
+                    "contentLanguage": [
+                        "en"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2014-05-09",
+                    "version": 1,
+                    "pages": 48,
+                    "rfc5141urn": "iso:std:iso:9001:dis:ed-5:v1:en",
+                    "contentRef": {
+                        "id": "c5845010-7d24-441e-8ef6-d63bb73b311b",
+                        "url": "https://data.iso.org/publications/std/dms/c5845010-7d24-441e-8ef6-d63bb73b311b",
+                        "contentLength": 252652,
+                        "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                        "fileName": "ISO 9001;2015 ed.5 - id.62085 Enquiry Word (en)",
+                        "fileExtension": "docx",
+                        "checksum": "SHA-256=25FAA1A3D3DF291DBE29FA4A3BFD50F7F0CD044056FA9E3E31092CD715125DEB"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "WORD",
+                    "contentLanguage": [
+                        "fr"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2014-05-28",
+                    "version": 1,
+                    "pages": 42,
+                    "rfc5141urn": "iso:std:iso:9001:dis:ed-5:v1:fr",
+                    "contentRef": {
+                        "id": "bfa3fdf9-223c-44a3-9353-8ab184413545",
+                        "url": "https://data.iso.org/publications/std/dms/bfa3fdf9-223c-44a3-9353-8ab184413545",
+                        "contentLength": 467456,
+                        "mimeType": "application/msword",
+                        "fileName": "ISO 9001;2015 ed.5 - id.62085 Enquiry Word (fr)",
+                        "fileExtension": "doc",
+                        "checksum": "SHA-256=DAD39126E2C01E0E3C31F28F4034431297CF631FE25FCD0D835204A89A832946"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "XML",
+                    "formatVariant": "ISOSTS",
+                    "contentLanguage": [
+                        "en"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2014-05-09",
+                    "version": 1,
+                    "pages": 48,
+                    "rfc5141urn": "iso:std:iso:9001:dis:ed-5:v1:en",
+                    "contentRef": {
+                        "id": "203fa9f8-738a-4759-a62a-63fd59e525f2",
+                        "url": "https://data.iso.org/publications/std/dms/203fa9f8-738a-4759-a62a-63fd59e525f2",
+                        "contentLength": 395505,
+                        "mimeType": "application/zip",
+                        "fileName": "ISO 9001;2015 ed.5 - id.62085 Enquiry XML (ISO-STS) (en)",
+                        "fileExtension": "zip",
+                        "checksum": "SHA-256=3754D957957C41222932B61B1CEF20573C4A6613A012154799627880D1CDC112"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "XML",
+                    "formatVariant": "NISOSTS",
+                    "contentLanguage": [
+                        "en"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2014-05-09",
+                    "version": 1,
+                    "pages": 48,
+                    "rfc5141urn": "iso:std:iso:9001:dis:ed-5:v1:en",
+                    "contentRef": {
+                        "id": "1d21019b-7c6f-43be-9612-8771d30aa4c5",
+                        "url": "https://data.iso.org/publications/std/dms/1d21019b-7c6f-43be-9612-8771d30aa4c5",
+                        "contentLength": 395732,
+                        "mimeType": "application/zip",
+                        "fileName": "ISO 9001;2015 ed.5 - id.62085 Enquiry XML (NISO-STS) (en)",
+                        "fileExtension": "zip",
+                        "checksum": "SHA-256=0DEAA9789A5FC1BB8D5F6044242B73E3814489ECAA0E00ECCD182F04489E3F84"
+                    }
+                }
+            ],
+            "project": {
+                "urn": "iso:proj:62085",
+                "urnAlt": []
+            },
+            "lastChangeTimestamp": "2026-01-05T16:32:15.003"
+        },
+        {
+            "urn": "iso:pub:std:CD:62085",
+            "urnAlt": [
+                "iso:std:iso:9001:cd:ed-5"
+            ],
+            "publicationType": "STANDARD",
+            "reference": "ISO 9001:2015",
+            "originator": "ISO",
+            "stdType": "IS",
+            "stdNumber": "9001",
+            "edition": "5",
+            "version": 1,
+            "title": [
+                {
+                    "value": "Quality management systems — Requirements",
+                    "lang": "en"
+                },
+                {
+                    "value": "Systèmes de management de la qualité — Exigences",
+                    "lang": "fr"
+                }
+            ],
+            "committee": {
+                "urn": "iso:committee:53896",
+                "urnAlt": [],
+                "reference": "ISO/TC 176/SC 2"
+            },
+            "abstract": [
+                {
+                    "format": "text/html",
+                    "content": "<p>ISO 9001:2015 specifies requirements for a quality management system when an organization:</p>\n<p>a)    needs to demonstrate its ability to consistently provide products and services that meet customer and applicable statutory and regulatory requirements, and</p>\n<p>b)    aims to enhance customer satisfaction through the effective application of the system, including processes for improvement of the system and the assurance of conformity to customer and applicable statutory and regulatory requirements.</p>\n<p>All the requirements of ISO 9001:2015 are generic and are intended to be applicable to any organization, regardless of its type or size, or the products and services it provides.</p>\n",
+                    "lang": "en"
+                },
+                {
+                    "format": "text/html",
+                    "content": "<p>L'ISO 9001:2015 spécifie les exigences relatives au système de management de la qualité lorsqu'un organisme:</p>\n<p>a)    doit démontrer son aptitude à fournir constamment des produits et des services conformes aux exigences des clients et aux exigences légales et réglementaires applicables, et</p>\n<p>b)    vise à accroître la satisfaction de ses clients par l'application efficace du système, y compris les processus pour l'amélioration du système et l'assurance de la conformité aux exigences des clients et aux exigences légales et réglementaires applicables.</p>\n<p>Toutes les exigences de l'ISO 9001:2015 sont génériques et prévues pour s'appliquer à tout organisme, quels que soient son type ou sa taille, ou les produits et services qu'il fournit.</p>\n",
+                    "lang": "fr"
+                }
+            ],
+            "classifications": [
+                {
+                    "type": "ICS",
+                    "value": "03.100.70"
+                },
+                {
+                    "type": "ICS",
+                    "value": "03.120.10"
+                },
+                {
+                    "type": "LOGO",
+                    "value": "ISO"
+                },
+                {
+                    "type": "SUSTAINABLE_DEVELOPMENT_GOAL",
+                    "value": "1"
+                },
+                {
+                    "type": "SUSTAINABLE_DEVELOPMENT_GOAL",
+                    "value": "12"
+                },
+                {
+                    "type": "SUSTAINABLE_DEVELOPMENT_GOAL",
+                    "value": "14"
+                },
+                {
+                    "type": "SUSTAINABLE_DEVELOPMENT_GOAL",
+                    "value": "9"
+                }
+            ],
+            "status": "PUBLISHED",
+            "publicationStage": "CD",
+            "publicationDate": "2015-09-22",
+            "priceInfo": {
+                "priceCode": "iso:E",
+                "basePrice": {
+                    "amount": 159,
+                    "currency": "CHF"
+                }
+            },
+            "releaseItems": [
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "PDF",
+                    "formatVariant": "CPDF",
+                    "contentLanguage": [
+                        "en"
+                    ],
+                    "multilingual": false,
+                    "version": 1,
+                    "rfc5141urn": "iso:std:iso:9001:cd:ed-5:v1:en",
+                    "contentRef": {
+                        "id": "ec6a5022-ef82-4b68-9103-7ba59be7495e",
+                        "url": "https://data.iso.org/publications/std/dms/ec6a5022-ef82-4b68-9103-7ba59be7495e",
+                        "contentLength": 741502,
+                        "mimeType": "application/pdf",
+                        "fileName": "ISO 9001;2015 ed.5 - id.62085 Preparation PDF (en)",
+                        "fileExtension": "pdf",
+                        "checksum": "SHA-256=2C54FA5C1C5096E8377C05AF8E46BC989EBD1DFFEAE3DE0A8F5821B756E105B2"
+                    }
+                }
+            ],
+            "project": {
+                "urn": "iso:proj:62085",
+                "urnAlt": []
+            },
+            "lastChangeTimestamp": "2026-01-05T16:32:15.003"
+        },
+        {
+            "urn": "iso:pub:std:IS:88431",
+            "urnAlt": [
+                "iso:std:iso:9001:ed-5"
+            ],
+            "publicationType": "STANDARD",
+            "reference": "ISO 9001:2015/Amd 1:2024",
+            "originator": "ISO",
+            "stdType": "IS",
+            "stdNumber": "9001",
+            "edition": "5",
+            "version": 1,
+            "supplType": "AMD",
+            "supplNumber": "1",
+            "title": [
+                {
+                    "value": "Quality management systems — Requirements — Amendment 1: Climate action changes",
+                    "lang": "en"
+                },
+                {
+                    "value": "Systèmes de management de la qualité — Exigences — Amendement 1: Changements concernant les actions en lien avec le climat",
+                    "lang": "fr"
+                }
+            ],
+            "committee": {
+                "urn": "iso:committee:53896",
+                "urnAlt": [],
+                "reference": "ISO/TC 176/SC 2"
+            },
+            "abstract": [],
+            "classifications": [
+                {
+                    "type": "ICS",
+                    "value": "03.100.70"
+                },
+                {
+                    "type": "ICS",
+                    "value": "03.120.10"
+                },
+                {
+                    "type": "LOGO",
+                    "value": "ISO"
+                }
+            ],
+            "status": "PUBLISHED",
+            "publicationStage": "IS",
+            "publicationDate": "2024-02-23",
+            "priceInfo": {
+                "priceCode": "iso:free",
+                "basePrice": {
+                    "amount": 0,
+                    "currency": "CHF"
+                }
+            },
+            "releaseItems": [
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "EPUB",
+                    "contentLanguage": [
+                        "en"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2024-02-23",
+                    "version": 1,
+                    "pages": 1,
+                    "rfc5141urn": "iso:std:iso:9001:ed-5:v1:amd:1:v1:en",
+                    "contentRef": {
+                        "id": "68b47ca5-0e32-4247-8809-72bad96da7ab",
+                        "url": "https://data.iso.org/publications/std/dms/68b47ca5-0e32-4247-8809-72bad96da7ab",
+                        "contentLength": 1431349,
+                        "mimeType": "application/zip",
+                        "fileName": "ISO 9001;2015_Amd 1;2024 ed.5 - id.88431 Publication ePub (en)",
+                        "fileExtension": "epub",
+                        "checksum": "SHA-256=9DC43CDEE8558866E54A90752A45454B22503FCA7725D8739882B017029F420A"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "EPUB",
+                    "contentLanguage": [
+                        "es"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2024-03-27",
+                    "version": 1,
+                    "pages": 1,
+                    "rfc5141urn": "iso:std:iso:9001:ed-5:v1:amd:1:v1:es",
+                    "contentRef": {
+                        "id": "807b4d89-596d-48fc-a3c3-1eeb59be9220",
+                        "url": "https://data.iso.org/publications/std/dms/807b4d89-596d-48fc-a3c3-1eeb59be9220",
+                        "contentLength": 1399464,
+                        "mimeType": "application/zip",
+                        "fileName": "ISO 9001;2015_Amd 1;2024 ed.5 - id.88431 Publication ePub (es)",
+                        "fileExtension": "epub",
+                        "checksum": "SHA-256=37109785D9027FC1EE6A296D3782E0419E6508A8B965624956418F86FADA1E0F"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "EPUB",
+                    "contentLanguage": [
+                        "fr"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2024-08-30",
+                    "version": 2,
+                    "pages": 1,
+                    "rfc5141urn": "iso:std:iso:9001:ed-5:v2:amd:1:v2:fr",
+                    "contentRef": {
+                        "id": "ab4245c0-076f-45d4-bd6c-ad92b7f40201",
+                        "url": "https://data.iso.org/publications/std/dms/ab4245c0-076f-45d4-bd6c-ad92b7f40201",
+                        "contentLength": 1455974,
+                        "mimeType": "application/zip",
+                        "fileName": "ISO 9001;2015_Amd 1;2024 ed.5 - id.88431 Publication ePub (fr) v2",
+                        "fileExtension": "epub",
+                        "checksum": "SHA-256=B355E55DCCF34964A24316D61AFB0CB5CE05EC36E050177BBE82D4D0BD3D3FEE"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "PDF",
+                    "formatVariant": "CPDF",
+                    "contentLanguage": [
+                        "en"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2024-02-23",
+                    "version": 1,
+                    "pages": 1,
+                    "rfc5141urn": "iso:std:iso:9001:ed-5:v1:amd:1:v1:en",
+                    "contentRef": {
+                        "id": "38892eb7-f90c-41c5-ae9d-78b7596ade0a",
+                        "url": "https://data.iso.org/publications/std/dms/38892eb7-f90c-41c5-ae9d-78b7596ade0a",
+                        "contentLength": 873972,
+                        "mimeType": "application/pdf",
+                        "fileName": "ISO 9001;2015_Amd 1;2024 ed.5 - id.88431 Publication PDF (en)",
+                        "fileExtension": "pdf",
+                        "checksum": "SHA-256=02D0A51F7F282F5FB84E20B598D372E95EEEB472CDEDD8F7C6A33443C4FB10E0"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "PDF",
+                    "formatVariant": "CPDF",
+                    "contentLanguage": [
+                        "es"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2024-03-27",
+                    "version": 1,
+                    "pages": 1,
+                    "rfc5141urn": "iso:std:iso:9001:ed-5:v1:amd:1:v1:es",
+                    "contentRef": {
+                        "id": "cf1e6b71-9a2a-4b11-ab4b-d019d6503857",
+                        "url": "https://data.iso.org/publications/std/dms/cf1e6b71-9a2a-4b11-ab4b-d019d6503857",
+                        "contentLength": 889344,
+                        "mimeType": "application/pdf",
+                        "fileName": "ISO 9001;2015_Amd 1;2024 ed.5 - id.88431 Publication PDF (es)",
+                        "fileExtension": "pdf",
+                        "checksum": "SHA-256=8B6FAD04CC5864747C0848B6AF8AF72A8C9F74C926B38C90480248E425A387E9"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "PDF",
+                    "formatVariant": "CPDF",
+                    "contentLanguage": [
+                        "fr"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2024-08-30",
+                    "version": 2,
+                    "pages": 1,
+                    "rfc5141urn": "iso:std:iso:9001:ed-5:v2:amd:1:v2:fr",
+                    "contentRef": {
+                        "id": "46d5aa55-536d-4482-b7bf-303a9dbe9a45",
+                        "url": "https://data.iso.org/publications/std/dms/46d5aa55-536d-4482-b7bf-303a9dbe9a45",
+                        "contentLength": 880854,
+                        "mimeType": "application/pdf",
+                        "fileName": "ISO 9001;2015_Amd 1;2024 ed.5 - id.88431 Publication PDF (fr) v2",
+                        "fileExtension": "pdf",
+                        "checksum": "SHA-256=81AD07A80AE86D6CFB4869F7FA14EB92F4AAC9C64C000630D1067DE76D759367"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "WORD",
+                    "contentLanguage": [
+                        "en"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2024-02-23",
+                    "version": 1,
+                    "pages": 1,
+                    "rfc5141urn": "iso:std:iso:9001:ed-5:v1:amd:1:v1:en",
+                    "contentRef": {
+                        "id": "f909aa87-502b-41a4-a068-44900c4a5ea6",
+                        "url": "https://data.iso.org/publications/std/dms/f909aa87-502b-41a4-a068-44900c4a5ea6",
+                        "contentLength": 40912,
+                        "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                        "fileName": "ISO 9001;2015_Amd 1;2024 ed.5 - id.88431 Publication Word (en)",
+                        "fileExtension": "docx",
+                        "checksum": "SHA-256=930F24BA8B360868ACA852A032DC5E0BB2AC974C60BD71BF01525C15F5C4FF14"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "WORD",
+                    "contentLanguage": [
+                        "es"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2024-03-27",
+                    "version": 1,
+                    "pages": 1,
+                    "rfc5141urn": "iso:std:iso:9001:ed-5:v1:amd:1:v1:es",
+                    "contentRef": {
+                        "id": "b866d7a6-8de5-414c-8737-acf3dd94aa60",
+                        "url": "https://data.iso.org/publications/std/dms/b866d7a6-8de5-414c-8737-acf3dd94aa60",
+                        "contentLength": 40615,
+                        "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                        "fileName": "ISO 9001;2015_Amd 1;2024 ed.5 - id.88431 Publication Word (es)",
+                        "fileExtension": "docx",
+                        "checksum": "SHA-256=E40EA67DE7A23775C6B241868471CB46640E7385966FD60468A7A2C83D2D995C"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "WORD",
+                    "contentLanguage": [
+                        "fr"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2024-08-30",
+                    "version": 2,
+                    "pages": 1,
+                    "rfc5141urn": "iso:std:iso:9001:ed-5:v2:amd:1:v2:fr",
+                    "contentRef": {
+                        "id": "1be1ae3c-29c7-45ed-b6a5-0859dcfd6bb3",
+                        "url": "https://data.iso.org/publications/std/dms/1be1ae3c-29c7-45ed-b6a5-0859dcfd6bb3",
+                        "contentLength": 42847,
+                        "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                        "fileName": "ISO 9001;2015_Amd 1;2024 ed.5 - id.88431 Publication Word (fr) v2",
+                        "fileExtension": "docx",
+                        "checksum": "SHA-256=12242A2AFCDC690C8BD89BFB98548F69F8F61B3F6FE6A71344F635FB36E9627B"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "XML",
+                    "formatVariant": "NISOSTS",
+                    "contentLanguage": [
+                        "en"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2024-02-23",
+                    "version": 1,
+                    "pages": 1,
+                    "rfc5141urn": "iso:std:iso:9001:ed-5:v1:amd:1:v1:en",
+                    "contentRef": {
+                        "id": "fb41e66e-625d-481e-a5ac-8a4bb845298d",
+                        "url": "https://data.iso.org/publications/std/dms/fb41e66e-625d-481e-a5ac-8a4bb845298d",
+                        "contentLength": 2586,
+                        "mimeType": "application/zip",
+                        "fileName": "ISO 9001;2015_Amd 1;2024 ed.5 - id.88431 Publication XML (NISO-STS) (en)",
+                        "fileExtension": "zip",
+                        "checksum": "SHA-256=1EB3E3CE377FA96AD3EB87400F2F0B5CAC0500CFA9A7493D102C4D520721965F"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "XML",
+                    "formatVariant": "NISOSTS",
+                    "contentLanguage": [
+                        "es"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2024-03-27",
+                    "version": 1,
+                    "pages": 1,
+                    "rfc5141urn": "iso:std:iso:9001:ed-5:v1:amd:1:v1:es",
+                    "contentRef": {
+                        "id": "7f079345-08b9-4272-91b7-d0dbeccb0f33",
+                        "url": "https://data.iso.org/publications/std/dms/7f079345-08b9-4272-91b7-d0dbeccb0f33",
+                        "contentLength": 3206,
+                        "mimeType": "application/zip",
+                        "fileName": "ISO 9001;2015_Amd 1;2024 ed.5 - id.88431 Publication XML (NISO-STS) (es)",
+                        "fileExtension": "zip",
+                        "checksum": "SHA-256=580E747B098027E01938C348E02ADF03D75976519683125AF05CE0691F12F9DF"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "XML",
+                    "formatVariant": "NISOSTS",
+                    "contentLanguage": [
+                        "fr"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2024-08-30",
+                    "version": 2,
+                    "pages": 1,
+                    "rfc5141urn": "iso:std:iso:9001:ed-5:v2:amd:1:v2:fr",
+                    "contentRef": {
+                        "id": "0d5c7b8e-3fff-4a5d-ac4a-d404a7770a59",
+                        "url": "https://data.iso.org/publications/std/dms/0d5c7b8e-3fff-4a5d-ac4a-d404a7770a59",
+                        "contentLength": 3222,
+                        "mimeType": "application/zip",
+                        "fileName": "ISO 9001;2015_Amd 1;2024 ed.5 - id.88431 Publication XML (NISO-STS) (fr) v2",
+                        "fileExtension": "zip",
+                        "checksum": "SHA-256=D3C663B43455ADB5DA5A3FA9C9F5A7E19A2643189E5B57CD0DBB932EF538318F"
+                    }
+                }
+            ],
+            "project": {
+                "urn": "iso:proj:88431",
+                "urnAlt": []
+            },
+            "lastChangeTimestamp": "2025-11-23T02:47:38.976"
+        }
+    ]
+}

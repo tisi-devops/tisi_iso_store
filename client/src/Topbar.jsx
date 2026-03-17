@@ -11,6 +11,10 @@ function Topbar() {
   // 1. เปิดคอมเมนต์ location เพื่อให้ตัว active menu ทำงานได้
   const location = useLocation();
 
+  const num_test = 10.126589;
+  const num_fix2 = Math.ceil(num_test);
+  console.log(num_fix2); 
+
   useEffect(() => {
     fetch('http://localhost:5000/api/hello')
     .then(res => res.json())
@@ -62,8 +66,7 @@ function Topbar() {
         <div className="hidden sm:flex flex-col items-end border-r border-slate-100 pr-4">
           <span className="text-[20px] font-black text-slate-600 uppercase">อัตราแลกเปลี่ยน ณ วันที่ {data.ndate || '-'}</span>
           <div className="flex gap-2 mt-1">
-             <span className="text-[11px] font-bold text-green-600">Mid: {data.currency1}</span>
-             <span className="text-[11px] font-bold text-blue-600">Sell: {data.currency2}</span>
+             <span className="text-[11px] font-bold text-blue-600">1 CHF : {data.currency} THB</span>
           </div>
         </div>
 
