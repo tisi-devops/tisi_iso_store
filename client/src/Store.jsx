@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 function App() {
   const navigate = useNavigate();
@@ -48,6 +49,30 @@ function App() {
       setLoading(false);
     }
   };
+
+  const handleProductClick = (productId) => {
+    // ตรวจสอบว่ามีข้อมูลลูกค้าใน customerInfo หรือไม่
+    if (!customer) {
+      // 🚩 ถ้าว่าง ให้ขึ้น Pop-up (ใช้ alert พื้นฐาน หรือ Modal ที่คุณมี)
+      window.dispatchEvent(new Event("cartUpdated"));
+    
+      Swal.fire({
+        // title: 'สำเร็จ!',
+        text: `กรุณากรอกข้อมูลผู้สั่งซื้อก่อนดูรายละเอียดสินค้า`,
+        icon: 'warning',
+        confirmButtonText: 'ตกลง',
+        confirmButtonColor: '#2563eb',
+        timer: 2000
+      });
+      
+      // หรือถ้าอยากให้เด้งกลับไปหน้าฟอร์มเลย:
+      // navigate('/'); 
+    } else {
+      // ✅ ถ้ามีข้อมูลแล้ว ให้ไปหน้า Product Detail ได้ปกติ
+      navigate(`/product/${encodeURIComponent(productId)}`);
+    }
+  };
+
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans antialiased text-slate-900">
@@ -141,7 +166,8 @@ function App() {
               {products.map((item) => (
                 <button 
                   key={item.id}
-                  onClick={() => navigate(`/product/${encodeURIComponent(item.id)}`)}
+                  // onClick={() => navigate(`/product/${encodeURIComponent(item.id)}`)}
+                  onClick={() => handleProductClick(item.id)}
                   className="group w-full text-left bg-white p-6 rounded-3xl shadow-sm border border-slate-200 
                             hover:shadow-xl hover:border-red-200 hover:scale-[1.02] 
                             transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-red-100

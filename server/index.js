@@ -4,8 +4,10 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const axios = require('axios');
-const sqlite3 = require('sqlite3');
-const { open } = require('sqlite');
+const mysql = require('mysql2/promise'); // 🌟 เปลี่ยน Library
+
+// const sqlite3 = require('sqlite3');
+// const { open } = require('sqlite');
 
 // โหลดข้อมูลจำลองสำหรับที่อยู่ (จังหวัด อำเภอ ตำบล) จากไฟล์ JSON เพื่อใช้ใน API ที่เกี่ยวกับที่อยู่
 const rawData = require('./database/raw_database.json');
@@ -40,17 +42,52 @@ let tokenCache = {
 // ฟังก์ชันนี้จะเปิดการเชื่อมต่อกับฐานข้อมูล SQLite และสร้างตาราง orders ขึ้นมา (ถ้ายังไม่มี) เพื่อเตรียมพร้อมสำหรับการใช้งานในอนาคต
 async function initDatabase() {
     try {
-        db = await open({ filename: process.env.DB_FILENAME || './database/first.sqlite', driver: sqlite3.Database });
-        await db.exec(`
-            CREATE TABLE IF NOT EXISTS orders (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                company_name TEXT, address TEXT, phone TEXT,
-                tax_id TEXT, contact_person TEXT, email TEXT
-            )
+        // 1. สร้างการเชื่อมต่อ (Connection Pool)
+        db = mysql.createPool({
+            host: process.env.DB_HOST || 'localhost',
+            user: process.env.DB_USER || 'root',
+            password: process.env.DB_PASS || '',
+            database: process.env.DB_NAME || 'tisi_store',
+            waitForConnections: true,
+            connectionLimit: 10,
+            queueLimit: 0
+        });
+
+        // 2. ทดสอบเชื่อมต่อ และสร้างตาราง (ถ้ายังไม่มี)
+        // ⚠️ ใน MySQL ต้องระบุ Engine และชุดตัวอักษรภาษาไทย (utf8mb4)
+        await db.execute(`
+            CREATE TABLE IF NOT EXISTS transactions (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                transaction_id VARCHAR(25) UNIQUE, 
+                company_name VARCHAR(255),
+                tax_id CHAR(13),
+                address TEXT,
+                contact_person VARCHAR(255),
+                phone VARCHAR(20),
+                email VARCHAR(255),
+                total_amount INT,                  -- 🌟 เพิ่มบรรทัดนี้ (สำคัญมาก!)
+                status VARCHAR(20) DEFAULT 'PENDING',
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
         `);
-        console.log('✅ SQLite Database Ready!');
+
+        await db.execute(`
+                CREATE TABLE IF NOT EXISTS transaction_items (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                transaction_db_id CHAR(20),                         -- 🌟 เชื่อมกับ transaction_id ของตารางบน
+                product_code VARCHAR(100),                          -- เช่น ISO 9001
+                product_option VARCHAR(50),                         -- เช่น PDF, Hardcopy
+                price_at_purchase INT,                              -- ราคา ณ วันที่ซื้อ
+                quantity INT DEFAULT 1,
+                FOREIGN KEY (transaction_db_id) REFERENCES transactions(transaction_id) ON DELETE CASCADE
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+        `);
+
+        console.log('✅ MySQL Database Ready (via XAMPP)!');
     } catch (err) {
-        console.error('❌ Database Init Error:', err);
+        console.error('❌ MySQL Init Error:', err.message);
+        // แนะนำเพิ่มเติม: ถ้า Database ชื่อ tisi_store ยังไม่มีใน XAMPP มันจะ Error
+        // คุณต้องเข้าไปสร้าง Database เปล่าๆ ใน phpMyAdmin ก่อนนะครับ
     }
 }
 
@@ -223,7 +260,8 @@ app.get('/api/get-iso-detail', async (req, res) => {
             basePriceCHF: exactMatch.priceInfo?.basePrice?.amount || 0,
             priceTHB: Math.ceil((exactMatch.priceInfo?.basePrice?.amount || 0) * rate),
             status: exactMatch.status,
-            publicationStage: exactMatch.publicationStage
+            publicationStage: exactMatch.publicationStage,
+            abstract: exactMatch.abstract?.[0]?.content
         };
 
         res.json(result);
@@ -231,7 +269,21 @@ app.get('/api/get-iso-detail', async (req, res) => {
         console.error("❌ Route Detail Fetch Error:", error.message);
         res.status(500).json({ error: "Failed to fetch ISO detail" });
     }
-});
+    // ในไฟล์ server.js แทนที่บรรทัดที่ 272
+    const itemSql = `INSERT INTO transaction_items 
+                    (transaction_db_id, product_code, product_option, price_at_purchase, quantity) 
+                    VALUES (?, ?, ?, ?, ?)`;
+
+    for (const item of items) {
+        await connection.execute(itemSql, [
+            transactionId,   // 🌟 ใช้ transaction_id ผูกกับตารางแม่
+            item.code,
+            item.option || 'Standard',
+            item.price,
+            1                // จำนวนสินค้า
+        ]);
+    }
+}); 
 
 // 📌 3. Route: ข้อมูลที่อยู่ และ เช็คสถานะ (ปล่อยไว้เหมือนเดิม)
 // ส่วนเลือกจังหวัด
@@ -255,6 +307,71 @@ app.get('/api/hello', async (req, res) => {
         status: "Online", 
         currency: exchangeData ? exchangeData.selling_rate : "N/A" });
 });
+
+
+app.post('/api/submit-transaction', async (req, res) => {
+    const { customer, items, totalAmount } = req.body;
+    
+    const connection = await db.getConnection();
+    await connection.beginTransaction();
+
+    try {
+        // 1. รันเลข Transaction ID (นับรายการของวันนี้)
+        const today = new Date().toISOString().slice(0, 10);
+        const [countRow] = await connection.execute(
+            `SELECT COUNT(*) as total FROM transactions WHERE DATE(created_at) = CURDATE()`
+        );
+        const nextNumber = (countRow[0].total || 0) + 1;
+        const transactionId = `TISI-${today.replace(/-/g, '')}-${String(nextNumber).padStart(3, '0')}`;
+
+        // 2. บันทึกลงตารางแม่ (transactions)
+        // ⚠️ ต้องมี total_amount ให้ตรงกับในตาราง
+        await connection.execute(
+            `INSERT INTO transactions 
+            (transaction_id, company_name, tax_id, address, contact_person, phone, email, total_amount) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+            [
+                transactionId, 
+                customer.comp_name, 
+                customer.tax_id, 
+                customer.address, 
+                customer.contact_person, 
+                customer.comp_phone, 
+                customer.comp_email, 
+                totalAmount
+            ]
+        );
+
+        // 3. บันทึกลงตารางลูก (transaction_items)
+        const itemSql = `INSERT INTO transaction_items 
+                         (transaction_db_id, product_code, product_option, price_at_purchase, quantity) 
+                         VALUES (?, ?, ?, ?, ?)`;
+
+        for (const item of items) {
+            await connection.execute(itemSql, [
+                transactionId, // ผูกกับ transaction_id ของตารางแม่
+                item.code,
+                item.option || 'Standard',
+                item.price,
+                1
+            ]);
+        }
+
+        await connection.commit();
+        res.json({ success: true, transactionId });
+
+    } catch (error) {
+        await connection.rollback();
+        console.error("❌ Database Error:", error.message); // ดู Error จริงใน Terminal
+        res.status(500).json({ error: error.message });
+    } finally {
+        connection.release();
+    }
+});
+
+
+
+
 
 // ==========================================
 // 🔥 START SERVER

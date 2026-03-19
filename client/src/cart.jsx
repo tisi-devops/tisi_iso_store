@@ -1,30 +1,100 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 function Cart() {
   const [cartItems, setCartItems] = useState([]);
+  const [customerInfo, setCustomerInfo] = useState(null); // 🌟 ย้ายมาไว้ข้างในนี้
   const navigate = useNavigate();
 
-  // 1. ดึงข้อมูลจาก LocalStorage มาแสดง
+  // 1. ดึงข้อมูลจาก Storage มาแสดง
   useEffect(() => {
-    const items = JSON.parse(localStorage.getItem('cart') || "[]");
+    // ดึงสินค้าจาก LocalStorage
+    const items = JSON.parse(sessionStorage.getItem('cart') || "[]");
     setCartItems(items);
+
+    // 🌟 ดึงข้อมูลลูกค้าจาก SessionStorage
+    const savedData = sessionStorage.getItem('customerData');
+    if (savedData) {
+      setCustomerInfo(JSON.parse(savedData));
+    }
   }, []);
 
   // 2. ฟังก์ชันลบสินค้า
   const removeItem = (cartId) => {
     const updatedCart = cartItems.filter(item => item.cartId !== cartId);
     setCartItems(updatedCart);
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
-    
-    // ส่งสัญญาณบอก Navb ให้ลดตัวเลข Badge
+    sessionStorage.setItem('cart', JSON.stringify(updatedCart));
     window.dispatchEvent(new Event("cartUpdated"));
   };
 
   // 3. คำนวณราคารวม
   const subtotal = cartItems.reduce((acc, item) => acc + item.price, 0);
-  //const tax = subtotal * 0.07; // ภาษี 7%
   const total = subtotal;
+
+
+  const handleCheckout = async () => {
+    // 1. ตรวจสอบก่อนว่ามีข้อมูลลูกค้าและสินค้าไหม
+    if (!customerInfo) {
+      Swal.fire({
+        title: 'ข้อมูลไม่ครบ',
+        text: 'กรุณากลับไปกรอกข้อมูลผู้ติดต่อที่หน้าแรกก่อนครับ',
+        icon: 'warning',
+        confirmButtonColor: '#2563eb'
+      });
+      return;
+    }
+
+    if (cartItems.length === 0) return;
+
+    // 2. เตรียมก้อนข้อมูลที่จะส่งไป Backend
+    const orderData = {
+      customer: customerInfo, // ข้อมูลจาก sessionStorage (company_name, email, etc.)
+      items: cartItems,       // รายการสินค้าในตะกร้า
+      totalAmount: total      // ยอดรวมสุทธิ
+    };
+
+    try {
+      // แสดง Loading ระหว่างส่งข้อมูล
+      Swal.fire({
+        title: 'กำลังดำเนินการ...',
+        allowOutsideClick: false,
+        didOpen: () => { Swal.showLoading(); }
+      });
+
+      // 3. ยิง API ไปที่ Backend (ตัวที่เราจะเขียนในข้อถัดไป)
+      const response = await fetch('http://localhost:5000/api/submit-transaction', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(orderData)
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        // 4. ถ้าสำเร็จ: แจ้งเตือน และเคลียร์ตะกร้า
+        await Swal.fire({
+          title: 'สั่งซื้อสำเร็จ!',
+          text: `เลขที่รายการของคุณคือ: ${result.transactionId}`,
+          icon: 'success',
+          confirmButtonColor: '#2563eb'
+        });
+
+        sessionStorage.removeItem('cart'); // ล้างตะกร้า
+        window.dispatchEvent(new Event("cartUpdated")); // บอก Navbar ให้เลข 0
+        navigate('/'); // กลับหน้าแรก หรือไปหน้า Success
+      } else {
+        throw new Error(result.error || 'เกิดข้อผิดพลาดในการบันทึกข้อมูล');
+      }
+
+    } catch (err) {
+      Swal.fire({
+        title: 'เกิดข้อผิดพลาด',
+        text: err.message,
+        icon: 'error'
+      });
+    }
+  };
 
   return (
     <div className="min-h-screen bg-slate-50 p-6 md:p-12 font-sans">
@@ -49,8 +119,17 @@ function Cart() {
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             
-            {/* รายการสินค้าในตะกร้า */}
             <div className="lg:col-span-2 space-y-4">
+              {/* 📌 ส่วนแสดงข้อมูลผู้สั่งซื้อแบบย่อ (Customer Summary) */}
+              {customerInfo && (
+                <div className="bg-blue-50 p-4 rounded-2xl border border-blue-100 mb-6">
+                  <h4 className="text-blue-800 font-bold text-sm mb-1">ข้อมูลผู้สั่งซื้อ:</h4>
+                  <p className="text-blue-900 font-medium">{customerInfo.comp_name}</p>
+                  <p className="text-blue-600 text-xs">{customerInfo.comp_email} | {customerInfo.comp_phone}</p>
+                </div>
+              )}
+
+              {/* รายการสินค้า */}
               {cartItems.map((item) => (
                 <div key={item.cartId} className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex items-center justify-between group hover:border-blue-200 transition-all">
                   <div className="flex items-center gap-4">
@@ -94,7 +173,10 @@ function Cart() {
                 </div>
               </div>
 
-              <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-2xl transition-all shadow-lg shadow-blue-100 active:scale-95 mb-4">
+              <button 
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-2xl transition-all shadow-lg shadow-blue-100 active:scale-95 mb-4"
+                onClick={() => handleCheckout()}
+              >
                 ดำเนินการชำระเงิน
               </button>
               
