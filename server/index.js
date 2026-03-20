@@ -58,14 +58,19 @@ async function initDatabase() {
         await db.execute(`
             CREATE TABLE IF NOT EXISTS transactions (
                 id INT AUTO_INCREMENT PRIMARY KEY,
-                transaction_id VARCHAR(25) UNIQUE, 
+                transaction_id VARCHAR(20) UNIQUE, 
                 company_name VARCHAR(255),
-                tax_id CHAR(13),
-                address TEXT,
+                tax_id VARCHAR(20),
+                address_detail TEXT,
+                sub_district VARCHAR(255),
+                district VARCHAR(255),
+                province VARCHAR(255),
+                postcode VARCHAR(10),
                 contact_person VARCHAR(255),
                 phone VARCHAR(20),
                 email VARCHAR(255),
-                total_amount INT,                  -- 🌟 เพิ่มบรรทัดนี้ (สำคัญมาก!)
+                total_amount INT,
+                exchange_rate DECIMAL(10, 7),
                 status VARCHAR(20) DEFAULT 'PENDING',
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -74,12 +79,12 @@ async function initDatabase() {
         await db.execute(`
                 CREATE TABLE IF NOT EXISTS transaction_items (
                 id INT AUTO_INCREMENT PRIMARY KEY,
-                transaction_db_id CHAR(20),                         -- 🌟 เชื่อมกับ transaction_id ของตารางบน
-                product_code VARCHAR(100),                          -- เช่น ISO 9001
-                product_option VARCHAR(50),                         -- เช่น PDF, Hardcopy
-                price_at_purchase INT,                              -- ราคา ณ วันที่ซื้อ
+                transaction_id CHAR(20),
+                product_code VARCHAR(100),
+                product_option VARCHAR(50),
+                price_at_purchase INT,
                 quantity INT DEFAULT 1,
-                FOREIGN KEY (transaction_db_id) REFERENCES transactions(transaction_id) ON DELETE CASCADE
+                FOREIGN KEY (transaction_id) REFERENCES transactions(transaction_id) ON DELETE CASCADE
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
         `);
 
@@ -312,44 +317,53 @@ app.get('/api/hello', async (req, res) => {
 app.post('/api/submit-transaction', async (req, res) => {
     const { customer, items, totalAmount } = req.body;
     
+    // 🌟 อุดรอยรั่วที่ 2: ดึงอัตราแลกเปลี่ยนมาก่อนบันทึก
+    const exchangeData = await cachingExhangRate();
+    const currentRate = exchangeData ? parseFloat(exchangeData.selling_rate) : 40.0;
+
     const connection = await db.getConnection();
     await connection.beginTransaction();
 
     try {
-        // 1. รันเลข Transaction ID (นับรายการของวันนี้)
+        // 1. รันเลข Transaction ID
         const today = new Date().toISOString().slice(0, 10);
         const [countRow] = await connection.execute(
             `SELECT COUNT(*) as total FROM transactions WHERE DATE(created_at) = CURDATE()`
         );
         const nextNumber = (countRow[0].total || 0) + 1;
-        const transactionId = `TISI-${today.replace(/-/g, '')}-${String(nextNumber).padStart(3, '0')}`;
+        const transactionId = `TISI${today.replace(/-/g, '')}${String(nextNumber).padStart(4, '0')}`;
 
         // 2. บันทึกลงตารางแม่ (transactions)
-        // ⚠️ ต้องมี total_amount ให้ตรงกับในตาราง
         await connection.execute(
             `INSERT INTO transactions 
-            (transaction_id, company_name, tax_id, address, contact_person, phone, email, total_amount) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+            (transaction_id, company_name, tax_id, address_detail, sub_district, district, province, postcode, contact_person, phone, email, total_amount, exchange_rate, status) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
             [
-                transactionId, 
-                customer.comp_name, 
-                customer.tax_id, 
-                customer.address, 
-                customer.contact_person, 
-                customer.comp_phone, 
-                customer.comp_email, 
-                totalAmount
+                transactionId,
+                customer.comp_name || null,      // อุดรอยรั่ว 3: ใช้ชื่อที่หน้าบ้านส่งมา
+                customer.comp_tax || null,       // อุดรอยรั่ว 3: comp_tax
+                customer.comp_add || null,       // อุดรอยรั่ว 3: comp_add
+                customer.sub_district || null,
+                customer.district || null,
+                customer.province || null,
+                customer.postcode || null,
+                customer.comp_contact || null,   // อุดรอยรั่ว 3: comp_contact
+                customer.comp_phone || null,
+                customer.comp_email || null,
+                totalAmount || 0,
+                currentRate,                     // อุดรอยรั่ว 1: ใช้ตัวแปรเรตที่เราเพิ่งดึงมา
+                'PENDING'                        // อุดรอยรั่ว 1: พิมพ์สถานะเป็น String ไปเลย
             ]
         );
 
         // 3. บันทึกลงตารางลูก (transaction_items)
         const itemSql = `INSERT INTO transaction_items 
-                         (transaction_db_id, product_code, product_option, price_at_purchase, quantity) 
+                         (transaction_id, product_code, product_option, price_at_purchase, quantity) 
                          VALUES (?, ?, ?, ?, ?)`;
 
         for (const item of items) {
             await connection.execute(itemSql, [
-                transactionId, // ผูกกับ transaction_id ของตารางแม่
+                transactionId, 
                 item.code,
                 item.option || 'Standard',
                 item.price,
@@ -362,7 +376,7 @@ app.post('/api/submit-transaction', async (req, res) => {
 
     } catch (error) {
         await connection.rollback();
-        console.error("❌ Database Error:", error.message); // ดู Error จริงใน Terminal
+        console.error("❌ Database Error:", error.message); 
         res.status(500).json({ error: error.message });
     } finally {
         connection.release();

@@ -1,4 +1,3 @@
-// //หน้ากรอกฟอร์มเสนอราคา
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -8,12 +7,14 @@ function AddTransaction() {
   const navigate = useNavigate();
   const baseURL = 'http://localhost:5000/api';
 
+  // 1. ประกาศ State ให้สอดคล้องกับโครงสร้างใหม่
   const [provinces, setProvinces] = useState([]);
-  const [amphoes, setAmphoes] = useState([]);
-  const [districts, setDistricts] = useState([]);
+  const [districts, setDistricts] = useState([]); // เดิมคือ amphoes (อำเภอ)
+  const [subDistricts, setSubDistricts] = useState([]); // เดิมคือ districts (ตำบล)
+
   const [selectedProv, setSelectedProv] = useState(null);
-  const [selectedAmphoe, setSelectedAmphoe] = useState(null);
   const [selectedDistrict, setSelectedDistrict] = useState(null);
+  const [selectedSubDistrict, setSelectedSubDistrict] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,18 +26,18 @@ function AddTransaction() {
       comp_tax: el.comp_tax.value,
       comp_contact: el.comp_contact.value,
       comp_email: el.comp_email.value,
-
       comp_add: el.comp_add.value,
       province: selectedProv?.value,
-      amphoe: selectedAmphoe?.value,
-      district: selectedDistrict?.value,
-      zipcode: selectedDistrict?.zipcode //รหัสไปรษณีย์
+      district: selectedDistrict?.value,       // อำเภอ
+      sub_district: selectedSubDistrict?.value, // ตำบล
+      postcode: selectedSubDistrict?.postcode   // รหัสไปรษณีย์
     };
 
     sessionStorage.setItem('customerData', JSON.stringify(formData));
     navigate('/Store');
   };
 
+  // 2. ดึงจังหวัด (ทำครั้งเดียวตอนโหลดหน้า)
   useEffect(() => {
     axios.get(`${baseURL}/provinces`)
       .then(res => {
@@ -46,33 +47,36 @@ function AddTransaction() {
       .catch(err => console.error("Error provinces:", err));
   }, []);
 
+  // 3. เมื่อเลือก "จังหวัด" -> ไปดึง "อำเภอ (District)"
   useEffect(() => {
     if (selectedProv) {
       axios.get(`${baseURL}/amphoes/${encodeURIComponent(selectedProv.value)}`)
         .then(res => {
-          setAmphoes(res.data.map(a => ({ value: a, label: a })));
+          setDistricts(res.data.map(a => ({ value: a, label: a })));
         });
     }
-    setAmphoes([]);
+    // ล้างค่าลูกเมื่อเปลี่ยนค่าแม่
     setDistricts([]);
-    setSelectedAmphoe(null);
+    setSubDistricts([]);
     setSelectedDistrict(null);
+    setSelectedSubDistrict(null);
   }, [selectedProv]);
 
+  // 4. เมื่อเลือก "อำเภอ (District)" -> ไปดึง "ตำบล (SubDistrict)"
   useEffect(() => {
-    if (selectedAmphoe && selectedProv) {
-      axios.get(`${baseURL}/districts/${encodeURIComponent(selectedProv.value)}/${encodeURIComponent(selectedAmphoe.value)}`)
+    if (selectedDistrict && selectedProv) {
+      axios.get(`${baseURL}/districts/${encodeURIComponent(selectedProv.value)}/${encodeURIComponent(selectedDistrict.value)}`)
         .then(res => {
-          setDistricts(res.data.map(d => ({ 
+          setSubDistricts(res.data.map(d => ({ 
             value: d.district, 
             label: d.district,
-            zipcode: d.zipcode 
+            postcode: d.zipcode 
           })));
         });
     }
-    setDistricts([]);
-    setSelectedDistrict(null);
-  }, [selectedAmphoe, selectedProv]);
+    setSubDistricts([]);
+    setSelectedSubDistrict(null);
+  }, [selectedDistrict, selectedProv]);
 
   const customStyles = {
     control: (base, state) => ({
@@ -89,117 +93,66 @@ function AddTransaction() {
   return (
     <div className="min-h-screen bg-slate-50 font-sans antialiased text-slate-900 pb-20">
       <main className="max-w-3xl mx-auto p-6 lg:pt-16">
-
         <header className="mb-8 text-center">
-          <h2 className="text-3xl font-black text-slate-900 mb-2">แบบฟอร์มขอใบเสนอราคาการสั่งซื้อ<br></br>มาตรฐานต่างประเทศ</h2>
-          <p className="text-slate-500">โปรดกรอกข้อมูลให้ครบถ้วนเพื่อใช้ประกอบการจัดทำใบเสนอราคาและแบบฟอร์มการสั่งซื้อ</p>
+          <h2 className="text-3xl font-black text-slate-900 mb-2">แบบฟอร์มขอใบเสนอราคา</h2>
+          <p className="text-slate-500">โปรดกรอกข้อมูลให้ครบถ้วนเพื่อใช้ประกอบการสั่งซื้อ</p>
         </header>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          
-          {/* Section 1: Company Info */}
-          <div className="bg-white p-8 rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100">
+          {/* ข้อมูลหน่วยงาน */}
+          <div className="bg-white p-8 rounded-3xl shadow-xl border border-slate-100">
             <div className="flex items-center gap-2 mb-6 pb-2 border-b border-slate-50">
               <span className="text-blue-600">🏢</span>
-              <h3 className="font-bold text-slate-800 uppercase tracking-wider text-sm">ข้อมูลหน่วยงาน/ผู้สั่งซื้อ</h3>
+              <h3 className="font-bold text-slate-800 uppercase tracking-wider text-sm">ข้อมูลผู้สั่งซื้อ</h3>
             </div>
-
             <div className="space-y-5">
               <div>
                 <label className="block text-sm font-bold text-slate-700 mb-2">ชื่อหน่วยงาน / บริษัท</label>
-                <label className="block text-sm text-slate-500 mb-2">(สำหรับการออกใบเสนอราคา แบบฟอร์มการสั่งซื้อ ใบแจ้งหนี้และใบเสร็จรับเงิน)</label>
-                <input 
-                  type="text" name="comp_name" required
-                  className="w-full p-4 border border-slate-200 rounded-2xl outline-none transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 placeholder:text-slate-300"
-                  placeholder="เช่น บริษัท ทีไอเอสไอ จำกัด (มหาชน)"
-                  autoComplete="off"
-                />
+                <input type="text" name="comp_name" required className="w-full p-4 border border-slate-200 rounded-2xl outline-none" placeholder="ชื่อหน่วยงาน..." />
               </div>
-
               <div>
-                <label className="block text-sm font-bold text-slate-700 mb-2">เลขประจำตัวผู้เสียภาษี (13 หลัก)</label>
-                <input 
-                  type="text" name="comp_tax" required pattern="[0-9]{13}" maxLength="13"
-                  className="w-full p-4 border border-slate-200 rounded-2xl outline-none transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 font-mono"
-                  placeholder="0123456789012"
-                  autoComplete="off"
-                />
+                <label className="block text-sm font-bold text-slate-700 mb-2">เลขประจำตัวผู้เสียภาษี</label>
+                <input type="text" name="comp_tax" required pattern="[0-9]{13}" maxLength="13" className="w-full p-4 border border-slate-200 rounded-2xl outline-none font-mono" placeholder="13 หลัก" />
               </div>
             </div>
           </div>
 
-          {/* Section 2: Address */}
-          <div className="bg-white p-8 rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100">
-
-            <div className="mb-6 pb-2 border-b border-slate-50">
-              <div className="flex items-center gap-2 mb-1">
-                <span className="text-blue-600">📍</span>
-                <label className="font-bold text-slate-800 uppercase tracking-wider text-sm">ที่อยู่</label>
-              </div>
-              <label className="block text-sm text-slate-500">(สำหรับการออกใบเสนอราคา แบบฟอร์มการสั่งซื้อ ใบแจ้งหนี้และใบเสร็จรับเงิน)</label>
+          {/* ที่อยู่ */}
+          <div className="bg-white p-8 rounded-3xl shadow-xl border border-slate-100">
+            <div className="mb-6 pb-2 border-b border-slate-50 flex items-center gap-2">
+              <span className="text-blue-600">📍</span>
+              <label className="font-bold text-slate-800 text-sm">ที่อยู่</label>
             </div>
-            
             <div className="space-y-4">
-              <input 
-                type="text" name="comp_add" required
-                className="w-full p-4 border border-slate-200 rounded-2xl outline-none transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10"
-                placeholder="บ้านเลขที่, อาคาร, ถนน, ซอย"
-                autoComplete="off"
-              />
-              
+              <input type="text" name="comp_add" required className="w-full p-4 border border-slate-200 rounded-2xl outline-none" placeholder="บ้านเลขที่, อาคาร, ถนน, ซอย" />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Select placeholder="จังหวัด" options={provinces} value={selectedProv} onChange={setSelectedProv} styles={customStyles} isSearchable />
-                <Select placeholder="อำเภอ / เขต" options={amphoes} value={selectedAmphoe} onChange={setSelectedAmphoe} isDisabled={!selectedProv} styles={customStyles} />
+                <Select placeholder="อำเภอ / เขต" options={districts} value={selectedDistrict} onChange={setSelectedDistrict} isDisabled={!selectedProv} styles={customStyles} />
               </div>
-
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Select placeholder="ตำบล / แขวง" options={districts} value={selectedDistrict} onChange={setSelectedDistrict} isDisabled={!selectedAmphoe} styles={customStyles} />
-                <div className="relative">
-                  <input
-                    placeholder="รหัสไปรษณีย์" type="text" readOnly
-                    value={selectedDistrict?.zipcode || ''} 
-                    className="w-full p-4 bg-slate-50 border border-slate-100 text-slate-500 rounded-2xl outline-none cursor-not-allowed font-bold"
-                  />
-                </div>
+                <Select placeholder="ตำบล / แขวง" options={subDistricts} value={selectedSubDistrict} onChange={setSelectedSubDistrict} isDisabled={!selectedDistrict} styles={customStyles} />
+                <input placeholder="รหัสไปรษณีย์" type="text" readOnly value={selectedSubDistrict?.postcode || ''} className="w-full p-4 bg-slate-50 border border-slate-100 text-slate-500 rounded-2xl cursor-not-allowed font-bold" />
               </div>
             </div>
           </div>
 
-          {/* Section 3: Contact */}
-          <div className="bg-white p-8 rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100">
+          {/* ข้อมูลผู้ติดต่อ */}
+          <div className="bg-white p-8 rounded-3xl shadow-xl border border-slate-100">
             <div className="flex items-center gap-2 mb-6 pb-2 border-b border-slate-50">
               <span className="text-blue-600">👤</span>
-              <h3 className="font-bold text-slate-800 uppercase tracking-wider text-sm">ข้อมูลผู้ติดต่อประสานงาน</h3>
+              <h3 className="font-bold text-slate-800 text-sm">ข้อมูลผู้ติดต่อประสานงาน</h3>
             </div>
-
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-sm font-bold text-slate-700 mb-2">ชื่อ-นามสกุล ผู้ติดต่อ</label>
-                <input type="text" name="comp_contact" 
-                       required className="w-full p-4 border border-slate-200 rounded-2xl outline-none transition-all focus:border-blue-500" 
-                       placeholder="คุณสมชาย ใจดี" 
-                       autoComplete="off"/>
-              </div>
-              <div>
-                <label className="block text-sm font-bold text-slate-700 mb-2">เบอร์โทรศัพท์มือถือ</label>
-                <input type="text" name="comp_phone" 
-                       required className="w-full p-4 border border-slate-200 rounded-2xl outline-none transition-all focus:border-blue-500" 
-                       placeholder="08x-xxx-xxxx"
-                       autoComplete="off"/>
-              </div>
+              <input type="text" name="comp_contact" required className="w-full p-4 border border-slate-200 rounded-2xl outline-none" placeholder="ชื่อ-นามสกุล" />
+              <input type="text" name="comp_phone" required className="w-full p-4 border border-slate-200 rounded-2xl outline-none" placeholder="เบอร์โทรศัพท์" />
               <div className="md:col-span-2">
-                <label className="block text-sm font-bold text-slate-700 mb-2">อีเมล (สำหรับส่งเอกสาร)</label>
-                <input type="email" name="comp_email" 
-                       required className="w-full p-4 border border-slate-200 rounded-2xl outline-none transition-all focus:border-blue-500" 
-                       placeholder="contact@company.com"
-                       autoComplete="off"/>
+                <input type="email" name="comp_email" required className="w-full p-4 border border-slate-200 rounded-2xl outline-none" placeholder="อีเมลสำหรับรับเอกสาร" />
               </div>
             </div>
           </div>
 
-          <button type="submit"
-            className="w-full bg-blue-600 text-white py-5 rounded-2xl font-black text-xl hover:bg-blue-700 transition-all shadow-xl shadow-blue-200 hover:scale-[1.01] active:scale-[0.98]">
-              ขั้นตอนถัดไป: เลือกมาตรฐาน →
+          <button type="submit" className="w-full bg-blue-600 text-white py-5 rounded-2xl font-black text-xl hover:bg-blue-700 transition-all shadow-xl">
+            ขั้นตอนถัดไป: เลือกมาตรฐาน →
           </button>
         </form>
       </main>
