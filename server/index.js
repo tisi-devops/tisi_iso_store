@@ -320,6 +320,74 @@ app.post('/api/submit-transaction', async (req, res) => {
     // 🌟 อุดรอยรั่วที่ 2: ดึงอัตราแลกเปลี่ยนมาก่อนบันทึก
     const exchangeData = await cachingExhangRate();
     const currentRate = exchangeData ? parseFloat(exchangeData.selling_rate) : 40.0;
+    
+    // เชื่อมต่อกับฐานข้อมูลและเริ่ม Transaction เพื่อให้การบันทึกข้อมูลลงตารางแม่ (transactions) และลูก (transaction_items) เป็นไปอย่างปลอดภัยและสอดคล้องกัน
+    const connection = await db.getConnection();
+    await connection.beginTransaction();
+
+    try {
+        // 1. รันเลข Transaction ID
+        const today = new Date().toISOString().slice(0, 10);
+        const [countRow] = await connection.execute(
+            `SELECT COUNT(*) as total FROM transactions WHERE DATE(created_at) = CURDATE()`
+        );
+        const nextNumber = (countRow[0].total || 0) + 1;
+        const transactionId = `TISI${today.replace(/-/g, '')}${String(nextNumber).padStart(4, '0')}`;
+
+        // 2. บันทึกลงตารางแม่ (transactions)
+        await connection.execute(
+            `INSERT INTO transactions 
+            (transaction_id, company_name, tax_id, address_detail, sub_district, district, province, postcode, contact_person, phone, email, total_amount, exchange_rate, status) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+            [
+                transactionId,
+                customer.comp_name || null,      // อุดรอยรั่ว 3: ใช้ชื่อที่หน้าบ้านส่งมา
+                customer.comp_tax || null,       // อุดรอยรั่ว 3: comp_tax
+                customer.comp_add || null,       // อุดรอยรั่ว 3: comp_add
+                customer.sub_district || null,
+                customer.district || null,
+                customer.province || null,
+                customer.postcode || null,
+                customer.comp_contact || null,   // อุดรอยรั่ว 3: comp_contact
+                customer.comp_phone || null,
+                customer.comp_email || null,
+                totalAmount || 0,
+                currentRate,                     // อุดรอยรั่ว 1: ใช้ตัวแปรเรตที่เราเพิ่งดึงมา
+                'PENDING'                        // อุดรอยรั่ว 1: พิมพ์สถานะเป็น String ไปเลย
+            ]
+        );
+
+        // 3. บันทึกลงตารางลูก (transaction_items)
+        const itemSql = `INSERT INTO transaction_items 
+                         (transaction_id, product_code, product_option, price_at_purchase, quantity) 
+                         VALUES (?, ?, ?, ?, ?)`;
+
+        for (const item of items) {
+            await connection.execute(itemSql, [
+                transactionId, 
+                item.code,
+                item.option || 'Standard',
+                item.price,
+                1
+            ]);
+        }
+
+        await connection.commit();
+        res.json({ success: true, transactionId });
+
+    } catch (error) {
+        await connection.rollback();
+        console.error("❌ Database Error:", error.message); 
+        res.status(500).json({ error: error.message });
+    } finally {
+        connection.release();
+    }
+});
+
+
+
+app.post('/api/reports', async (req, res) => {
+    const { customer, items, totalAmount } = req.body;
 
     const connection = await db.getConnection();
     await connection.beginTransaction();
@@ -382,6 +450,10 @@ app.post('/api/submit-transaction', async (req, res) => {
         connection.release();
     }
 });
+
+
+
+
 
 
 
