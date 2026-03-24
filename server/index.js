@@ -6,15 +6,42 @@ const cors = require('cors');
 const axios = require('axios');
 const mysql = require('mysql2/promise'); // 🌟 เปลี่ยน Library
 
-// const sqlite3 = require('sqlite3');
-// const { open } = require('sqlite');
+// สำหรับส่งอีเมล (ถ้าต้องการใช้ในอนาคต)
+const nodemailer = require('nodemailer');
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+    }
+});
 
 // โหลดข้อมูลจำลองสำหรับที่อยู่ (จังหวัด อำเภอ ตำบล) จากไฟล์ JSON เพื่อใช้ใน API ที่เกี่ยวกับที่อยู่
 const rawData = require('./database/raw_database.json');
 const app = express();
 
 // 2. ตั้งค่าความปลอดภัยเบื้องต้น
-app.use(cors({ origin: process.env.FRONTEND_URL || '*' }));
+// app.use(cors({ origin: process.env.USER_FRONTEND_URL || '*' })); // อนุญาตเฉพาะ User Frontend (5174) ให้เข้าถึง API ได้
+
+
+// 2. ตั้งค่าความปลอดภัยเบื้องต้น (อนุญาตทั้ง Admin และ User)
+const allowedOrigins = [
+  process.env.ADMIN_FRONTEND_URL, 
+  process.env.USER_FRONTEND_URL,
+  'http://localhost:5173', // ใส่เผื่อไว้กรณีลืมตั้ง .env
+  'http://localhost:5174'  // ใส่เผื่อไว้กรณีลืมตั้ง .env
+];
+
+app.use(cors({ 
+  origin: function (origin, callback) {
+    // ถ้าไม่มี origin (เช่น postman) หรือ origin อยู่ใน list ที่อนุญาต
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+}));
 app.use(express.json());
 
 // 3. โหลดค่าตัวแปร
@@ -88,6 +115,17 @@ async function initDatabase() {
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
         `);
 
+        await db.execute(`
+                CREATE TABLE otp_storage (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                email VARCHAR(255) NOT NULL,
+                otp_code CHAR(6) NOT NULL,
+                ref_code CHAR(4) NOT NULL,
+                expires_at DATETIME NOT NULL,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+        `);
+
         console.log('✅ MySQL Database Ready (via XAMPP)!');
     } catch (err) {
         console.error('❌ MySQL Init Error:', err.message);
@@ -119,6 +157,7 @@ async function getExchangeRate() {
                 exchangeData = { 
                     mid_rate: detail.mid_rate,
                     selling_rate: detail.selling,
+                    buying_transfer: detail.buying_transfer,
                     period: detail.period,
                     start_day: formatStr,
                     CHK_date: targetDate
@@ -189,7 +228,7 @@ app.get('/', (req, res) => {
 app.get('/api/search-iso', async (req, res) => {
     const { q } = req.query || "";
     const exchangeData = await cachingExhangRate();
-    const rate = exchangeData ? parseFloat(exchangeData.selling_rate) : 40.0;
+    const rate = exchangeData ? parseFloat(exchangeData.buying_transfer) : 40.0;
 
     try {
         const accessToken = await getValidAccessToken();
@@ -229,7 +268,7 @@ app.get('/api/get-iso-detail', async (req, res) => {
     // รับ projectUrn จาก query parameter (ซึ่งมาจากการแปลง Publication URN เป็น Project URN แล้วในฝั่ง Frontend)
     const { projectUrn } = req.query;
     const exchangeData = await cachingExhangRate();
-    const rate = exchangeData ? parseFloat(exchangeData.selling_rate) : 40.0;
+    const rate = exchangeData ? parseFloat(exchangeData.buying_transfer) : 40.0;
 
     if (!projectUrn) return res.status(400).json({ error: "Missing projectUrn parameter" });
 
@@ -310,7 +349,7 @@ app.get('/api/hello', async (req, res) => {
     res.json({ 
         message: "ระบบ Backend พร้อมใช้งาน", 
         status: "Online", 
-        currency: exchangeData ? exchangeData.selling_rate : "N/A" });
+        currency: exchangeData ? exchangeData.buying_transfer : "N/A" });
 });
 
 
@@ -319,7 +358,7 @@ app.post('/api/submit-transaction', async (req, res) => {
     
     // 🌟 อุดรอยรั่วที่ 2: ดึงอัตราแลกเปลี่ยนมาก่อนบันทึก
     const exchangeData = await cachingExhangRate();
-    const currentRate = exchangeData ? parseFloat(exchangeData.selling_rate) : 40.0;
+    const currentRate = exchangeData ? parseFloat(exchangeData.buying_transfer) : 40.0;
     
     // เชื่อมต่อกับฐานข้อมูลและเริ่ม Transaction เพื่อให้การบันทึกข้อมูลลงตารางแม่ (transactions) และลูก (transaction_items) เป็นไปอย่างปลอดภัยและสอดคล้องกัน
     const connection = await db.getConnection();
@@ -384,80 +423,138 @@ app.post('/api/submit-transaction', async (req, res) => {
     }
 });
 
-
-
-app.post('/api/reports', async (req, res) => {
-    const { customer, items, totalAmount } = req.body;
-
+app.get('/api/orders', async (req, res) => {
     const connection = await db.getConnection();
-    await connection.beginTransaction();
-
     try {
-        // 1. รันเลข Transaction ID
-        const today = new Date().toISOString().slice(0, 10);
-        const [countRow] = await connection.execute(
-            `SELECT COUNT(*) as total FROM transactions WHERE DATE(created_at) = CURDATE()`
-        );
-        const nextNumber = (countRow[0].total || 0) + 1;
-        const transactionId = `TISI${today.replace(/-/g, '')}${String(nextNumber).padStart(4, '0')}`;
+        // ใช้ LEFT JOIN เพื่อดึงข้อมูลตารางแม่ และเอา product_code จากตารางลูกมาต่อกัน (กรณีซื้อหลายชิ้น)
+        const [rows] = await connection.execute(`
+            SELECT 
+                t.transaction_id AS id,
+                t.company_name AS company,
+                GROUP_CONCAT(ti.product_code SEPARATOR ', ') AS standard,
+                t.created_at AS date,
+                t.total_amount AS price,
+                t.status AS status
+            FROM transactions t
+            LEFT JOIN transaction_items ti ON t.transaction_id = ti.transaction_id
+            GROUP BY t.transaction_id
+            ORDER BY t.created_at DESC
+        `);
 
-        // 2. บันทึกลงตารางแม่ (transactions)
-        await connection.execute(
-            `INSERT INTO transactions 
-            (transaction_id, company_name, tax_id, address_detail, sub_district, district, province, postcode, contact_person, phone, email, total_amount, exchange_rate, status) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-            [
-                transactionId,
-                customer.comp_name || null,      // อุดรอยรั่ว 3: ใช้ชื่อที่หน้าบ้านส่งมา
-                customer.comp_tax || null,       // อุดรอยรั่ว 3: comp_tax
-                customer.comp_add || null,       // อุดรอยรั่ว 3: comp_add
-                customer.sub_district || null,
-                customer.district || null,
-                customer.province || null,
-                customer.postcode || null,
-                customer.comp_contact || null,   // อุดรอยรั่ว 3: comp_contact
-                customer.comp_phone || null,
-                customer.comp_email || null,
-                totalAmount || 0,
-                currentRate,                     // อุดรอยรั่ว 1: ใช้ตัวแปรเรตที่เราเพิ่งดึงมา
-                'PENDING'                        // อุดรอยรั่ว 1: พิมพ์สถานะเป็น String ไปเลย
-            ]
-        );
-
-        // 3. บันทึกลงตารางลูก (transaction_items)
-        const itemSql = `INSERT INTO transaction_items 
-                         (transaction_id, product_code, product_option, price_at_purchase, quantity) 
-                         VALUES (?, ?, ?, ?, ?)`;
-
-        for (const item of items) {
-            await connection.execute(itemSql, [
-                transactionId, 
-                item.code,
-                item.option || 'Standard',
-                item.price,
-                1
-            ]);
-        }
-
-        await connection.commit();
-        res.json({ success: true, transactionId });
+        // ส่งข้อมูลที่ Query ได้กลับไปให้ React เป็น JSON
+        res.json(rows);
 
     } catch (error) {
-        await connection.rollback();
-        console.error("❌ Database Error:", error.message); 
-        res.status(500).json({ error: error.message });
-    } finally {
-        connection.release();
+        console.error("❌ Fetch Orders Error:", error.message);
+        res.status(500).json({ error: "ไม่สามารถดึงข้อมูลคำสั่งซื้อได้" });
     }
 });
 
 
 
+// 📌 Route: สำหรับดึงข้อมูลรายละเอียดของ 1 คำสั่งซื้อ (ตารางแม่ + ตารางลูก)
+app.get('/api/orders/:id', async (req, res) => {
+    const { id } = req.params;
+    const connection = await db.getConnection();
+    
+    try {
+        // 1. ดึงข้อมูลตารางแม่ (ข้อมูลลูกค้า)
+        const [masterRows] = await connection.execute(
+            `SELECT * FROM transactions WHERE transaction_id = ?`, 
+            [id]
+        );
+
+        if (masterRows.length === 0) {
+            return res.status(404).json({ error: "ไม่พบข้อมูลรายการสั่งซื้อนี้" });
+        }
+
+        // 2. ดึงข้อมูลตารางลูก (รายการมาตรฐานที่สั่งซื้อ)
+        const [itemRows] = await connection.execute(
+            `SELECT * FROM transaction_items WHERE transaction_id = ?`, 
+            [id]
+        );
+
+        // 3. รวมร่างข้อมูลส่งกลับไปให้หน้าบ้าน
+        const result = {
+            ...masterRows[0],
+            items: itemRows
+        };
+
+        res.json(result);
+
+    } catch (error) {
+        console.error("❌ Fetch Order Detail Error:", error.message);
+        res.status(500).json({ error: "เซิร์ฟเวอร์ขัดข้อง ไม่สามารถดึงข้อมูลได้" });
+    } finally {
+        connection.release();
+    }
+});
+
+app.post('/api/send-otp', async (req, res) => {
+    const { email } = req.body;
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    const refCode = Math.random().toString(36).substring(2, 6).toUpperCase();
+    
+    // ตั้งเวลาหมดอายุ 5 นาทีจากตอนนี้
+    const expiresAt = new Date(Date.now() + 5 * 60000); 
+
+    try {
+        // 1. บันทึกลง DB (ถ้าเคยมีอีเมลนี้อยู่แล้ว ให้ทับอันเก่าไปเลย)
+        await db.execute(
+            `INSERT INTO otp_storage (email, otp_code, ref_code, expires_at) 
+             VALUES (?, ?, ?, ?) 
+             ON DUPLICATE KEY UPDATE otp_code = VALUES(otp_code), ref_code = VALUES(ref_code), expires_at = VALUES(expires_at)`,
+            [email, otp, refCode, expiresAt]
+        );
+
+        // 2. ส่งเมล (ใช้โค้ดเดิมของคุณ)
+        await transporter.sendMail({
+            from: `"TISI E-Store" <${process.env.EMAIL_USER}>`,
+            to: email,
+            subject: `รหัส OTP ของคุณคือ ${otp} (Ref: ${refCode})`,
+            html: `
+                <div style="font-family: sans-serif; padding: 20px; border: 1px solid #eee; border-radius: 10px; max-w-md">
+                    <h2 style="color: #1e3a8a;">TISI E-Store</h2>
+                    <p>รหัสยืนยันตัวตน (OTP) สำหรับการสั่งซื้อมาตรฐาน ISO ของคุณคือ:</p>
+                    <h1 style="background: #f1f5f9; padding: 15px; text-align: center; letter-spacing: 5px; color: #333;">${otp}</h1>
+                    <p><strong>รหัสอ้างอิง (Ref):</strong> ${refCode}</p>
+                    <p style="color: #ef4444; font-size: 12px;">* รหัสนี้มีอายุการใช้งาน 5 นาที</p>
+                    <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;">
+                    <p style="font-size: 12px; color: #999;">หากคุณไม่ได้ทำรายการนี้ โปรดเพิกเฉยต่ออีเมลฉบับนี้</p>
+                </div>
+            `
+        });
+
+        res.json({ success: true, ref: refCode });
+    } catch (error) {
+        res.status(500).json({ error: "พังที่ขั้นตอน DB หรือ Mail" });
+    }
+});
 
 
+app.post('/api/verify-otp', async (req, res) => {
+    const { email, otp } = req.body;
 
+    try {
+        const [rows] = await db.execute(
+            `SELECT * FROM otp_storage 
+             WHERE email = ? AND otp_code = ? AND expires_at > NOW() 
+             ORDER BY created_at DESC LIMIT 1`,
+            [email, otp]
+        );
 
-
+        if (rows.length > 0) {
+            // ✅ ตรวจผ่าน! ลบ OTP นี้ทิ้งเลยเพื่อป้องกันการใช้ซ้ำ
+            await db.execute(`DELETE FROM otp_storage WHERE email = ?`, [email]);
+            res.json({ success: true, message: "ยืนยันตัวตนสำเร็จ" });
+        } else {
+            // ❌ ไม่ผ่าน (รหัสผิด หรือ หมดอายุ)
+            res.status(400).json({ success: false, message: "รหัส OTP ไม่ถูกต้องหรือหมดอายุ" });
+        }
+    } catch (error) {
+        res.status(500).json({ error: "Database error" });
+    }
+});
 
 // ==========================================
 // 🔥 START SERVER

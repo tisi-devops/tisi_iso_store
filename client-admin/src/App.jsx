@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-dom';
 import Dashboard from './Dashboard.jsx'; // 🌟 Import Component เข้ามา
-import Reports from './Reports.jsx'; // 🌟 Import Component เข้ามา
+import Orders from './Orders.jsx';
 
 // ==========================================
 // โครงสร้างหลัก (Sidebar + Content)
@@ -33,9 +33,9 @@ function AdminLayout() {
             📊 Dashboard
           </Link>
           <Link 
-            to="/Reports" 
+            to="/Orders" 
             className={`block px-4 py-3 rounded-xl transition-all font-medium ${
-              location.pathname === '/Reports' 
+              location.pathname === '/Orders' 
                 ? 'bg-blue-600 text-white shadow-md' 
                 : 'text-slate-400 hover:bg-slate-800 hover:text-white'
             }`}
@@ -55,7 +55,7 @@ function AdminLayout() {
       <main className="flex-1 p-8 overflow-y-auto">
         <Routes>
           <Route path="/" element={<Dashboard />} />
-          <Route path="/Reports" element={<Reports />} />
+          <Route path="/Orders" element={<Orders />} />
         </Routes>
       </main>
 
