@@ -19,6 +19,8 @@ function ProductDetail() {
         const projectNumber = projectNumberMatch ? projectNumberMatch[0] : "";
         const projectUrn = `iso:proj:${projectNumber}`; 
 
+        console.log("projectUrn IS :", projectUrn);
+
         const response = await fetch(`http://localhost:5000/api/get-iso-detail?projectUrn=${encodeURIComponent(projectUrn)}`);
 
         if (!response.ok) throw new Error("ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ หรือไม่พบข้อมูลมาตรฐานนี้");
@@ -35,6 +37,7 @@ function ProductDetail() {
             status: data.status,
             abstract: data.abstract || "ไม่มีบทคัดย่อ",
           });
+        console.log("projectUrn IS :", product.basePrice);
         } else {
           setError(data.error || "ไม่พบข้อมูลมาตรฐานที่ต้องการ");
         }
@@ -96,19 +99,21 @@ function ProductDetail() {
               <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold uppercase">
                 {product.status}
               </span>
+              <span className="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-xs font-bold uppercase">
+                English
+              </span>
+              <span className="bg-violet-100 text-violet-700 px-3 py-1 rounded-full text-xs font-bold uppercase">
+                PDF File
+              </span>
             </div>
-            
             <h1 className="text-4xl md:text-5xl font-black text-red-700 mb-2">{product.code}</h1>
             <p className="text-xl md:text-2xl font-bold text-slate-800 mb-6">{product.title}</p>
-            
-            <div className="mt-8 pt-8 border-t border-slate-100">
-              <h3 className="text-lg font-black text-slate-900 mb-4">Abstract</h3>
-              {/* ✅ ใช้ dangerouslySetInnerHTML เพื่อรองรับ Tag HTML จาก API */}
-              <div 
-                className="text-slate-600 leading-relaxed prose prose-slate max-w-none"
-                dangerouslySetInnerHTML={{ __html: product.abstract }} 
-              />
-            </div>
+            <h5 className="text-red-600 py-1 rounded-full text-2xl font-bold ">Abstract</h5>
+            {/* ✅ ใช้ dangerouslySetInnerHTML เพื่อรองรับ Tag HTML จาก API */}
+            <div 
+              className="text-slate-600 leading-relaxed prose prose-slate max-w-none"
+              dangerouslySetInnerHTML={{ __html: product.abstract }} 
+            />
           </div>  
         </div>
 

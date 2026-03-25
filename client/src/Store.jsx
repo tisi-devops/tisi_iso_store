@@ -40,7 +40,6 @@ function App() {
 
       const data = await response.json();
       setProducts(data); // นำข้อมูลที่ได้มาเก็บลง State
-
     } catch (err) {
       console.error("Search Error:", err);
       setError("เกิดข้อผิดพลาดในการดึงข้อมูล กรุณาลองใหม่อีกครั้ง");
@@ -157,56 +156,84 @@ function App() {
             ))
           )}
 
-          {/* =============================================================
-             🌟 2. จังหวะโหลดเสร็จและมีข้อมูล: แสดง Cards จริง
-          ============================================================== */}
-          {!loading && products.length > 0 && (
-            <>
-              {/* นำ products ที่ได้จาก API มาวนลูปแสดงผล */}
-              {products.map((item) => (
-                <button 
-                  key={item.id}
-                  // onClick={() => navigate(`/product/${encodeURIComponent(item.id)}`)}
-                  onClick={() => handleProductClick(item.id)}
-                  className="group w-full text-left bg-white p-6 rounded-3xl shadow-sm border border-slate-200 
-                            hover:shadow-xl hover:border-red-200 hover:scale-[1.02] 
-                            transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-red-100
-                            active:scale-[0.98]"
-                >
-                  <div className="flex justify-between items-start mb-4">
-                    <p className="text-4xl font-black text-red-700 uppercase tracking-tighter transition-colors group-hover:text-red-500">
-                      {item.code}
-                    </p>
-                    <span className="text-slate-300 group-hover:text-red-500 transition-colors">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </span>
-                  </div>
+{/* =============================================================
+    🌟 2. จังหวะโหลดเสร็จและมีข้อมูล: แสดง Cards จริง
+============================================================== */}
+{!loading && products.length > 0 && (
+  <>
+    {products.map((item) => (
+      <button 
+        key={item.id}
+        onClick={() => handleProductClick(item.id)}
+        className="group w-full text-left bg-white p-4 rounded-3xl shadow-sm border border-slate-200 
+                  hover:shadow-xl hover:border-red-200 hover:scale-[1.02] 
+                  transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-red-100
+                  active:scale-[0.98] flex flex-col min-h-[280px]"
+      >
+        {/* ส่วนรหัสมาตรฐาน (Code) และลูกศร */}
+        <div className="flex justify-between items-start gap-4 mb-4">
+          <p className={`font-black text-red-700 uppercase tracking-tighter transition-colors group-hover:text-red-500 
+              ${item.code.length > 15 ? 'text-3xl break-words' : 'text-4xl'} 
+          `}>
+            {item.code}
+          </p>
 
-                  <h3 className="text-lg font-bold text-slate-700 leading-snug mb-4 h-14 overflow-hidden" 
-                      title={item.title}>
-                    {item.title}
-                  </h3>
+          <span className="text-slate-300 group-hover:text-red-500 transition-colors flex-shrink-0 mt-1">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
+            </svg>
+          </span>
+        </div>
 
-                  <hr className="mb-4 border-slate-100 transition-all group-hover:border-red-100" />
+        {/* ชื่อมาตรฐานภาษาอังกฤษ */}
+        {/* <h3 className="text-sm font-bold text-slate-700 leading-snug mb-4 h-12 line-clamp-2 overflow-hidden" title={item.title}>
+          {item.title}
+        </h3> */}
+        <h3 
+          className="text-sm font-bold text-slate-600 leading-snug mb-6 
+                    h-12 line-clamp-2 overflow-hidden group-hover:text-slate-900 transition-colors" 
+          title={item.title}
+        >
+          {item.title}
+        </h3>
 
-                  <div className="flex justify-between items-end">
-                    <div>
-                      <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">ราคาเริ่มต้น</p>
-                      <p className="text-2xl font-black text-slate-900">
-                        {/* เรียกใช้ priceTHB จาก Backend */}
-                        {item.priceTHB ? item.priceTHB.toLocaleString() : 'N/A'} <span className="text-sm font-normal text-slate-500">฿</span>
-                      </p>
-                    </div>
-                    <div className="text-xs font-bold text-red-600 opacity-0 group-hover:opacity-100 transition-opacity">
-                      VIEW DETAILS
-                    </div>
-                  </div>
-                </button>
-              ))}
-            </>
-          )}
+        {/* เส้นคั่นกลาง */}
+        <hr className="mt-auto mb-4 border-slate-100 transition-all group-hover:border-red-100" />
+
+        {/* ส่วนราคาทุกอย่างในบรรทัดเดียว */}
+        <div>
+          <p className="text-[15px] font-bold text-slate-600 uppercase tracking-widest mb-1">ราคาเริ่มต้น</p>
+          
+          <div className="flex items-baseline justify-between gap-2">
+            {/* ก้อนราคา: โชว์ราคาเต็มขีดฆ่า + ราคาลด */}
+            <div className="flex items-baseline gap-2">
+              {/* ราคาเต็ม (PriceTHB) - โชว์ขีดฆ่า */}
+              {item.PriceTHB && item.SpecialPriceTHB && (
+                <span className="text-lg text-slate-400 line-through decoration-3 decoration-red-700/50 font-bold;">
+                  {Number(item.PriceTHB) > 0 ? item.PriceTHB.toLocaleString() : ""}
+                </span>
+              )}
+              
+              {/* ราคาที่ต้องจ่ายจริง (SpecialPriceTHB) */}
+              <span className="text-2xl font-black text-slate-900">
+                {item.SpecialPriceTHB ? item.SpecialPriceTHB.toLocaleString() : (item.PriceTHB ? item.PriceTHB.toLocaleString() : 'N/A')}
+              </span>
+              
+              <span className="text-[12px] font-bold text-slate-700 uppercase">THB</span>
+            </div>
+
+            {/* ปุ่ม View Details (เปลี่ยนเป็นสีแดง) */}
+          <div className="text-[10px] font-bold text-white bg-red-600 px-3 py-1.5 rounded-full 
+                          opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 
+                          transition-all duration-300 ease-out shadow-lg shadow-red-100">
+            VIEW DETAILS
+          </div>
+          </div>
+        </div>
+      </button>
+    ))}
+  </>
+)}
         </div> {/* ปิด Grid Container */}
 
         {/* แสดงข้อความเมื่อค้นหาแล้วแต่ไม่เจอข้อมูล */}

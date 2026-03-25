@@ -116,7 +116,7 @@ async function initDatabase() {
         `);
 
         await db.execute(`
-                CREATE TABLE otp_storage (
+                CREATE TABLE IF NOT EXISTS otp_storage (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 email VARCHAR(255) NOT NULL,
                 otp_code CHAR(6) NOT NULL,
@@ -251,8 +251,15 @@ app.get('/api/search-iso', async (req, res) => {
             id: pub.urn,
             code: pub.reference,
             title: pub.title && pub.title.length > 0 ? (pub.title[0].value || pub.title[0].content) : "No Title",
-            basePriceCHF: pub.priceInfo?.basePrice?.amount || 0,
-            priceTHB: Math.ceil((pub.priceInfo?.basePrice?.amount || 0) * rate),
+
+            // ราคาที่ดึงมาจาก ISO API จะเป็นราคาในหน่วย CHF
+            RawPriceCHF: pub.priceInfo?.basePrice?.amount || 0,
+            // ราคาที่แปลงเป็น THB แล้ว (ใช้สูตร CHF * อัตราแลกเปลี่ยน - ส่วนลด 30%)
+            PriceTHB: Math.round(((pub.priceInfo?.basePrice?.amount || 0) * rate)),
+            // ราคาที่ลด 30% แล้ว
+            SpecialPriceTHB: Math.round(((pub.priceInfo?.basePrice?.amount || 0) * rate) * (1 - 0.3)),
+
+
             status: pub.status
         }));
 
@@ -280,8 +287,8 @@ app.get('/api/get-iso-detail', async (req, res) => {
             params: { 
                 // ✅ ส่งหา ISO ด้วย projectUrn ที่ตรงกับที่ Frontend ส่งมา (ซึ่งมาจากการแปลง Publication URN เป็น Project URN แล้ว)
                 projectUrn: projectUrn,
-                // publicationStatus: "PUBLISHED",
-                // publicationStage: "IS" 
+                publicationStatus: "PUBLISHED",
+                publicationStage: "IS" 
             }, 
             headers: { 'Authorization': `Bearer ${accessToken}`, 'Accept': 'application/json' }
         });  
@@ -301,8 +308,10 @@ app.get('/api/get-iso-detail', async (req, res) => {
             code: exactMatch.reference,
             title: exactMatch.title && exactMatch.title.length > 0 
             ? (exactMatch.title[0].value || exactMatch.title[0].content) : "No Title",
+
             basePriceCHF: exactMatch.priceInfo?.basePrice?.amount || 0,
-            priceTHB: Math.ceil((exactMatch.priceInfo?.basePrice?.amount || 0) * rate),
+            priceTHB: Math.round(((exactMatch.priceInfo?.basePrice?.amount || 0) * rate) * (1 - 0.3)),
+
             status: exactMatch.status,
             publicationStage: exactMatch.publicationStage,
             abstract: exactMatch.abstract?.[0]?.content
@@ -312,20 +321,6 @@ app.get('/api/get-iso-detail', async (req, res) => {
     } catch (error) {
         console.error("❌ Route Detail Fetch Error:", error.message);
         res.status(500).json({ error: "Failed to fetch ISO detail" });
-    }
-    // ในไฟล์ server.js แทนที่บรรทัดที่ 272
-    const itemSql = `INSERT INTO transaction_items 
-                    (transaction_db_id, product_code, product_option, price_at_purchase, quantity) 
-                    VALUES (?, ?, ?, ?, ?)`;
-
-    for (const item of items) {
-        await connection.execute(itemSql, [
-            transactionId,   // 🌟 ใช้ transaction_id ผูกกับตารางแม่
-            item.code,
-            item.option || 'Standard',
-            item.price,
-            1                // จำนวนสินค้า
-        ]);
     }
 }); 
 
