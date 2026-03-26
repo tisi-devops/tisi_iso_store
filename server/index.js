@@ -1,10 +1,33 @@
 // 1. โหลด Environment Variables ทันทีที่เริ่มรันไฟล์
 require('dotenv').config();
 
+const { formatInTimeZone } = require('date-fns-tz');
+
 const express = require('express');
 const cors = require('cors');
 const axios = require('axios');
 const mysql = require('mysql2/promise'); // 🌟 เปลี่ยน Library
+
+const rateLimit = require('express-rate-limit');
+
+// 🛡️ 1. แบบทั่วไป (General Limit)
+// ป้องกันการยิง API รัวๆ ทั่วไป (เช่น 1 นาที ยิงได้ไม่เกิน 100 ครั้ง)
+const generalLimiter = rateLimit({
+  windowMs: 1 * 60 * 1000, // 1 นาที
+  max: 100, 
+  message: { error: "คุณทำรายการบ่อยเกินไป กรุณาลองใหม่ในอีกสักครู่" },
+  standardHeaders: true, // ส่งข้อมูล Rate Limit ไปใน Header ด้วย (Limit, Remaining)
+  legacyHeaders: false,
+});
+
+// 🛡️ 2. แบบเข้มงวด (Strict Limit สำหรับ OTP)
+// ป้องกันคนแกล้งส่งเมลรัวๆ (เช่น 15 นาที ขอ OTP ได้แค่ 3 ครั้ง)
+const otpLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 นาที
+  max: 3, 
+  message: { error: "คุณขอ OTP บ่อยเกินไป (จำกัด 3 ครั้งทุก 15 นาที) กรุณารอสักครู่ครับ" },
+  skipSuccessfulRequests: false, // นับทุกครั้งที่ยิงมา ไม่ว่าจะส่งเมลสำเร็จหรือไม่
+});
 
 // สำหรับส่งอีเมล (ถ้าต้องการใช้ในอนาคต)
 const nodemailer = require('nodemailer');
@@ -20,16 +43,10 @@ const transporter = nodemailer.createTransport({
 const rawData = require('./database/raw_database.json');
 const app = express();
 
-// 2. ตั้งค่าความปลอดภัยเบื้องต้น
-// app.use(cors({ origin: process.env.USER_FRONTEND_URL || '*' })); // อนุญาตเฉพาะ User Frontend (5174) ให้เข้าถึง API ได้
-
-
 // 2. ตั้งค่าความปลอดภัยเบื้องต้น (อนุญาตทั้ง Admin และ User)
 const allowedOrigins = [
   process.env.ADMIN_FRONTEND_URL, 
   process.env.USER_FRONTEND_URL,
-  'http://localhost:5173', // ใส่เผื่อไว้กรณีลืมตั้ง .env
-  'http://localhost:5174'  // ใส่เผื่อไว้กรณีลืมตั้ง .env
 ];
 
 app.use(cors({ 
@@ -82,49 +99,56 @@ async function initDatabase() {
 
         // 2. ทดสอบเชื่อมต่อ และสร้างตาราง (ถ้ายังไม่มี)
         // ⚠️ ใน MySQL ต้องระบุ Engine และชุดตัวอักษรภาษาไทย (utf8mb4)
-        await db.execute(`
-            CREATE TABLE IF NOT EXISTS transactions (
-                id INT AUTO_INCREMENT PRIMARY KEY,
-                transaction_id VARCHAR(20) UNIQUE, 
-                company_name VARCHAR(255),
-                tax_id VARCHAR(20),
-                address_detail TEXT,
-                sub_district VARCHAR(255),
-                district VARCHAR(255),
-                province VARCHAR(255),
-                postcode VARCHAR(10),
-                contact_person VARCHAR(255),
-                phone VARCHAR(20),
-                email VARCHAR(255),
-                total_amount INT,
-                exchange_rate DECIMAL(10, 7),
-                status VARCHAR(20) DEFAULT 'PENDING',
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-        `);
+        // await db.execute(`
+        //     CREATE TABLE IF NOT EXISTS transactions (
+        //         id INT AUTO_INCREMENT PRIMARY KEY,
+        //         transaction_id VARCHAR(20) UNIQUE, 
+        //         company_name VARCHAR(255),
+        //         tax_id VARCHAR(20),
+        //         personType INT, -- 1 = บุคคลธรรมดา, 2 = นิติบุคคล
+        //         house_number TEXT,
+        //         moo TEXT,
+        //         soi TEXT,
+        //         road TEXT,
+        //         sub_district VARCHAR(255),
+        //         district VARCHAR(255),
+        //         province VARCHAR(255),
+        //         postcode VARCHAR(10),
+        //         contact_title VARCHAR(50),
+        //         contact_firstname VARCHAR(255),
+        //         contact_middlename VARCHAR(255),
+        //         contact_lastname VARCHAR(255),
+        //         phone VARCHAR(20),
+        //         email VARCHAR(255),
+        //         total_amount INT,
+        //         exchange_rate DECIMAL(10, 7),
+        //         status VARCHAR(20) DEFAULT 'PENDING',
+        //         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        //     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+        // `);
 
-        await db.execute(`
-                CREATE TABLE IF NOT EXISTS transaction_items (
-                id INT AUTO_INCREMENT PRIMARY KEY,
-                transaction_id CHAR(20),
-                product_code VARCHAR(100),
-                product_option VARCHAR(50),
-                price_at_purchase INT,
-                quantity INT DEFAULT 1,
-                FOREIGN KEY (transaction_id) REFERENCES transactions(transaction_id) ON DELETE CASCADE
-            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-        `);
+        // await db.execute(`
+        //     CREATE TABLE IF NOT EXISTS transaction_items (
+        //         id INT AUTO_INCREMENT PRIMARY KEY,
+        //         transaction_id CHAR(20),
+        //         product_code VARCHAR(100),
+        //         product_option VARCHAR(50),
+        //         price_at_purchase INT,
+        //         quantity INT DEFAULT 1,
+        //         FOREIGN KEY (transaction_id) REFERENCES transactions(transaction_id) ON DELETE CASCADE
+        //     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+        // `);
 
-        await db.execute(`
-                CREATE TABLE IF NOT EXISTS otp_storage (
-                id INT AUTO_INCREMENT PRIMARY KEY,
-                email VARCHAR(255) NOT NULL,
-                otp_code CHAR(6) NOT NULL,
-                ref_code CHAR(4) NOT NULL,
-                expires_at DATETIME NOT NULL,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-        `);
+        // await db.execute(`
+        //     CREATE TABLE IF NOT EXISTS otp_storage (
+        //         id INT AUTO_INCREMENT PRIMARY KEY,
+        //         email VARCHAR(255) NOT NULL,
+        //         otp_code CHAR(6) NOT NULL,
+        //         ref_code CHAR(4) NOT NULL,
+        //         expires_at DATETIME NOT NULL,
+        //         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        //     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+        // `);
 
         console.log('✅ MySQL Database Ready (via XAMPP)!');
     } catch (err) {
@@ -302,15 +326,18 @@ app.get('/api/get-iso-detail', async (req, res) => {
         }
 
         const exactMatch = publications[0];
-
         const result = {
             id: exactMatch.urn,
             code: exactMatch.reference,
             title: exactMatch.title && exactMatch.title.length > 0 
             ? (exactMatch.title[0].value || exactMatch.title[0].content) : "No Title",
 
-            basePriceCHF: exactMatch.priceInfo?.basePrice?.amount || 0,
-            priceTHB: Math.round(((exactMatch.priceInfo?.basePrice?.amount || 0) * rate) * (1 - 0.3)),
+             // ราคาที่ดึงมาจาก ISO API จะเป็นราคาในหน่วย CHF
+            RawPriceCHF: exactMatch.priceInfo?.basePrice?.amount || 0,
+            // ราคาที่แปลงเป็น THB แล้ว (ใช้สูตร CHF * อัตราแลกเปลี่ยน - ส่วนลด 30%)
+            PriceTHB: Math.round(((exactMatch.priceInfo?.basePrice?.amount || 0) * rate)),
+            // ราคาที่ลด 30% แล้ว
+            SpecialPriceTHB: Math.round(((exactMatch.priceInfo?.basePrice?.amount || 0) * rate) * (1 - 0.3)),
 
             status: exactMatch.status,
             publicationStage: exactMatch.publicationStage,
@@ -324,19 +351,46 @@ app.get('/api/get-iso-detail', async (req, res) => {
     }
 }); 
 
-// 📌 3. Route: ข้อมูลที่อยู่ และ เช็คสถานะ (ปล่อยไว้เหมือนเดิม)
-// ส่วนเลือกจังหวัด
-app.get('/api/provinces', (req, res) => { 
-    res.json([...new Set(rawData.map(item => item.province))].sort((a, b) => a.localeCompare(b, 'th'))); 
+// 1. ดึงจังหวัดทั้งหมด
+app.get('/api/provinces', async (req, res) => {
+    try {
+        const [rows] = await db.execute("SELECT province_code as value, province as label FROM tr14_province ORDER BY province ASC");
+        res.json(rows);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
 });
-// ส่วนเลือกอำเภอ (ต้องส่ง province มาด้วย)
-app.get('/api/amphoes/:province', (req, res) => { 
-    res.json([...new Set(rawData.filter(item => item.province === req.params.province).map(item => item.amphoe))].sort((a, b) => a.localeCompare(b, 'th'))); 
+
+// 2. ดึงอำเภอ (กรองด้วย province_code)
+app.get('/api/amphoes/:p_code', async (req, res) => {
+    try {
+        const [rows] = await db.execute(
+            "SELECT district_code as value, district as label FROM tr14_district WHERE province_code = ? ORDER BY district ASC",
+            [req.params.p_code]
+        );
+        res.json(rows);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
 });
-// ส่วนเลือกตำบล (ต้องส่ง province และ amphoe มาด้วย) พร้อมส่งรหัสไปรษณีย์กลับไปด้วย
-app.get('/api/districts/:province/:amphoe', (req, res) => { 
-    res.json(rawData.filter(item => item.province === req.params.province && item.amphoe === req.params.amphoe).map(item => ({district: item.district, zipcode: item.zipcode})).sort((a, b) => a.district.localeCompare(b, 'th'))); 
+
+// 3. ดึงตำบลและรหัสไปรษณีย์ (กรองด้วย district_code)
+app.get('/api/districts/:d_code', async (req, res) => {
+    try {
+        const [rows] = await db.execute(
+            "SELECT subdistrict_code as value, subdistrict as label, postcode FROM tr14_subdistrict WHERE district_code = ? ORDER BY subdistrict ASC",
+            [req.params.d_code]
+        );
+        res.json(rows);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
 });
+
+
+
+
+
 
 // ส่วนทดสอบ API ว่าระบบทำงานปกติหรือไม่ และแสดงอัตราแลกเปลี่ยนปัจจุบันด้วย (ถ้ามี)
 app.get('/api/hello', async (req, res) => {
@@ -351,43 +405,68 @@ app.get('/api/hello', async (req, res) => {
 app.post('/api/submit-transaction', async (req, res) => {
     const { customer, items, totalAmount } = req.body;
     
-    // 🌟 อุดรอยรั่วที่ 2: ดึงอัตราแลกเปลี่ยนมาก่อนบันทึก
     const exchangeData = await cachingExhangRate();
     const currentRate = exchangeData ? parseFloat(exchangeData.buying_transfer) : 40.0;
     
-    // เชื่อมต่อกับฐานข้อมูลและเริ่ม Transaction เพื่อให้การบันทึกข้อมูลลงตารางแม่ (transactions) และลูก (transaction_items) เป็นไปอย่างปลอดภัยและสอดคล้องกัน
     const connection = await db.getConnection();
     await connection.beginTransaction();
 
     try {
-        // 1. รันเลข Transaction ID
-        const today = new Date().toISOString().slice(0, 10);
-        const [countRow] = await connection.execute(
-            `SELECT COUNT(*) as total FROM transactions WHERE DATE(created_at) = CURDATE()`
-        );
-        const nextNumber = (countRow[0].total || 0) + 1;
-        const transactionId = `TISI${today.replace(/-/g, '')}${String(nextNumber).padStart(4, '0')}`;
+        // 1. สร้าง Transaction ID (TISI + YYYYMMDD + Sequence)
+        const today = new Date().toISOString();
+        // const [countRow] = await connection.execute(
+        //     `SELECT COUNT(*) as total FROM transactions WHERE DATE(created_at) = CURDATE()`
+        // );
+        // const nextNumber = (countRow[0].total || 0) + 1;
+        // const transactionId = `TISI${today.replace(/-:T/g, '')}`;
 
-        // 2. บันทึกลงตารางแม่ (transactions)
+
+
+        const utcDate = new Date(); // Current time in UTC
+        const timeZone = 'Thailand/Bangkok';
+
+        // Convert the date to the target timezone (returns a Date object with adjusted time components for the new zone)
+        const zonedDate = toZonedTime(utcDate, timeZone);
+
+        // Format with timezone string
+        const formatted = formatInTimeZone(utcDate, timeZone, 'yyyyMMddHHmmss');
+
+         const transactionId = `TISI${formatted}`;
+
+        // console.log(formatted); // Example: "2026-03-26 08:01:00 EDT"
+
+
+
+        // 2. บันทึกลงตารางแม่ (transactions) - Mapping ข้อมูลให้ตรงกับฟิลด์หน้าบ้าน
         await connection.execute(
             `INSERT INTO transactions 
-            (transaction_id, company_name, tax_id, address_detail, sub_district, district, province, postcode, contact_person, phone, email, total_amount, exchange_rate, status) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+            (transaction_id, company_name, tax_id, personType, house_number, moo, soi, road, 
+             sub_district, district, province, postcode, 
+             contact_title, contact_firstname, contact_middlename, contact_lastname, 
+             phone, email, total_amount, exchange_rate, status) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
             [
                 transactionId,
-                customer.comp_name || null,      // อุดรอยรั่ว 3: ใช้ชื่อที่หน้าบ้านส่งมา
-                customer.comp_tax || null,       // อุดรอยรั่ว 3: comp_tax
-                customer.comp_add || null,       // อุดรอยรั่ว 3: comp_add
+                customer.comp_name || null,
+                customer.comp_tax || null,
+                customer.is_corporate ? 2 : 1, // แปลง boolean เป็น INT (1=Indiv, 2=Corp)
+                customer.comp_add || null,      // house_number
+                customer.comp_moo || null,
+                customer.comp_soi || null,
+                customer.comp_road || null,
                 customer.sub_district || null,
                 customer.district || null,
                 customer.province || null,
                 customer.postcode || null,
-                customer.comp_contact || null,   // อุดรอยรั่ว 3: comp_contact
+                customer.title || null,         // contact_title
+                customer.firstname || null,
+                customer.middlename || null,
+                customer.lastname || null,
                 customer.comp_phone || null,
                 customer.comp_email || null,
                 totalAmount || 0,
-                currentRate,                     // อุดรอยรั่ว 1: ใช้ตัวแปรเรตที่เราเพิ่งดึงมา
-                'PENDING'                        // อุดรอยรั่ว 1: พิมพ์สถานะเป็น String ไปเลย
+                currentRate,
+                'PENDING'
             ]
         );
 
@@ -442,6 +521,8 @@ app.get('/api/orders', async (req, res) => {
     } catch (error) {
         console.error("❌ Fetch Orders Error:", error.message);
         res.status(500).json({ error: "ไม่สามารถดึงข้อมูลคำสั่งซื้อได้" });
+    }   finally {   
+        connection.release(); 
     }
 });
 
@@ -485,7 +566,7 @@ app.get('/api/orders/:id', async (req, res) => {
     }
 });
 
-app.post('/api/send-otp', async (req, res) => {
+app.post('/api/send-otp', otpLimiter, async (req, res) => {
     const { email } = req.body;
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
     const refCode = Math.random().toString(36).substring(2, 6).toUpperCase();
@@ -495,6 +576,7 @@ app.post('/api/send-otp', async (req, res) => {
 
     try {
         // 1. บันทึกลง DB (ถ้าเคยมีอีเมลนี้อยู่แล้ว ให้ทับอันเก่าไปเลย)
+        await db.execute(`DELETE FROM otp_storage WHERE expires_at < NOW()`);
         await db.execute(
             `INSERT INTO otp_storage (email, otp_code, ref_code, expires_at) 
              VALUES (?, ?, ?, ?) 
@@ -502,7 +584,7 @@ app.post('/api/send-otp', async (req, res) => {
             [email, otp, refCode, expiresAt]
         );
 
-        // 2. ส่งเมล (ใช้โค้ดเดิมของคุณ)
+        // 2. ส่งเมล (ใช้โค้ดเดิมของคุณ) 
         await transporter.sendMail({
             from: `"TISI E-Store" <${process.env.EMAIL_USER}>`,
             to: email,
@@ -527,7 +609,7 @@ app.post('/api/send-otp', async (req, res) => {
 });
 
 
-app.post('/api/verify-otp', async (req, res) => {
+app.post('/api/verify-otp', otpLimiter, async (req, res) => {
     const { email, otp } = req.body;
 
     try {

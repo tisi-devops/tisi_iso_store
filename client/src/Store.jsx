@@ -40,6 +40,8 @@ function App() {
 
       const data = await response.json();
       setProducts(data); // นำข้อมูลที่ได้มาเก็บลง State
+
+      console.log("Search Results:", data); // ตรวจสอบข้อมูลที่ได้จาก API
     } catch (err) {
       console.error("Search Error:", err);
       setError("เกิดข้อผิดพลาดในการดึงข้อมูล กรุณาลองใหม่อีกครั้ง");
@@ -208,15 +210,15 @@ function App() {
             {/* ก้อนราคา: โชว์ราคาเต็มขีดฆ่า + ราคาลด */}
             <div className="flex items-baseline gap-2">
               {/* ราคาเต็ม (PriceTHB) - โชว์ขีดฆ่า */}
-              {item.PriceTHB && item.SpecialPriceTHB && (
+              {/* {item.PriceTHB && item.SpecialPriceTHB && ( */}
                 <span className="text-lg text-slate-400 line-through decoration-3 decoration-red-700/50 font-bold;">
-                  {Number(item.PriceTHB) > 0 ? item.PriceTHB.toLocaleString() : ""}
+                  {Number(item.PriceTHB) > 0 ? item.PriceTHB.toLocaleString() : ''}
                 </span>
-              )}
+              {/* )} */}
               
               {/* ราคาที่ต้องจ่ายจริง (SpecialPriceTHB) */}
               <span className="text-2xl font-black text-slate-900">
-                {item.SpecialPriceTHB ? item.SpecialPriceTHB.toLocaleString() : (item.PriceTHB ? item.PriceTHB.toLocaleString() : 'N/A')}
+                {item.SpecialPriceTHB ? item.SpecialPriceTHB.toLocaleString() : 'N/A'}
               </span>
               
               <span className="text-[12px] font-bold text-slate-700 uppercase">THB</span>

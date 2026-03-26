@@ -1,0 +1,85 @@
+INSERT INTO tisi_store.tr14_province (province_code,province,engname,region) VALUES
+	 ('10000000','กรุงเทพมหานคร','Bangkok','กทม.และปริมณฑล'),
+	 ('11000000','สมุทรปราการ','Samut Prakan','กทม.และปริมณฑล'),
+	 ('12000000','นนทบุรี','Nonthaburi','กทม.และปริมณฑล'),
+	 ('13000000','ปทุมธานี','Pathum Thani','กทม.และปริมณฑล'),
+	 ('14000000','พระนครศรีอยุธยา','Phra Nakhon Si Ayutthaya','กลาง'),
+	 ('15000000','อ่างทอง','Ang Thong','กลาง'),
+	 ('16000000','ลพบุรี','Lop Buri','กลาง'),
+	 ('17000000','สิงห์บุรี','Sing Buri','กลาง'),
+	 ('18000000','ชัยนาท','Chai Nat','กลาง'),
+	 ('19000000','สระบุรี','Saraburi','กลาง');
+INSERT INTO tisi_store.tr14_province (province_code,province,engname,region) VALUES
+	 ('20000000','ชลบุรี','Chon Buri','ตะวันออก'),
+	 ('21000000','ระยอง','Rayong','ตะวันออก'),
+	 ('22000000','จันทบุรี','Chanthaburi','ตะวันออก'),
+	 ('23000000','ตราด','Trat','ตะวันออก'),
+	 ('24000000','ฉะเชิงเทรา','Chachoengsao','ตะวันออก'),
+	 ('25000000','ปราจีนบุรี','Prachin Buri','ตะวันออก'),
+	 ('26000000','นครนายก','Nakhon Nayok','กลาง'),
+	 ('27000000','สระแก้ว','Sa Kaeo','ตะวันออก'),
+	 ('30000000','นครราชสีมา','Nakhon Ratchasima','อีสาน'),
+	 ('31000000','บุรีรัมย์','Buri Ram','อีสาน');
+INSERT INTO tisi_store.tr14_province (province_code,province,engname,region) VALUES
+	 ('32000000','สุรินทร์','Surin','อีสาน'),
+	 ('33000000','ศรีสะเกษ','Si Sa Ket','อีสาน'),
+	 ('34000000','อุบลราชธานี','Ubon Ratchathani','อีสาน'),
+	 ('35000000','ยโสธร','Yasothon','อีสาน'),
+	 ('36000000','ชัยภูมิ','Chaiyaphum','อีสาน'),
+	 ('37000000','อำนาจเจริญ','Amnat Charoen','อีสาน'),
+	 ('38000000','บึงกาฬ','Bueng Kan','อีสาน'),
+	 ('39000000','หนองบัวลำภู','Nong Bua Lam Phu','อีสาน'),
+	 ('40000000','ขอนแก่น','Khon Kaen','อีสาน'),
+	 ('41000000','อุดรธานี','Udon Thani','อีสาน');
+INSERT INTO tisi_store.tr14_province (province_code,province,engname,region) VALUES
+	 ('42000000','เลย','Loei','อีสาน'),
+	 ('43000000','หนองคาย','Nong Khai','อีสาน'),
+	 ('44000000','มหาสารคาม','Maha Sarakham','อีสาน'),
+	 ('45000000','ร้อยเอ็ด','Roi Et','อีสาน'),
+	 ('46000000','กาฬสินธุ์','Kalasin','อีสาน'),
+	 ('47000000','สกลนคร','Sakon Nakhon','อีสาน'),
+	 ('48000000','นครพนม','Nakhon Phanom','อีสาน'),
+	 ('49000000','มุกดาหาร','Mukdahan','อีสาน'),
+	 ('50000000','เชียงใหม่','Chiang Mai','เหนือ'),
+	 ('51000000','ลำพูน','Lamphun','เหนือ');
+INSERT INTO tisi_store.tr14_province (province_code,province,engname,region) VALUES
+	 ('52000000','ลำปาง','Lampang','เหนือ'),
+	 ('53000000','อุตรดิตถ์','Uttaradit','เหนือ'),
+	 ('54000000','แพร่','Phrae','เหนือ'),
+	 ('55000000','น่าน','Nan','เหนือ'),
+	 ('56000000','พะเยา','Phayao','เหนือ'),
+	 ('57000000','เชียงราย','Chiang Rai','เหนือ'),
+	 ('58000000','แม่ฮ่องสอน','Mae Hong Son','เหนือ'),
+	 ('60000000','นครสวรรค์','Nakhon Sawan','เหนือ'),
+	 ('61000000','อุทัยธานี','Uthai Thani','เหนือ'),
+	 ('62000000','กำแพงเพชร','Kamphaeng Phet','เหนือ');
+INSERT INTO tisi_store.tr14_province (province_code,province,engname,region) VALUES
+	 ('63000000','ตาก','Tak','เหนือ'),
+	 ('64000000','สุโขทัย','Sukhothai','เหนือ'),
+	 ('65000000','พิษณุโลก','Phitsanulok','เหนือ'),
+	 ('66000000','พิจิตร','Phichit','เหนือ'),
+	 ('67000000','เพชรบูรณ์','Phetchabun','เหนือ'),
+	 ('70000000','ราชบุรี','Ratchaburi','กลาง'),
+	 ('71000000','กาญจนบุรี','Kanchanaburi','กลาง'),
+	 ('72000000','สุพรรณบุรี','Suphan Buri','กลาง'),
+	 ('73000000','นครปฐม','Nakhon Pathom','กทม.และปริมณฑล'),
+	 ('74000000','สมุทรสาคร','Samut Sakhon','กทม.และปริมณฑล');
+INSERT INTO tisi_store.tr14_province (province_code,province,engname,region) VALUES
+	 ('75000000','สมุทรสงคราม','Samut Songkhram','กลาง'),
+	 ('76000000','เพชรบุรี','Phetchaburi','กลาง'),
+	 ('77000000','ประจวบคีรีขันธ์','Prachuap Khiri Khan','กลาง'),
+	 ('80000000','นครศรีธรรมราช','Nakhon Si Thammarat','ใต้'),
+	 ('81000000','กระบี่','Krabi','ใต้'),
+	 ('82000000','พังงา','Phang-nga','ใต้'),
+	 ('83000000','ภูเก็ต','Phuket','ใต้'),
+	 ('84000000','สุราษฎร์ธานี','Surat Thani','ใต้'),
+	 ('85000000','ระนอง','Ranong','ใต้'),
+	 ('86000000','ชุมพร','Chumphon','ใต้');
+INSERT INTO tisi_store.tr14_province (province_code,province,engname,region) VALUES
+	 ('90000000','สงขลา','Songkhla','ใต้'),
+	 ('91000000','สตูล','Satun','ใต้'),
+	 ('92000000','ตรัง','Trang','ใต้'),
+	 ('93000000','พัทลุง','Phatthalung','ใต้'),
+	 ('94000000','ปัตตานี','Pattani','ใต้'),
+	 ('95000000','ยะลา','Yala','ใต้'),
+	 ('96000000','นราธิวาส','Narathiwat','ใต้');

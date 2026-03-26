@@ -33,11 +33,11 @@ function ProductDetail() {
             code: data.code,
             edition: data.code.split(':')[1] || "N/A", 
             title: data.title || "No Title",
-            basePrice: data.priceTHB, 
+            basePrice: data.SpecialPriceTHB, 
             status: data.status,
             abstract: data.abstract || "ไม่มีบทคัดย่อ",
           });
-        console.log("projectUrn IS :", product.basePrice);
+        // console.log("projectUrn IS :", product.basePrice);
         } else {
           setError(data.error || "ไม่พบข้อมูลมาตรฐานที่ต้องการ");
         }
