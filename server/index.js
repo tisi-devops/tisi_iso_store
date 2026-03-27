@@ -2,7 +2,6 @@
 require('dotenv').config();
 
 const { formatInTimeZone } = require('date-fns-tz');
-
 const express = require('express');
 const cors = require('cors');
 const axios = require('axios');
