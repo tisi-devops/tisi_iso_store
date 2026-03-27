@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom' 
+import Swal from 'sweetalert2';
 
 function Topbar() {
   const [isBillOpen, setIsBillOpen] = useState(false);
@@ -12,9 +13,49 @@ function Topbar() {
   // 1. เปิดคอมเมนต์ location เพื่อให้ตัว active menu ทำงานได้
   const location = useLocation();
 
-  const num_test = 10.126589;
-  const num_fix2 = Math.ceil(num_test);
-  console.log(num_fix2); 
+  const logout = () => {
+    Swal.fire({
+      title: 'ยืนยันการล้างข้อมูล?',
+      text: "ระบบจะลบข้อมูลผู้ซื้อและรายการในตะกร้าทั้งหมด",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#02af10', // สีน้ำเงิน TISI
+      cancelButtonColor: '#c50a0a',
+      confirmButtonText: 'ใช่, ล้างข้อมูล',
+      cancelButtonText: 'ยกเลิก',
+      reverseButtons: false,
+      customClass: {
+        confirmButton: 'rounded-xl px-6 py-2 font-bold',
+        cancelButton: 'rounded-xl px-6 py-2 font-bold text-slate-500'
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // 🗑️ ล้างข้อมูลใน Storage
+        sessionStorage.removeItem('customerData');
+        sessionStorage.removeItem('cart');
+
+        // ✨ ล้าง State เพื่ออัปเดตหน้าจอทันที
+        setCustomerInfo(null);
+        setCartItems([]);
+        setCartCount(0);
+        setIsBillOpen(false);
+
+        // 🔔 แจ้งเตือน Component อื่นๆ
+        window.dispatchEvent(new Event("cartUpdated"));
+
+        // 🎉 แจ้งเตือนว่าลบสำเร็จ (Optional)
+        Swal.fire({
+          title: 'ล้างข้อมูลเรียบร้อย',
+          icon: 'success',
+          timer: 1500,
+          showConfirmButton: false,
+          customClass: {
+            popup: 'rounded-[2rem]'
+          }
+        });
+      }
+    });
+  };
 
   useEffect(() => {
     fetch('http://localhost:5000/api/hello')
@@ -70,7 +111,7 @@ function Topbar() {
       <div className="flex gap-3 md:gap-6 items-center">
         {/* อัตราแลกเปลี่ยน */}
         <div className="hidden sm:flex flex-col items-end border-r border-slate-100 pr-4">
-          <span className="text-[20px] font-black text-slate-600 uppercase">อัตราแลกเปลี่ยน ณ วันที่ {data.ndate || '-'}</span>
+          <span className="text-[20px] font-black text-slate-600 uppercase">อัตราแลกเปลี่ยน ณ วันที่ {data.daynow || '-'}</span>
           <div className="flex gap-2 mt-1">
              <span className="text-[11px] font-bold text-blue-600">1 CHF : {data.currency} THB</span>
           </div>
@@ -94,8 +135,9 @@ function Topbar() {
               {/* หัว Dropdown */}
               <div className="bg-slate-50 p-4 border-b border-slate-100 flex justify-between items-center">
                 <h3 className="font-bold text-slate-800">สรุปข้อมูล & ตะกร้า</h3>
-                <button onClick={() => setIsBillOpen(false)} className="text-slate-400 hover:text-red-500 text-sm">
-                  ปิด ✕
+                {/* เพิ่มปุ่มล้างข้อมูลแยกออกมา (เพื่อให้ User ไม่สับสน) */}
+                <button onClick={logout} className="text-red-400 hover:text-red-600 text-[10px] font-bold uppercase tracking-tighter border border-red-100 px-2 py-1 rounded-lg">
+                  ล้างข้อมูลทั้งหมด
                 </button>
               </div>
 
@@ -105,7 +147,7 @@ function Topbar() {
                   <div className="space-y-2">
                     <div className="flex justify-between text-sm">
                       <span className="text-slate-500">ชื่อผู้ติดต่อ:</span>
-                      <span className="font-medium text-slate-800">{customerInfo.comp_contact}</span>
+                      <span className="font-medium text-slate-800">{customerInfo.firstname} {customerInfo.middlename || ''} {customerInfo.lastname}</span>
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="text-slate-500">หน่วยงาน:</span>
@@ -117,6 +159,9 @@ function Topbar() {
                       <span className="text-slate-500">อีเมล:</span>
                       <span className="font-medium text-blue-600 truncate max-w-[180px]">{customerInfo.comp_email}</span>
                     </div>
+                    <Link to="/" onClick={() => setIsBillOpen(false)} className="text-blue-600 font-bold hover:underline ml-1">
+                      ออกจากระบบ
+                    </Link>
                   </div>
                 ) : (
                   <div className="text-center py-2 text-slate-500 text-xs">
