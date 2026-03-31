@@ -74,7 +74,6 @@ function App() {
     }
   };
 
-
   return (
     <div className="min-h-screen bg-slate-50 font-sans antialiased text-slate-900">
       <main className="max-w-5xl mx-auto p-6 lg:p-12">

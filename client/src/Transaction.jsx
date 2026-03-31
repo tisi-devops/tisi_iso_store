@@ -16,7 +16,7 @@ function AddTransaction() {
   const [selectedSubDistrict, setSelectedSubDistrict] = useState(null);
 
   // --- States สำหรับระบบ OTP & ฟอร์ม ---
-  const [isCorporate, setIsCorporate] = useState(false);
+  const [IsPersonalType, setIsPersonalType] = useState(false);
   const [showOTPModal, setShowOTPModal] = useState(false);
   const [otpInput, setOtpInput] = useState('');
   const [serverRef, setServerRef] = useState('');
@@ -40,31 +40,35 @@ function AddTransaction() {
     try {
       // ✅ ใช้ ?. เพื่อป้องกัน Error กรณีหา Element ไม่พบ
       const formData = {
-        is_corporate: isCorporate,
-        comp_name: el.comp_name?.value || '',
-        comp_tax: el.comp_tax?.value || 'INDIVIDUAL',
+        person_type: IsPersonalType,
+        company_name: el.company_name?.value || '',
+        tax_id: el.tax_id?.value || 'INDIVIDUAL',
         // ข้อมูลที่อยู่ (ดึง Label มาบันทึกลง DB)
-        comp_add: el.comp_add?.value || '',   
-        comp_moo: el.comp_moo?.value || '',   
-        comp_soi: el.comp_soi?.value || '',   
-        comp_road: el.comp_road?.value || '', 
+        house_number: el.house_number?.value || '',
+        building_name: el.building_name?.value || '',
+        moo: el.moo?.value || '',   
+        soi: el.soi?.value || '',   
+        road: el.road?.value || '', 
         province: selectedProv?.label || '',
         district: selectedDistrict?.label || '',
         sub_district: selectedSubDistrict?.label || '',
+        provinceCode: selectedProv?.value || '',
+        districtCode: selectedDistrict?.value || '',
+        subDistrictCode: selectedSubDistrict?.value || '',
         postcode: selectedSubDistrict?.postcode || '',
         // ข้อมูลผู้ติดต่อ
         title: selectedTitle?.value || '',
-        firstname: el.comp_firstname?.value || '',
-        middlename: el.comp_middlename?.value || '',
-        lastname: el.comp_lastname?.value || '',
-        comp_phone: el.comp_phone?.value || '',
-        comp_email: el.comp_email?.value || '',
+        firstname: el.firstname?.value || '',
+        middlename: el.middlename?.value || '',
+        lastname: el.lastname?.value || '',
+        phone: el.phone?.value || '',
+        email: el.email?.value || '',
       };
 
-      setEmailForOTP(formData.comp_email);
+      setEmailForOTP(formData.email);
       setTempFormData(formData);
 
-      const res = await axios.post(`${baseURL}/send-otp`, { email: formData.comp_email });
+      const res = await axios.post(`${baseURL}/send-otp`, { email: formData.email });
       if (res.data.success) {
         setServerRef(res.data.ref);
         setShowOTPModal(true);
@@ -133,12 +137,12 @@ function AddTransaction() {
 
         {/* Tab Selector */}
         <div className="flex border-b border-slate-200 bg-white rounded-t-[2.5rem] overflow-hidden shadow-sm">
-          <button type="button" onClick={() => setIsCorporate(false)}
-            className={`flex-1 py-5 text-sm font-black transition-all border-b-4 ${!isCorporate ? 'bg-white text-blue-600 border-blue-600' : 'bg-slate-50 text-slate-400 border-transparent'}`}>
+          <button type="button" onClick={() => setIsPersonalType(false)}
+            className={`flex-1 py-5 text-sm font-black transition-all border-b-4 ${!IsPersonalType ? 'bg-white text-blue-600 border-blue-600' : 'bg-slate-50 text-slate-400 border-transparent'}`}>
             👤 บุคคลธรรมดา
           </button>
-          <button type="button" onClick={() => setIsCorporate(true)}
-            className={`flex-1 py-5 text-sm font-black transition-all border-b-4 ${isCorporate ? 'bg-white text-blue-600 border-blue-600' : 'bg-slate-50 text-slate-400 border-transparent'}`}>
+          <button type="button" onClick={() => setIsPersonalType(true)}
+            className={`flex-1 py-5 text-sm font-black transition-all border-b-4 ${IsPersonalType ? 'bg-white text-blue-600 border-blue-600' : 'bg-slate-50 text-slate-400 border-transparent'}`}>
             🏢 นิติบุคคล / หน่วยงาน
           </button>
         </div>
@@ -150,13 +154,13 @@ function AddTransaction() {
               <h3 className="font-bold text-slate-800 uppercase tracking-wider text-sm">ข้อมูลผู้สั่งซื้อ</h3>
             </div>
             <div className="space-y-5">
-              <input required type="text" name="comp_name" 
+              <input required type="text" name="company_name" 
                 className="w-full p-4 border border-slate-200 rounded-2xl outline-none focus:border-blue-500 transition-all" 
-                placeholder={isCorporate ? "ชื่อบริษัท / ชื่อหน่วยงาน" : "ชื่อ-นามสกุล (สำหรับพิมพ์ลายน้ำ)"} />
+                placeholder={IsPersonalType ? "ชื่อบริษัท / ชื่อหน่วยงาน" : "ชื่อ-นามสกุล (สำหรับพิมพ์ลายน้ำ)"} />
               
-              <input required type="text" name="comp_tax" pattern="[0-9]{13}" maxLength="13" 
+              <input required type="text" name="tax_id" pattern="[0-9]{13}" maxLength="13" 
                 className="w-full p-4 border border-slate-200 rounded-2xl outline-none font-mono focus:border-blue-500 transition-all" 
-                placeholder={isCorporate ? "เลขผู้เสียภาษี 13 หลัก" : "เลขประจำตัวประชาชน 13 หลัก"} />
+                placeholder={IsPersonalType ? "เลขผู้เสียภาษี 13 หลัก" : "เลขประจำตัวประชาชน 13 หลัก"} />
             </div>
           </div>
 
@@ -167,12 +171,15 @@ function AddTransaction() {
             </div>
             <div className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input required type="text" name="comp_add" className="w-full p-4 border border-slate-200 rounded-2xl outline-none focus:border-blue-500" placeholder="บ้านเลขที่ / อาคาร" />
-                <input type="text" name="comp_moo" className="w-full p-4 border border-slate-200 rounded-2xl outline-none focus:border-blue-500" placeholder="หมู่ที่" />
+                <input required type="text" name="house_number" className="w-full p-4 border border-slate-200 rounded-2xl outline-none focus:border-blue-500" placeholder="บ้านเลขที่ / อาคารเลขที่" />
+                <input type="text" name="building_name" className="w-full p-4 border border-slate-200 rounded-2xl outline-none focus:border-blue-500" placeholder="ชื่อหมู่บ้าน / ชื่ออาคาร" />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input type="text" name="comp_soi" className="w-full p-4 border border-slate-200 rounded-2xl outline-none focus:border-blue-500" placeholder="ซอย" />
-                <input type="text" name="comp_road" className="w-full p-4 border border-slate-200 rounded-2xl outline-none focus:border-blue-500" placeholder="ถนน" />
+                <input type="text" name="moo" className="w-full p-4 border border-slate-200 rounded-2xl outline-none focus:border-blue-500" placeholder="หมู่ที่" />
+                <input type="text" name="soi" className="w-full p-4 border border-slate-200 rounded-2xl outline-none focus:border-blue-500" placeholder="ซอย" />
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
+                <input type="text" name="road" className="w-full p-4 border border-slate-200 rounded-2xl outline-none focus:border-blue-500" placeholder="ถนน" />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Select placeholder="จังหวัด" options={provinces} value={selectedProv} onChange={setSelectedProv} styles={customStyles} />
@@ -195,19 +202,19 @@ function AddTransaction() {
                 <Select placeholder="คำนำหน้า" options={titleOptions} value={selectedTitle} onChange={setSelectedTitle} styles={customStyles} />
               </div>
               <div className="md:col-span-5">
-                <input type="text" name="comp_firstname" required className="w-full p-4 border border-slate-200 rounded-2xl outline-none focus:border-blue-500" placeholder="ชื่อ" />
+                <input type="text" name="contact_firstname" required className="w-full p-4 border border-slate-200 rounded-2xl outline-none focus:border-blue-500" placeholder="ชื่อ" />
               </div>
               <div className="md:col-span-4">
-                <input type="text" name="comp_middlename" className="w-full p-4 border border-slate-200 rounded-2xl outline-none focus:border-blue-500" placeholder="ชื่อกลาง (ถ้ามี)" />
+                <input type="text" name="contact_middlename" className="w-full p-4 border border-slate-200 rounded-2xl outline-none focus:border-blue-500" placeholder="ชื่อกลาง (ถ้ามี)" />
               </div>
               <div className="md:col-span-4">
-                <input type="text" name="comp_lastname" required className="w-full p-4 border border-slate-200 rounded-2xl outline-none focus:border-blue-500" placeholder="นามสกุล" />
+                <input type="text" name="contact_lastname" required className="w-full p-4 border border-slate-200 rounded-2xl outline-none focus:border-blue-500" placeholder="นามสกุล" />
               </div>
               <div className="md:col-span-3">
-                <input type="text" name="comp_phone" required className="w-full p-4 border border-slate-200 rounded-2xl outline-none focus:border-blue-500" placeholder="เบอร์โทรศัพท์" />
+                <input type="text" name="phone" required className="w-full p-4 border border-slate-200 rounded-2xl outline-none focus:border-blue-500" placeholder="เบอร์โทรศัพท์" />
               </div>
               <div className="md:col-span-5">
-                <input type="email" name="comp_email" required className="w-full p-4 border border-slate-200 rounded-2xl outline-none focus:border-blue-500" placeholder="อีเมลสำหรับรับรหัส OTP" />
+                <input type="email" name="email" required className="w-full p-4 border border-slate-200 rounded-2xl outline-none focus:border-blue-500" placeholder="อีเมลสำหรับรับรหัส OTP และส่งเอกสาร ISO" />
               </div>
             </div>
           </div>

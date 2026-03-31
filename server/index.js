@@ -174,7 +174,7 @@ app.get('/api/hello', async (req, res) => {
     res.json({ 
         message: "ระบบ Backend พร้อมใช้งาน", 
         status: "Online", 
-        currency: exchangeData ? exchangeData.buying_transfer : "N/A",
+        currency: exchangeData ? Math.round(exchangeData.buying_transfer * 10000) / 10000 : "N/A",
         daynow: thaiDate
     });
 });
@@ -381,30 +381,34 @@ app.post('/api/submit-transaction', async (req, res) => {
         const transactionId = `TISI${formatted}`;
         await connection.execute(
             `INSERT INTO transactions 
-            (transaction_id, company_name, tax_id, personType, house_number, moo, soi, road, 
-             sub_district, district, province, postcode, 
+            (transaction_id, company_name, tax_id, person_type, house_number, building_name, moo, soi, road, 
+             subdistrict, district, province, subdistrict_code, district_code, province_code, postcode, 
              contact_title, contact_firstname, contact_middlename, contact_lastname, 
              phone, email, total_amount, exchange_rate, status) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
             [
                 transactionId,
-                customer.comp_name || null,
-                customer.comp_tax || null,
-                customer.is_corporate ? 2 : 1,
-                customer.comp_add || null,
-                customer.comp_moo || null,
-                customer.comp_soi || null,
-                customer.comp_road || null,
-                customer.sub_district || null,
+                customer.company_name || null,
+                customer.tax_id || null,
+                customer.person_type ? 2 : 1,
+                customer.house_number || null,
+                customer.building_name || null,
+                customer.moo || null,
+                customer.soi || null,
+                customer.road || null,
+                customer.subdistrict || null,
                 customer.district || null,
                 customer.province || null,
+                customer.subdistrict_code || null,
+                customer.district_code || null,
+                customer.province_code || null,
                 customer.postcode || null,
-                customer.title || null,
-                customer.firstname || null,
-                customer.middlename || null,
-                customer.lastname || null,
-                customer.comp_phone || null,
-                customer.comp_email || null,
+                customer.contact_title || null,
+                customer.contact_firstname || null,
+                customer.contact_middlename || null,
+                customer.contact_lastname || null,
+                customer.phone || null,
+                customer.email || null,
                 totalAmount || 0,
                 currentRate,
                 'PENDING'
