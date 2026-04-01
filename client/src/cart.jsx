@@ -124,8 +124,8 @@ function Cart() {
               {customerInfo && (
                 <div className="bg-blue-50 p-4 rounded-2xl border border-blue-100 mb-6">
                   <h4 className="text-blue-800 font-bold text-sm mb-1">ข้อมูลผู้สั่งซื้อ:</h4>
-                  <p className="text-blue-900 font-medium">{customerInfo.comp_name}</p>
-                  <p className="text-blue-600 text-xs">{customerInfo.comp_email} | {customerInfo.comp_phone}</p>
+                  <p className="text-blue-900 font-medium">{customerInfo.company_name}</p>
+                  <p className="text-blue-600 text-xs">{customerInfo.email} | {customerInfo.phone}</p>
                 </div>
               )}
 

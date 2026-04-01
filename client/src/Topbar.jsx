@@ -91,7 +91,7 @@ function Topbar() {
         <Link to="/" className="flex items-center gap-3">
           <img src="/image/tisi-logo.jpg" className="h-12 md:h-16 w-auto object-contain" alt="TISI Logo" />
           <div className="hidden md:block">
-            <h1 className="text-xl font-black text-blue-700 leading-none">TISI <span className="text-slate-400 font-light tracking-tight">E-Store</span></h1>
+            <h1 className="text-xl font-black text-blue-700 leading-none">TISI <span className="text-slate-400 font-light tracking-tight">ISO-Store</span></h1>
             <p className="text-[10px] text-slate-400 uppercase font-bold tracking-widest mt-1">Official Standard Service</p>
           </div>
         </Link>
@@ -138,13 +138,13 @@ function Topbar() {
                     </div>
                     <div className="flex justify-between text-xs">
                       <span className="text-slate-500">หน่วยงาน:</span>
-                      <span className="font-bold text-slate-800 text-right max-w-[160px] truncate" title={customerInfo.company_name}>
+                      <span className="font-bold text-slate-800 text-right max-w-40 truncate" title={customerInfo.company_name}>
                         {customerInfo.company_name}
                       </span>
                     </div>
                     <div className="flex justify-between text-xs">
                       <span className="text-slate-500">อีเมล:</span>
-                      <span className="font-bold text-blue-600 truncate max-w-[180px]">{customerInfo.email}</span>
+                      <span className="font-bold text-blue-600 truncate max-w-45">{customerInfo.email}</span>
                     </div>
                   </div>
                 ) : (

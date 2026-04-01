@@ -64,10 +64,10 @@ function App() {
         confirmButtonText: 'ตกลง',
         confirmButtonColor: '#2563eb',
         timer: 2000
+      }).then(() => {
+        // หลังจากผู้ใช้กด "ตกลง" ใน Pop-up ให้ไปที่หน้าฟอร์ม
+        navigate('/'); 
       });
-      
-      // หรือถ้าอยากให้เด้งกลับไปหน้าฟอร์มเลย:
-      // navigate('/'); 
     } else {
       // ✅ ถ้ามีข้อมูลแล้ว ให้ไปหน้า Product Detail ได้ปกติ
       navigate(`/product/${encodeURIComponent(productId)}`);
@@ -85,7 +85,7 @@ function App() {
               inputMode="numeric"
               pattern="[0-9]*"
               className="flex-1 p-3 ml-4 outline-none text-lg" 
-              placeholder="ค้นหามาตรฐาน ISO... (เช่น 9001, 14001)"
+              placeholder="ค้นหามาตรฐาน ISO (เช่น 9001, 14001)"
               value={inputValue}
               onChange={(e) => {
                 const onlyNums = e.target.value.replace(/\D/g, ''); // ลบทุกอย่างที่ไม่ใช่ตัวเลข (0-9) ทิ้ง
@@ -169,17 +169,17 @@ function App() {
         className="group w-full text-left bg-white p-4 rounded-3xl shadow-sm border border-slate-200 
                   hover:shadow-xl hover:border-red-200 hover:scale-[1.02] 
                   transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-red-100
-                  active:scale-[0.98] flex flex-col min-h-[280px]"
+                  active:scale-[0.98] flex flex-col min-h-70"
       >
         {/* ส่วนรหัสมาตรฐาน (Code) และลูกศร */}
         <div className="flex justify-between items-start gap-4 mb-4">
           <p className={`font-black text-red-700 uppercase tracking-tighter transition-colors group-hover:text-red-500 
-              ${item.code.length > 15 ? 'text-3xl break-words' : 'text-4xl'} 
+              ${item.code.length > 15 ? 'text-3xl break-all' : 'text-4xl'} 
           `}>
             {item.code}
           </p>
 
-          <span className="text-slate-300 group-hover:text-red-500 transition-colors flex-shrink-0 mt-1">
+          <span className="text-slate-300 group-hover:text-red-500 transition-colors shrink-0 mt-1">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
             </svg>
@@ -187,9 +187,6 @@ function App() {
         </div>
 
         {/* ชื่อมาตรฐานภาษาอังกฤษ */}
-        {/* <h3 className="text-sm font-bold text-slate-700 leading-snug mb-4 h-12 line-clamp-2 overflow-hidden" title={item.title}>
-          {item.title}
-        </h3> */}
         <h3 
           className="text-sm font-bold text-slate-600 leading-snug mb-6 
                     h-12 line-clamp-2 overflow-hidden group-hover:text-slate-900 transition-colors" 
@@ -243,7 +240,7 @@ function App() {
             <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 mx-auto mb-4 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            ไม่พบข้อมูลมาตรฐานที่ค้นหา ลองค้นหาด้วยคำอื่นดูนะครับ
+            ไม่พบข้อมูลมาตรฐานที่ค้นหาครับ
           </div>
         )}
 

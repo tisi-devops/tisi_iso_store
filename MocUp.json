@@ -1,40 +1,49 @@
 {
     "source": {
         "organization": "ISO",
-        "generated": "2026-03-25T11:16:13.299",
+        "generated": "2026-04-01T10:58:29.113",
         "schemaVersion": "1.10.1"
     },
     "publication": [
         {
-            "urn": "iso:pub:std:IS:88209",
+            "urn": "iso:pub:std:FDIS:88465",
             "urnAlt": [
-                "iso:std:iso:14001:ed-3"
+                "iso:std:iso:9000:fdis:ed-5"
             ],
             "publicationType": "STANDARD",
-            "reference": "ISO 14001:2015/Amd 1:2024",
+            "reference": "ISO/FDIS 9000",
             "originator": "ISO",
             "stdType": "IS",
-            "stdNumber": "14001",
-            "edition": "3",
+            "stdNumber": "9000",
+            "edition": "5",
             "version": 1,
-            "supplType": "AMD",
-            "supplNumber": "1",
             "title": [
                 {
-                    "value": "Environmental management systems — Requirements with guidance for use — Amendment 1: Climate action changes",
+                    "value": "Quality management — Fundamentals and vocabulary",
                     "lang": "en"
                 },
                 {
-                    "value": "Systèmes de management environnemental — Exigences et lignes directrices pour son utilisation — Amendement 1: Changements concernant les actions en lien avec le climat",
+                    "value": "Management de la qualité — Principes essentiels et vocabulaire",
                     "lang": "fr"
                 }
             ],
             "committee": {
-                "urn": "iso:committee:54818",
+                "urn": "iso:committee:53888",
                 "urnAlt": [],
-                "reference": "ISO/TC 207/SC 1"
+                "reference": "ISO/TC 176/SC 1"
             },
-            "abstract": [],
+            "abstract": [
+                {
+                    "format": "text/html",
+                    "content": "<p> </p>\n<p>ISO 9000:2015 describes the fundamental concepts and principles of quality management which are universally applicable to the following:</p>\n<ul>\n<li>organizations seeking sustained success through the implementation of a quality management system;</li>\n<li>customers seeking confidence in an organization's ability to consistently provide products and services conforming to their requirements;</li>\n<li>organizations seeking confidence in their supply chain that their product and service requirements will be met;</li>\n<li>organizations and interested parties seeking to improve communication through a common understanding of the vocabulary used in quality management;</li>\n<li>organizations performing conformity assessments against the requirements of ISO 9001;</li>\n<li>providers of training, assessment or advice in quality management;</li>\n<li>developers of related standards.</li>\n</ul>\n<p>ISO 9000:2015 specifies the terms and definitions that apply to all quality management and quality management system standards developed by ISO/TC 176.</p>",
+                    "lang": "en"
+                },
+                {
+                    "format": "text/html",
+                    "content": "<p>L'ISO 9000:2015 décrit les concepts fondamentaux et les principes du management de la qualité qui sont applicables à toutes les entités suivantes:</p>\n<ul>\n<li>organismes recherchant des performances durables par la mise en ?uvre d'un système de management de la qualité;</li>\n<li>clients cherchant à s'assurer de l'aptitude d'un organisme à fournir régulièrement des produits et services conformes à leurs exigences;</li>\n<li>organismes cherchant à s'assurer que leur chaîne d'approvisionnement satisfera leurs exigences relatives aux produits et services;</li>\n<li>organismes et parties intéressées cherchant à améliorer la communication par une compréhension mutuelle du vocabulaire utilisé dans le domaine du management de la qualité;</li>\n<li>organismes chargés de l'évaluation de la conformité aux exigences de l'ISO 9001;</li>\n<li>prestataires assurant une formation, une évaluation ou fournissant des conseils dans le domaine du management de la qualité;</li>\n<li>personnes élaborant des normes apparentées.</li>\n</ul>\n<p>L'ISO 9000:2015 spécifie les termes et définitions s'appliquant à toutes les normes relatives au management de la qualité et aux systèmes de management de la qualité élaborées par l'ISO/TC 176.</p>",
+                    "lang": "fr"
+                }
+            ],
             "classifications": [
                 {
                     "type": "ICS",
@@ -42,20 +51,446 @@
                 },
                 {
                     "type": "ICS",
-                    "value": "13.020.10"
+                    "value": "01.040.03"
+                },
+                {
+                    "type": "ICS",
+                    "value": "03.120.10"
+                },
+                {
+                    "type": "LOGO",
+                    "value": "ISO"
+                },
+                {
+                    "type": "SUSTAINABLE_DEVELOPMENT_GOAL",
+                    "value": "12"
+                },
+                {
+                    "type": "SUSTAINABLE_DEVELOPMENT_GOAL",
+                    "value": "3"
+                },
+                {
+                    "type": "SUSTAINABLE_DEVELOPMENT_GOAL",
+                    "value": "4"
+                },
+                {
+                    "type": "SUSTAINABLE_DEVELOPMENT_GOAL",
+                    "value": "7"
+                },
+                {
+                    "type": "SUSTAINABLE_DEVELOPMENT_GOAL",
+                    "value": "9"
+                },
+                {
+                    "type": "SUSTAINABLE_DEVELOPMENT_GOAL",
+                    "value": "8"
+                }
+            ],
+            "status": "DRAFT",
+            "publicationStage": "FDIS",
+            "priceInfo": {
+                "priceCode": "iso:GPL",
+                "basePrice": {
+                    "amount": 225,
+                    "currency": "CHF"
+                }
+            },
+            "releaseItems": [
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "PDF",
+                    "formatVariant": "CPDF",
+                    "contentLanguage": [
+                        "en"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2026-02-02",
+                    "version": 1,
+                    "pages": 53,
+                    "rfc5141urn": "iso:std:iso:9000:fdis:ed-5:v1:en",
+                    "contentRef": {
+                        "id": "c2724079-4e27-4a23-96ce-3b645543b37e",
+                        "url": "https://data.iso.org/publications/std/dms/c2724079-4e27-4a23-96ce-3b645543b37e",
+                        "contentLength": 3070637,
+                        "mimeType": "application/pdf",
+                        "fileName": "ISO_FDIS 9000 ed.5 - id.88465 Approval PDF (en)",
+                        "fileExtension": "pdf",
+                        "checksum": "SHA-256=5928BF292B1266C7E7F468B836C6743934EEDACD7397EA7E680AB7F7591D2FB2"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "TRACK_CHANGES",
+                    "format": "PDF",
+                    "contentLanguage": [
+                        "en"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2026-02-02",
+                    "version": 1,
+                    "pages": 53,
+                    "rfc5141urn": "iso:std:iso:9000:fdis:ed-5:v1:en",
+                    "contentRef": {
+                        "id": "576fa589-db5c-4736-812f-1376d6d7f107",
+                        "url": "https://data.iso.org/publications/std/dms/576fa589-db5c-4736-812f-1376d6d7f107",
+                        "contentLength": 2216372,
+                        "mimeType": "application/pdf",
+                        "fileName": "ISO_FDIS 9000 ed.5 - id.88465 Approval Trackchange PDF (en)",
+                        "fileExtension": "pdf",
+                        "checksum": "SHA-256=05CFE621AEDD07EFF8EE129976CB9AD13F81ABD2463919AC5BC4A849FA696534"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "WORD",
+                    "contentLanguage": [
+                        "en"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2026-02-02",
+                    "version": 1,
+                    "pages": 53,
+                    "rfc5141urn": "iso:std:iso:9000:fdis:ed-5:v1:en",
+                    "contentRef": {
+                        "id": "a9c2b305-7a91-427f-b01c-a9ba6822ab3a",
+                        "url": "https://data.iso.org/publications/std/dms/a9c2b305-7a91-427f-b01c-a9ba6822ab3a",
+                        "contentLength": 2100801,
+                        "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                        "fileName": "ISO_FDIS 9000 ed.5 - id.88465 Approval Word (en)",
+                        "fileExtension": "docx",
+                        "checksum": "SHA-256=C798AE86C9AF6068560491F39CAEE33FE74B6EBBC8CEA38E6488AEC30DC756AC"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "XML",
+                    "formatVariant": "NISOSTS",
+                    "contentLanguage": [
+                        "en"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2026-02-02",
+                    "version": 1,
+                    "pages": 53,
+                    "rfc5141urn": "iso:std:iso:9000:fdis:ed-5:v1:en",
+                    "contentRef": {
+                        "id": "b1ae1bd1-a1e6-4f56-a6fd-b738ec70bd43",
+                        "url": "https://data.iso.org/publications/std/dms/b1ae1bd1-a1e6-4f56-a6fd-b738ec70bd43",
+                        "contentLength": 18878613,
+                        "mimeType": "application/zip",
+                        "fileName": "ISO_FDIS 9000 ed.5 - id.88465 Approval XML (NISO-STS) (en)",
+                        "fileExtension": "zip",
+                        "checksum": "SHA-256=1BC0310CA8870FFE6EFF104ED81207BEA642AC6332E3005E1B75DDD1174C906A"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "XML",
+                    "formatVariant": "NISOSTS",
+                    "contentLanguage": [
+                        "fr"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2026-03-07",
+                    "version": 1,
+                    "pages": 62,
+                    "rfc5141urn": "iso:std:iso:9000:fdis:ed-5:v1:fr",
+                    "contentRef": {
+                        "id": "4791b68d-22f7-4cad-9c69-fbfe504013b9",
+                        "url": "https://data.iso.org/publications/std/dms/4791b68d-22f7-4cad-9c69-fbfe504013b9",
+                        "contentLength": 19105597,
+                        "mimeType": "application/zip",
+                        "fileName": "ISO_FDIS 9000 ed.5 - id.88465 Approval XML (NISO-STS) (fr)",
+                        "fileExtension": "zip",
+                        "checksum": "SHA-256=C04B1E051D98775CF6187E6DDB9DA88E662DF40FA72F685D6332653A4ED683A3"
+                    }
+                }
+            ],
+            "project": {
+                "urn": "iso:proj:88465",
+                "urnAlt": []
+            },
+            "lastChangeTimestamp": "2026-03-07T17:19:55.302"
+        },
+        {
+            "urn": "iso:pub:std:DIS:88465",
+            "urnAlt": [
+                "iso:std:iso:9000:dis:ed-5"
+            ],
+            "publicationType": "STANDARD",
+            "reference": "ISO/FDIS 9000",
+            "originator": "ISO",
+            "stdType": "IS",
+            "stdNumber": "9000",
+            "edition": "5",
+            "version": 1,
+            "title": [
+                {
+                    "value": "Quality management — Fundamentals and vocabulary",
+                    "lang": "en"
+                },
+                {
+                    "value": "Management de la qualité — Principes essentiels et vocabulaire",
+                    "lang": "fr"
+                }
+            ],
+            "committee": {
+                "urn": "iso:committee:53888",
+                "urnAlt": [],
+                "reference": "ISO/TC 176/SC 1"
+            },
+            "abstract": [
+                {
+                    "format": "text/html",
+                    "content": "<p> </p>\n<p>ISO 9000:2015 describes the fundamental concepts and principles of quality management which are universally applicable to the following:</p>\n<ul>\n<li>organizations seeking sustained success through the implementation of a quality management system;</li>\n<li>customers seeking confidence in an organization's ability to consistently provide products and services conforming to their requirements;</li>\n<li>organizations seeking confidence in their supply chain that their product and service requirements will be met;</li>\n<li>organizations and interested parties seeking to improve communication through a common understanding of the vocabulary used in quality management;</li>\n<li>organizations performing conformity assessments against the requirements of ISO 9001;</li>\n<li>providers of training, assessment or advice in quality management;</li>\n<li>developers of related standards.</li>\n</ul>\n<p>ISO 9000:2015 specifies the terms and definitions that apply to all quality management and quality management system standards developed by ISO/TC 176.</p>",
+                    "lang": "en"
+                },
+                {
+                    "format": "text/html",
+                    "content": "<p>L'ISO 9000:2015 décrit les concepts fondamentaux et les principes du management de la qualité qui sont applicables à toutes les entités suivantes:</p>\n<ul>\n<li>organismes recherchant des performances durables par la mise en ?uvre d'un système de management de la qualité;</li>\n<li>clients cherchant à s'assurer de l'aptitude d'un organisme à fournir régulièrement des produits et services conformes à leurs exigences;</li>\n<li>organismes cherchant à s'assurer que leur chaîne d'approvisionnement satisfera leurs exigences relatives aux produits et services;</li>\n<li>organismes et parties intéressées cherchant à améliorer la communication par une compréhension mutuelle du vocabulaire utilisé dans le domaine du management de la qualité;</li>\n<li>organismes chargés de l'évaluation de la conformité aux exigences de l'ISO 9001;</li>\n<li>prestataires assurant une formation, une évaluation ou fournissant des conseils dans le domaine du management de la qualité;</li>\n<li>personnes élaborant des normes apparentées.</li>\n</ul>\n<p>L'ISO 9000:2015 spécifie les termes et définitions s'appliquant à toutes les normes relatives au management de la qualité et aux systèmes de management de la qualité élaborées par l'ISO/TC 176.</p>",
+                    "lang": "fr"
+                }
+            ],
+            "classifications": [
+                {
+                    "type": "ICS",
+                    "value": "03.100.70"
+                },
+                {
+                    "type": "ICS",
+                    "value": "01.040.03"
+                },
+                {
+                    "type": "ICS",
+                    "value": "03.120.10"
+                },
+                {
+                    "type": "LOGO",
+                    "value": "ISO"
+                },
+                {
+                    "type": "SUSTAINABLE_DEVELOPMENT_GOAL",
+                    "value": "12"
+                },
+                {
+                    "type": "SUSTAINABLE_DEVELOPMENT_GOAL",
+                    "value": "3"
+                },
+                {
+                    "type": "SUSTAINABLE_DEVELOPMENT_GOAL",
+                    "value": "4"
+                },
+                {
+                    "type": "SUSTAINABLE_DEVELOPMENT_GOAL",
+                    "value": "7"
+                },
+                {
+                    "type": "SUSTAINABLE_DEVELOPMENT_GOAL",
+                    "value": "9"
+                },
+                {
+                    "type": "SUSTAINABLE_DEVELOPMENT_GOAL",
+                    "value": "8"
+                }
+            ],
+            "status": "DRAFT",
+            "publicationStage": "DIS",
+            "priceInfo": {
+                "priceCode": "iso:B",
+                "basePrice": {
+                    "amount": 67,
+                    "currency": "CHF"
+                }
+            },
+            "releaseItems": [
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "PDF",
+                    "formatVariant": "CPDF",
+                    "contentLanguage": [
+                        "en"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2025-02-13",
+                    "version": 1,
+                    "pages": 73,
+                    "rfc5141urn": "iso:std:iso:9000:dis:ed-5:v1:en",
+                    "contentRef": {
+                        "id": "b608ab8e-3acf-4c3b-9c58-ac503ba5148d",
+                        "url": "https://data.iso.org/publications/std/dms/b608ab8e-3acf-4c3b-9c58-ac503ba5148d",
+                        "contentLength": 2912024,
+                        "mimeType": "application/pdf",
+                        "fileName": "ISO_FDIS 9000 ed.5 - id.88465 Enquiry PDF (en)",
+                        "fileExtension": "pdf",
+                        "checksum": "SHA-256=5E1F1C7514B14AFCF576681947E3B1D7155FAB066E2BD284836337FB2237C87E"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "PDF",
+                    "formatVariant": "CPDF",
+                    "contentLanguage": [
+                        "fr"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2025-04-10",
+                    "version": 1,
+                    "pages": 86,
+                    "rfc5141urn": "iso:std:iso:9000:dis:ed-5:v1:fr",
+                    "contentRef": {
+                        "id": "25615505-bf53-456f-9c5e-2a0765db6062",
+                        "url": "https://data.iso.org/publications/std/dms/25615505-bf53-456f-9c5e-2a0765db6062",
+                        "contentLength": 3193426,
+                        "mimeType": "application/pdf",
+                        "fileName": "ISO_FDIS 9000 ed.5 - id.88465 Enquiry PDF (fr)",
+                        "fileExtension": "pdf",
+                        "checksum": "SHA-256=DDE8A3EE93E51556AB4CF053134A86EB4E21D10105FCA90591D47106C4068D1C"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "TRACK_CHANGES",
+                    "format": "WORD",
+                    "contentLanguage": [
+                        "en"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2025-02-13",
+                    "version": 1,
+                    "pages": 73,
+                    "rfc5141urn": "iso:std:iso:9000:dis:ed-5:v1:en",
+                    "contentRef": {
+                        "id": "5ab99027-bfc7-4e34-812b-f01d766b0977",
+                        "url": "https://data.iso.org/publications/std/dms/5ab99027-bfc7-4e34-812b-f01d766b0977",
+                        "contentLength": 570397,
+                        "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                        "fileName": "ISO_FDIS 9000 ed.5 - id.88465 Enquiry Trackchange Word (en)",
+                        "fileExtension": "docx",
+                        "checksum": "SHA-256=B63D0A823EBD9DFEBFCC8B3ECDBA4635164F723662F6F3F8B1CB7DE5FBA5459B"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "WORD",
+                    "contentLanguage": [
+                        "en"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2025-02-13",
+                    "version": 1,
+                    "pages": 73,
+                    "rfc5141urn": "iso:std:iso:9000:dis:ed-5:v1:en",
+                    "contentRef": {
+                        "id": "73d83d78-1b02-4dd9-bd52-a45c0f85f60a",
+                        "url": "https://data.iso.org/publications/std/dms/73d83d78-1b02-4dd9-bd52-a45c0f85f60a",
+                        "contentLength": 1198134,
+                        "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                        "fileName": "ISO_FDIS 9000 ed.5 - id.88465 Enquiry Word (en)",
+                        "fileExtension": "docx",
+                        "checksum": "SHA-256=1D75C0D68100C0C6EB22DD5D6ED15706B69DF6515DB03FD4D2AA2E7216ED3115"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "XML",
+                    "formatVariant": "NISOSTS",
+                    "contentLanguage": [
+                        "en"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2025-02-13",
+                    "version": 1,
+                    "pages": 73,
+                    "rfc5141urn": "iso:std:iso:9000:dis:ed-5:v1:en",
+                    "contentRef": {
+                        "id": "cfb1b540-8fb5-4d23-8a07-25a4f732b839",
+                        "url": "https://data.iso.org/publications/std/dms/cfb1b540-8fb5-4d23-8a07-25a4f732b839",
+                        "contentLength": 7729035,
+                        "mimeType": "application/zip",
+                        "fileName": "ISO_FDIS 9000 ed.5 - id.88465 Enquiry XML (NISO-STS) (en)",
+                        "fileExtension": "zip",
+                        "checksum": "SHA-256=5608A240FDD41606E90D67B5D6F272731F8648B20AA3C9E5A8B80692243CEDBF"
+                    }
+                }
+            ],
+            "project": {
+                "urn": "iso:proj:88465",
+                "urnAlt": []
+            },
+            "lastChangeTimestamp": "2026-01-06T07:58:10.561"
+        },
+        {
+            "urn": "iso:pub:std:IS:42180",
+            "urnAlt": [
+                "iso:std:iso:9000:ed-3"
+            ],
+            "publicationType": "STANDARD",
+            "reference": "ISO 9000:2005",
+            "originator": "ISO",
+            "stdType": "IS",
+            "stdNumber": "9000",
+            "edition": "3",
+            "version": 1,
+            "title": [
+                {
+                    "value": "Quality management systems — Fundamentals and vocabulary",
+                    "lang": "en"
+                },
+                {
+                    "value": "Systèmes de management de la qualité — Principes essentiels et vocabulaire",
+                    "lang": "fr"
+                }
+            ],
+            "committee": {
+                "urn": "iso:committee:53888",
+                "urnAlt": [],
+                "reference": "ISO/TC 176/SC 1"
+            },
+            "abstract": [
+                {
+                    "format": "text/html",
+                    "content": "<p>ISO 9000:2005 describes fundamentals of quality management systems, which form the subject of the ISO 9000 family, and defines related terms.</p>\n<p>It is applicable to the following:</p>\n<p>a) organizations seeking advantage through the implementation of a quality management system;</p>\n<p>b) organizations seeking confidence from their suppliers that their product requirements will be satisfied;</p>\n<p>c) users of the products;</p>\n<p>d) those concerned with a mutual understanding of the terminology used in quality management (e.g. suppliers, customers, regulators);</p>\n<p>e) those internal or external to the organization who assess the quality management system or audit it for conformity with the requirements of ISO 9001 (e.g. auditors, regulators, certification/registration bodies);</p>\n<p>f) those internal or external to the organization who give advice or training on the quality management system appropriate to that organization;</p>\n<p>g) developers of related standards.</p>\n",
+                    "lang": "en"
+                },
+                {
+                    "format": "text/html",
+                    "content": "<p>L'ISO 9000:2005 décrit les principes essentiels des systèmes de management de la qualité, objet de la famille des normes ISO 9000, et en définit les termes associés.</p>\n<p>Elle est applicable</p>\n<p>a) aux organismes cherchant à progresser par la mise en oeuvre d'un système de management de la qualité;</p>\n<p>b) aux organismes qui cherchent à s'assurer que leurs fournisseurs satisferont leurs exigences relatives aux produits;</p>\n<p>c) aux utilisateurs des produits;</p>\n<p>d) aux personnes concernées par une compréhension mutuelle de la terminologie utilisée dans le domaine du management de la qualité (par exemple fournisseurs, clients, autorités réglementaires);</p>\n<p>e) aux personnes internes ou externes à l'organisme, qui évaluent ou auditent le système de management de la qualité en termes de conformité aux exigences de l'ISO 9001 (par exemple auditeurs, autorités réglementaires, organismes de certification/enregistrement);</p>\n<p>f) aux personnes internes ou externes à l'organisme qui donnent des conseils ou fournissent une formation sur le système de management de la qualité qui lui convient;</p>\n<p>g) aux personnes qui élaborent des normes apparentées.</p>\n",
+                    "lang": "fr"
+                }
+            ],
+            "classifications": [
+                {
+                    "type": "ICS",
+                    "value": "03.100.70"
+                },
+                {
+                    "type": "ICS",
+                    "value": "01.040.03"
+                },
+                {
+                    "type": "ICS",
+                    "value": "03.120.10"
                 },
                 {
                     "type": "LOGO",
                     "value": "ISO"
                 }
             ],
-            "status": "PUBLISHED",
+            "status": "WITHDRAWN",
             "publicationStage": "IS",
-            "publicationDate": "2024-02-23",
+            "publicationDate": "2005-09-20",
             "priceInfo": {
-                "priceCode": "iso:free",
+                "priceCode": "iso:B",
                 "basePrice": {
-                    "amount": 0,
+                    "amount": 67,
                     "currency": "CHF"
                 }
             },
@@ -68,40 +503,18 @@
                         "en"
                     ],
                     "multilingual": false,
-                    "releaseDate": "2024-02-23",
+                    "releaseDate": "2005-09-20",
                     "version": 1,
-                    "pages": 1,
-                    "rfc5141urn": "iso:std:iso:14001:ed-3:v1:amd:1:v1:en",
+                    "pages": 30,
+                    "rfc5141urn": "iso:std:iso:9000:ed-3:v1:en",
                     "contentRef": {
-                        "id": "d4288647-913f-4a97-8160-9dfde6e91d04",
-                        "url": "https://data.iso.org/publications/std/dms/d4288647-913f-4a97-8160-9dfde6e91d04",
-                        "contentLength": 1533185,
-                        "mimeType": "application/zip",
-                        "fileName": "ISO 14001;2015_Amd 1;2024 ed.3 - id.88209 Publication ePub (en)",
+                        "id": "c8917db5-574e-4391-93d2-2143efc622e6",
+                        "url": "https://data.iso.org/publications/std/dms/c8917db5-574e-4391-93d2-2143efc622e6",
+                        "contentLength": 312727,
+                        "mimeType": "application/epub+zip",
+                        "fileName": "ISO 9000;2005 ed.3 - id.42180 Publication ePub (en)",
                         "fileExtension": "epub",
-                        "checksum": "SHA-256=7617D1E3836F1EC27DA761E1F4B6CCB73E3797E7C065E822A7D3731C9551AFB0"
-                    }
-                },
-                {
-                    "languageNeutral": false,
-                    "type": "STANDARD",
-                    "format": "EPUB",
-                    "contentLanguage": [
-                        "es"
-                    ],
-                    "multilingual": false,
-                    "releaseDate": "2024-03-27",
-                    "version": 1,
-                    "pages": 1,
-                    "rfc5141urn": "iso:std:iso:14001:ed-3:v1:amd:1:v1:es",
-                    "contentRef": {
-                        "id": "911d8585-c0d2-4c53-89e3-fafd45b1a728",
-                        "url": "https://data.iso.org/publications/std/dms/911d8585-c0d2-4c53-89e3-fafd45b1a728",
-                        "contentLength": 1518100,
-                        "mimeType": "application/zip",
-                        "fileName": "ISO 14001;2015_Amd 1;2024 ed.3 - id.88209 Publication ePub (es)",
-                        "fileExtension": "epub",
-                        "checksum": "SHA-256=CB389FB4D8B756C59F13A3C27DC7B64A5A5E2A8781FF2DE231DE95B79CD1072E"
+                        "checksum": "SHA-256=9FA45B3406ACF9ADCE0B4AD3EA897106C287C8C68E0ABACA380079134D9CF5B0"
                     }
                 },
                 {
@@ -112,18 +525,41 @@
                         "fr"
                     ],
                     "multilingual": false,
-                    "releaseDate": "2024-08-30",
-                    "version": 2,
-                    "pages": 1,
-                    "rfc5141urn": "iso:std:iso:14001:ed-3:v2:amd:1:v2:fr",
+                    "releaseDate": "2005-09-20",
+                    "version": 1,
+                    "pages": 30,
+                    "rfc5141urn": "iso:std:iso:9000:ed-3:v1:fr",
                     "contentRef": {
-                        "id": "521978cc-4a5a-4a17-a9e9-ea2eea535e90",
-                        "url": "https://data.iso.org/publications/std/dms/521978cc-4a5a-4a17-a9e9-ea2eea535e90",
-                        "contentLength": 1516092,
-                        "mimeType": "application/zip",
-                        "fileName": "ISO 14001;2015_Amd 1;2024 ed.3 - id.88209 Publication ePub (fr) v2",
+                        "id": "5b4e2f1c-2175-45a8-91c2-ffa5cb7ba1e6",
+                        "url": "https://data.iso.org/publications/std/dms/5b4e2f1c-2175-45a8-91c2-ffa5cb7ba1e6",
+                        "contentLength": 336981,
+                        "mimeType": "application/epub+zip",
+                        "fileName": "ISO 9000;2005 ed.3 - id.42180 Publication ePub (fr)",
                         "fileExtension": "epub",
-                        "checksum": "SHA-256=28F367DBFFA545EFDCA00B05C457351A68DF9E707F595380579F55E0CF263209"
+                        "checksum": "SHA-256=4FC7A017A5F015C7E75E8711C2DB5750B66FFB1BB855435218CAD2C450658431"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "PDF",
+                    "formatVariant": "CPDF",
+                    "contentLanguage": [
+                        "ar"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2009-05-04",
+                    "version": 1,
+                    "pages": 33,
+                    "rfc5141urn": "iso:std:iso:9000:ed-3:v1:ar",
+                    "contentRef": {
+                        "id": "05f737db-8775-4b67-b434-b4b715a995de",
+                        "url": "https://data.iso.org/publications/std/dms/05f737db-8775-4b67-b434-b4b715a995de",
+                        "contentLength": 1328155,
+                        "mimeType": "application/pdf",
+                        "fileName": "ISO 9000;2005 ed.3 - id.42180 Publication PDF (ar)",
+                        "fileExtension": "pdf",
+                        "checksum": "SHA-256=4854F46C3D7B62DDA7412431E58C4DF396D0F8E21A53C86A7C208A5E9368E7D2"
                     }
                 },
                 {
@@ -135,18 +571,18 @@
                         "en"
                     ],
                     "multilingual": false,
-                    "releaseDate": "2024-02-23",
+                    "releaseDate": "2005-09-20",
                     "version": 1,
-                    "pages": 1,
-                    "rfc5141urn": "iso:std:iso:14001:ed-3:v1:amd:1:v1:en",
+                    "pages": 30,
+                    "rfc5141urn": "iso:std:iso:9000:ed-3:v1:en",
                     "contentRef": {
-                        "id": "ee9f8b66-f77a-409b-9dd2-4e8724218aa7",
-                        "url": "https://data.iso.org/publications/std/dms/ee9f8b66-f77a-409b-9dd2-4e8724218aa7",
-                        "contentLength": 873680,
+                        "id": "568b57dc-cea5-42e4-8638-a28a06fcbb89",
+                        "url": "https://data.iso.org/publications/std/dms/568b57dc-cea5-42e4-8638-a28a06fcbb89",
+                        "contentLength": 986178,
                         "mimeType": "application/pdf",
-                        "fileName": "ISO 14001;2015_Amd 1;2024 ed.3 - id.88209 Publication PDF (en)",
+                        "fileName": "ISO 9000;2005 ed.3 - id.42180 Publication PDF (en)",
                         "fileExtension": "pdf",
-                        "checksum": "SHA-256=AFDE769D44669E5E73CA7B4BD1B6EFF2919DF9EF5252874ECDF437F7D3C9A768"
+                        "checksum": "SHA-256=84E63AADBAA003F3D7E4E0656B4AA04C63AB390BE092D64F57E1D0E1E4927045"
                     }
                 },
                 {
@@ -158,18 +594,18 @@
                         "es"
                     ],
                     "multilingual": false,
-                    "releaseDate": "2024-03-27",
+                    "releaseDate": "2005-12-13",
                     "version": 1,
-                    "pages": 1,
-                    "rfc5141urn": "iso:std:iso:14001:ed-3:v1:amd:1:v1:es",
+                    "pages": 32,
+                    "rfc5141urn": "iso:std:iso:9000:ed-3:v1:es",
                     "contentRef": {
-                        "id": "0986af77-8d5c-484c-a114-c3b81a2a9ad2",
-                        "url": "https://data.iso.org/publications/std/dms/0986af77-8d5c-484c-a114-c3b81a2a9ad2",
-                        "contentLength": 889513,
+                        "id": "e9bf109d-fac8-4720-b847-8367400af3d6",
+                        "url": "https://data.iso.org/publications/std/dms/e9bf109d-fac8-4720-b847-8367400af3d6",
+                        "contentLength": 572274,
                         "mimeType": "application/pdf",
-                        "fileName": "ISO 14001;2015_Amd 1;2024 ed.3 - id.88209 Publication PDF (es)",
+                        "fileName": "ISO 9000;2005 ed.3 - id.42180 Publication PDF (es)",
                         "fileExtension": "pdf",
-                        "checksum": "SHA-256=BA902F134C6A3EDF86518849F32019C17BE60867A9247F6D4729AA6ADDB24FFB"
+                        "checksum": "SHA-256=D370B9FD39E5E2B570E2EED18F1BF7569FC0A85EB4F6D34A37C06C6A360AEEF5"
                     }
                 },
                 {
@@ -181,40 +617,41 @@
                         "fr"
                     ],
                     "multilingual": false,
-                    "releaseDate": "2024-08-30",
-                    "version": 2,
-                    "pages": 1,
-                    "rfc5141urn": "iso:std:iso:14001:ed-3:v2:amd:1:v2:fr",
+                    "releaseDate": "2005-09-20",
+                    "version": 1,
+                    "pages": 30,
+                    "rfc5141urn": "iso:std:iso:9000:ed-3:v1:fr",
                     "contentRef": {
-                        "id": "e0189e20-d3d6-4ed3-a6f3-b31a41e5ee9f",
-                        "url": "https://data.iso.org/publications/std/dms/e0189e20-d3d6-4ed3-a6f3-b31a41e5ee9f",
-                        "contentLength": 880127,
+                        "id": "b2adf509-d7af-4ee8-99d1-03efe1474299",
+                        "url": "https://data.iso.org/publications/std/dms/b2adf509-d7af-4ee8-99d1-03efe1474299",
+                        "contentLength": 1109149,
                         "mimeType": "application/pdf",
-                        "fileName": "ISO 14001;2015_Amd 1;2024 ed.3 - id.88209 Publication PDF (fr) v2",
+                        "fileName": "ISO 9000;2005 ed.3 - id.42180 Publication PDF (fr)",
                         "fileExtension": "pdf",
-                        "checksum": "SHA-256=2A81DBBF745F3616DCA5D3CA60C301D91FE07F17160F39DD7C7F60B692FF453F"
+                        "checksum": "SHA-256=E89AB1F607D45F0387965A4E8571ACE83DD11EB911FBF2A433CE2D01D83D9CBC"
                     }
                 },
                 {
                     "languageNeutral": false,
                     "type": "STANDARD",
-                    "format": "WORD",
+                    "format": "PDF",
+                    "formatVariant": "CPDF",
                     "contentLanguage": [
-                        "en"
+                        "ru"
                     ],
                     "multilingual": false,
-                    "releaseDate": "2024-02-23",
+                    "releaseDate": "2013-10-10",
                     "version": 1,
-                    "pages": 1,
-                    "rfc5141urn": "iso:std:iso:14001:ed-3:v1:amd:1:v1:en",
+                    "pages": 30,
+                    "rfc5141urn": "iso:std:iso:9000:ed-3:v1:ru",
                     "contentRef": {
-                        "id": "1563ddc6-93eb-4c8c-a795-eb621cb59786",
-                        "url": "https://data.iso.org/publications/std/dms/1563ddc6-93eb-4c8c-a795-eb621cb59786",
-                        "contentLength": 40885,
-                        "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-                        "fileName": "ISO 14001;2015_Amd 1;2024 ed.3 - id.88209 Publication Word (en)",
-                        "fileExtension": "docx",
-                        "checksum": "SHA-256=A450DBF83B294BC442A9734685D0C53EC6D3ABC35860A8638B23628C7AA18488"
+                        "id": "3bb620f4-86f6-4ffc-bc52-69128018a15e",
+                        "url": "https://data.iso.org/publications/std/dms/3bb620f4-86f6-4ffc-bc52-69128018a15e",
+                        "contentLength": 949891,
+                        "mimeType": "application/pdf",
+                        "fileName": "ISO 9000;2005 ed.3 - id.42180 Publication PDF (ru)",
+                        "fileExtension": "pdf",
+                        "checksum": "SHA-256=3CE5EA0010C01475B10371ACE93D084981ADC4D38FD9B6EE32413409C42418C7"
                     }
                 },
                 {
@@ -225,18 +662,18 @@
                         "es"
                     ],
                     "multilingual": false,
-                    "releaseDate": "2024-03-27",
+                    "releaseDate": "2005-12-13",
                     "version": 1,
-                    "pages": 1,
-                    "rfc5141urn": "iso:std:iso:14001:ed-3:v1:amd:1:v1:es",
+                    "pages": 32,
+                    "rfc5141urn": "iso:std:iso:9000:ed-3:v1:es",
                     "contentRef": {
-                        "id": "6d33449b-7216-4daa-8950-d79831caf5e9",
-                        "url": "https://data.iso.org/publications/std/dms/6d33449b-7216-4daa-8950-d79831caf5e9",
-                        "contentLength": 40681,
-                        "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-                        "fileName": "ISO 14001;2015_Amd 1;2024 ed.3 - id.88209 Publication Word (es)",
-                        "fileExtension": "docx",
-                        "checksum": "SHA-256=1CDAA2287EA1FF4B9C1121D502E04F5E6E8ECC018BA6E881CA7F79D33AD437C6"
+                        "id": "c755999f-4d7a-476e-8add-6500b247fab1",
+                        "url": "https://data.iso.org/publications/std/dms/c755999f-4d7a-476e-8add-6500b247fab1",
+                        "contentLength": 657408,
+                        "mimeType": "application/msword",
+                        "fileName": "ISO 9000;2005 ed.3 - id.42180 Publication Word (es)",
+                        "fileExtension": "doc",
+                        "checksum": "SHA-256=1139176C56AEEDE13A4DE9F0830AB2474922FB3161505BA51909714759CCDE3E"
                     }
                 },
                 {
@@ -244,21 +681,113 @@
                     "type": "STANDARD",
                     "format": "WORD",
                     "contentLanguage": [
+                        "ru"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2013-10-10",
+                    "version": 1,
+                    "pages": 30,
+                    "rfc5141urn": "iso:std:iso:9000:ed-3:v1:ru",
+                    "contentRef": {
+                        "id": "5035b5a2-3fdc-4bcc-b828-9d3b79d5c1f1",
+                        "url": "https://data.iso.org/publications/std/dms/5035b5a2-3fdc-4bcc-b828-9d3b79d5c1f1",
+                        "contentLength": 1763840,
+                        "mimeType": "application/msword",
+                        "fileName": "ISO 9000;2005 ed.3 - id.42180 Publication Word (ru)",
+                        "fileExtension": "doc",
+                        "checksum": "SHA-256=40131458DF8A78DEE8A91B69B5F219ACC2027E1914727B8F8B004A4F28372D12"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "XML",
+                    "formatVariant": "ISOSTS",
+                    "contentLanguage": [
+                        "en"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2005-09-20",
+                    "version": 1,
+                    "pages": 30,
+                    "rfc5141urn": "iso:std:iso:9000:ed-3:v1:en",
+                    "contentRef": {
+                        "id": "1e503e09-2269-4636-a6e2-8e859a704155",
+                        "url": "https://data.iso.org/publications/std/dms/1e503e09-2269-4636-a6e2-8e859a704155",
+                        "contentLength": 3796307,
+                        "mimeType": "application/zip",
+                        "fileName": "ISO 9000;2005 ed.3 - id.42180 Publication XML (ISO-STS) (en)",
+                        "fileExtension": "zip",
+                        "checksum": "SHA-256=11DFE7B444D258ED7D4B2211936577C537088FDC000F3E577969A28715254AD7"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "XML",
+                    "formatVariant": "ISOSTS",
+                    "contentLanguage": [
+                        "es"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2005-12-13",
+                    "version": 1,
+                    "pages": 32,
+                    "rfc5141urn": "iso:std:iso:9000:ed-3:v1:es",
+                    "contentRef": {
+                        "id": "5724f5c0-af31-449b-96ee-0bb52c243514",
+                        "url": "https://data.iso.org/publications/std/dms/5724f5c0-af31-449b-96ee-0bb52c243514",
+                        "contentLength": 1085874,
+                        "mimeType": "application/zip",
+                        "fileName": "ISO 9000;2005 ed.3 - id.42180 Publication XML (ISO-STS) (es)",
+                        "fileExtension": "zip",
+                        "checksum": "SHA-256=E36CC6D3276DE8960F961139E0EADB50926F516AEF7149A25FDABDA488252022"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "XML",
+                    "formatVariant": "ISOSTS",
+                    "contentLanguage": [
                         "fr"
                     ],
                     "multilingual": false,
-                    "releaseDate": "2024-08-30",
-                    "version": 2,
-                    "pages": 1,
-                    "rfc5141urn": "iso:std:iso:14001:ed-3:v2:amd:1:v2:fr",
+                    "releaseDate": "2005-09-20",
+                    "version": 1,
+                    "pages": 30,
+                    "rfc5141urn": "iso:std:iso:9000:ed-3:v1:fr",
                     "contentRef": {
-                        "id": "fb83e4cc-c8cb-41c9-aae8-f1f11b7c8f25",
-                        "url": "https://data.iso.org/publications/std/dms/fb83e4cc-c8cb-41c9-aae8-f1f11b7c8f25",
-                        "contentLength": 42932,
-                        "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-                        "fileName": "ISO 14001;2015_Amd 1;2024 ed.3 - id.88209 Publication Word (fr) v2",
-                        "fileExtension": "docx",
-                        "checksum": "SHA-256=4651713402C782050843456D513A0DD9D32C28990914D0312F335A0852C8B5C2"
+                        "id": "e63c6686-0c98-424d-9cb7-6d7aa39c403c",
+                        "url": "https://data.iso.org/publications/std/dms/e63c6686-0c98-424d-9cb7-6d7aa39c403c",
+                        "contentLength": 3986594,
+                        "mimeType": "application/zip",
+                        "fileName": "ISO 9000;2005 ed.3 - id.42180 Publication XML (ISO-STS) (fr)",
+                        "fileExtension": "zip",
+                        "checksum": "SHA-256=0FEF866C98086D09A9FC10435F17F716236169939DCF332B008F358D6435FA1A"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "XML",
+                    "formatVariant": "ISOSTS",
+                    "contentLanguage": [
+                        "ru"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2013-10-10",
+                    "version": 1,
+                    "pages": 30,
+                    "rfc5141urn": "iso:std:iso:9000:ed-3:v1:ru",
+                    "contentRef": {
+                        "id": "00ffcc3c-4d68-4782-9cea-a4da5eccd1c2",
+                        "url": "https://data.iso.org/publications/std/dms/00ffcc3c-4d68-4782-9cea-a4da5eccd1c2",
+                        "contentLength": 3596101,
+                        "mimeType": "application/zip",
+                        "fileName": "ISO 9000;2005 ed.3 - id.42180 Publication XML (ISO-STS) (ru)",
+                        "fileExtension": "zip",
+                        "checksum": "SHA-256=0C774916937AD6F8D9103F597762C261F8D668FB5BA0A173901DC42B64B32427"
                     }
                 },
                 {
@@ -270,18 +799,18 @@
                         "en"
                     ],
                     "multilingual": false,
-                    "releaseDate": "2024-02-23",
+                    "releaseDate": "2005-09-20",
                     "version": 1,
-                    "pages": 1,
-                    "rfc5141urn": "iso:std:iso:14001:ed-3:v1:amd:1:v1:en",
+                    "pages": 30,
+                    "rfc5141urn": "iso:std:iso:9000:ed-3:v1:en",
                     "contentRef": {
-                        "id": "cd6e2c46-1b64-446f-9234-80dc760fa5ba",
-                        "url": "https://data.iso.org/publications/std/dms/cd6e2c46-1b64-446f-9234-80dc760fa5ba",
-                        "contentLength": 2608,
+                        "id": "947a192f-237c-4e96-b880-0f82def454da",
+                        "url": "https://data.iso.org/publications/std/dms/947a192f-237c-4e96-b880-0f82def454da",
+                        "contentLength": 3797206,
                         "mimeType": "application/zip",
-                        "fileName": "ISO 14001;2015_Amd 1;2024 ed.3 - id.88209 Publication XML (NISO-STS) (en)",
+                        "fileName": "ISO 9000;2005 ed.3 - id.42180 Publication XML (NISO-STS) (en)",
                         "fileExtension": "zip",
-                        "checksum": "SHA-256=21EE21835F4BB23014BA2E71B770E7F9404397A3134D13E971A2E63F6AAF573F"
+                        "checksum": "SHA-256=CBA0114B9C61B59705EE7FC0CB289402873D98EB0CEC090EBC8C784E29B9B690"
                     }
                 },
                 {
@@ -293,18 +822,18 @@
                         "es"
                     ],
                     "multilingual": false,
-                    "releaseDate": "2024-03-27",
+                    "releaseDate": "2005-12-13",
                     "version": 1,
-                    "pages": 1,
-                    "rfc5141urn": "iso:std:iso:14001:ed-3:v1:amd:1:v1:es",
+                    "pages": 32,
+                    "rfc5141urn": "iso:std:iso:9000:ed-3:v1:es",
                     "contentRef": {
-                        "id": "b7523053-fe7c-412c-bf76-3c70e0158829",
-                        "url": "https://data.iso.org/publications/std/dms/b7523053-fe7c-412c-bf76-3c70e0158829",
-                        "contentLength": 3202,
+                        "id": "28dbad12-634c-4f5b-a8f7-dbadcbab4840",
+                        "url": "https://data.iso.org/publications/std/dms/28dbad12-634c-4f5b-a8f7-dbadcbab4840",
+                        "contentLength": 1086750,
                         "mimeType": "application/zip",
-                        "fileName": "ISO 14001;2015_Amd 1;2024 ed.3 - id.88209 Publication XML (NISO-STS) (es)",
+                        "fileName": "ISO 9000;2005 ed.3 - id.42180 Publication XML (NISO-STS) (es)",
                         "fileExtension": "zip",
-                        "checksum": "SHA-256=D9B24FF608F92E8771AE0E69E9B11D2A289547DCFADB6AAE9591703386D26B4C"
+                        "checksum": "SHA-256=E20258323979D66E0F4E18DB6799B05A66817C8E5B25DC252E3BCAE914F10D32"
                     }
                 },
                 {
@@ -316,26 +845,1000 @@
                         "fr"
                     ],
                     "multilingual": false,
-                    "releaseDate": "2024-08-30",
-                    "version": 2,
-                    "pages": 1,
-                    "rfc5141urn": "iso:std:iso:14001:ed-3:v2:amd:1:v2:fr",
+                    "releaseDate": "2005-09-20",
+                    "version": 1,
+                    "pages": 30,
+                    "rfc5141urn": "iso:std:iso:9000:ed-3:v1:fr",
                     "contentRef": {
-                        "id": "02e05f07-0947-4b0c-a51b-ae74431f7514",
-                        "url": "https://data.iso.org/publications/std/dms/02e05f07-0947-4b0c-a51b-ae74431f7514",
-                        "contentLength": 3142,
+                        "id": "d501fa82-924a-4c4c-b47a-6f6c783eb1d7",
+                        "url": "https://data.iso.org/publications/std/dms/d501fa82-924a-4c4c-b47a-6f6c783eb1d7",
+                        "contentLength": 3987537,
                         "mimeType": "application/zip",
-                        "fileName": "ISO 14001;2015_Amd 1;2024 ed.3 - id.88209 Publication XML (NISO-STS) (fr) v2",
+                        "fileName": "ISO 9000;2005 ed.3 - id.42180 Publication XML (NISO-STS) (fr)",
                         "fileExtension": "zip",
-                        "checksum": "SHA-256=023B531891C378710489D8ABCF0225CDE27C05C1252D4D97F816B064F84E5312"
+                        "checksum": "SHA-256=29B412239FC2B5D3DBA888DAB36F8E5D6230A14D99E5B8C1AFD96C36DF7E1ED6"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "XML",
+                    "formatVariant": "NISOSTS",
+                    "contentLanguage": [
+                        "ru"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2013-10-10",
+                    "version": 1,
+                    "pages": 30,
+                    "rfc5141urn": "iso:std:iso:9000:ed-3:v1:ru",
+                    "contentRef": {
+                        "id": "1fe7cf80-c5d9-4d9b-9767-8959249a256e",
+                        "url": "https://data.iso.org/publications/std/dms/1fe7cf80-c5d9-4d9b-9767-8959249a256e",
+                        "contentLength": 3597325,
+                        "mimeType": "application/zip",
+                        "fileName": "ISO 9000;2005 ed.3 - id.42180 Publication XML (NISO-STS) (ru)",
+                        "fileExtension": "zip",
+                        "checksum": "SHA-256=C66D4BD8EF6383C054473857E12D1285004C536D1DDBE57FD877728F65B34F4A"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "NOTE",
+                    "format": "TEXT",
+                    "contentLanguage": [
+                        "en"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2005-09-20",
+                    "rfc5141urn": "iso:std:iso:9000:ed-3:en",
+                    "contentRef": {
+                        "id": "536aaf74-5587-4836-9203-1f3fd0174283",
+                        "url": "https://data.iso.org/publications/std/dms/536aaf74-5587-4836-9203-1f3fd0174283",
+                        "contentLength": 223,
+                        "mimeType": "text/plain",
+                        "fileName": "ISO 9000;2005 ed.3 - id.42180 Publication SGML production notes ISOSGML94 D",
+                        "fileExtension": "txt",
+                        "checksum": "SHA-256=DC69B8A96BF72006382C72CC12815293A6A095514ECD33B8E3ADFDE8C204352F"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "NOTE",
+                    "format": "TEXT",
+                    "contentLanguage": [
+                        "fr"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2005-09-20",
+                    "rfc5141urn": "iso:std:iso:9000:ed-3:fr",
+                    "contentRef": {
+                        "id": "162c3cc1-b0e5-466a-8260-c80e7a60d52b",
+                        "url": "https://data.iso.org/publications/std/dms/162c3cc1-b0e5-466a-8260-c80e7a60d52b",
+                        "contentLength": 223,
+                        "mimeType": "text/plain",
+                        "fileName": "ISO 9000;2005 ed.3 - id.42180 Publication SGML production notes ISOSGML94 D_fr",
+                        "fileExtension": "txt",
+                        "checksum": "SHA-256=01D7BD1712F96C231C6E82ABC1513CB171D948E48BD6A83E7CA3905A8A708936"
                     }
                 }
             ],
             "project": {
-                "urn": "iso:proj:88209",
+                "urn": "iso:proj:42180",
                 "urnAlt": []
             },
-            "lastChangeTimestamp": "2025-11-23T02:47:22.001"
+            "lastChangeTimestamp": "2026-01-06T07:35:32.778"
+        },
+        {
+            "urn": "iso:pub:std:FDIS:42180",
+            "urnAlt": [
+                "iso:std:iso:9000:fdis:ed-3"
+            ],
+            "publicationType": "STANDARD",
+            "reference": "ISO 9000:2005",
+            "originator": "ISO",
+            "stdType": "IS",
+            "stdNumber": "9000",
+            "edition": "3",
+            "version": 1,
+            "title": [
+                {
+                    "value": "Quality management systems — Fundamentals and vocabulary",
+                    "lang": "en"
+                },
+                {
+                    "value": "Systèmes de management de la qualité — Principes essentiels et vocabulaire",
+                    "lang": "fr"
+                }
+            ],
+            "committee": {
+                "urn": "iso:committee:53888",
+                "urnAlt": [],
+                "reference": "ISO/TC 176/SC 1"
+            },
+            "abstract": [
+                {
+                    "format": "text/html",
+                    "content": "<p>ISO 9000:2005 describes fundamentals of quality management systems, which form the subject of the ISO 9000 family, and defines related terms.</p>\n<p>It is applicable to the following:</p>\n<p>a) organizations seeking advantage through the implementation of a quality management system;</p>\n<p>b) organizations seeking confidence from their suppliers that their product requirements will be satisfied;</p>\n<p>c) users of the products;</p>\n<p>d) those concerned with a mutual understanding of the terminology used in quality management (e.g. suppliers, customers, regulators);</p>\n<p>e) those internal or external to the organization who assess the quality management system or audit it for conformity with the requirements of ISO 9001 (e.g. auditors, regulators, certification/registration bodies);</p>\n<p>f) those internal or external to the organization who give advice or training on the quality management system appropriate to that organization;</p>\n<p>g) developers of related standards.</p>\n",
+                    "lang": "en"
+                },
+                {
+                    "format": "text/html",
+                    "content": "<p>L'ISO 9000:2005 décrit les principes essentiels des systèmes de management de la qualité, objet de la famille des normes ISO 9000, et en définit les termes associés.</p>\n<p>Elle est applicable</p>\n<p>a) aux organismes cherchant à progresser par la mise en oeuvre d'un système de management de la qualité;</p>\n<p>b) aux organismes qui cherchent à s'assurer que leurs fournisseurs satisferont leurs exigences relatives aux produits;</p>\n<p>c) aux utilisateurs des produits;</p>\n<p>d) aux personnes concernées par une compréhension mutuelle de la terminologie utilisée dans le domaine du management de la qualité (par exemple fournisseurs, clients, autorités réglementaires);</p>\n<p>e) aux personnes internes ou externes à l'organisme, qui évaluent ou auditent le système de management de la qualité en termes de conformité aux exigences de l'ISO 9001 (par exemple auditeurs, autorités réglementaires, organismes de certification/enregistrement);</p>\n<p>f) aux personnes internes ou externes à l'organisme qui donnent des conseils ou fournissent une formation sur le système de management de la qualité qui lui convient;</p>\n<p>g) aux personnes qui élaborent des normes apparentées.</p>\n",
+                    "lang": "fr"
+                }
+            ],
+            "classifications": [
+                {
+                    "type": "ICS",
+                    "value": "03.100.70"
+                },
+                {
+                    "type": "ICS",
+                    "value": "01.040.03"
+                },
+                {
+                    "type": "ICS",
+                    "value": "03.120.10"
+                },
+                {
+                    "type": "LOGO",
+                    "value": "ISO"
+                }
+            ],
+            "status": "WITHDRAWN",
+            "publicationStage": "FDIS",
+            "publicationDate": "2005-09-20",
+            "priceInfo": {
+                "priceCode": "iso:B",
+                "basePrice": {
+                    "amount": 67,
+                    "currency": "CHF"
+                }
+            },
+            "releaseItems": [
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "PDF",
+                    "formatVariant": "CPDF",
+                    "contentLanguage": [
+                        "en"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2005-06-07",
+                    "version": 1,
+                    "pages": 30,
+                    "rfc5141urn": "iso:std:iso:9000:fdis:ed-3:v1:en",
+                    "contentRef": {
+                        "id": "74b68936-a5b1-4f55-861e-2c27ccc2c6ad",
+                        "url": "https://data.iso.org/publications/std/dms/74b68936-a5b1-4f55-861e-2c27ccc2c6ad",
+                        "contentLength": 1002552,
+                        "mimeType": "application/pdf",
+                        "fileName": "ISO 9000;2005 ed.3 - id.42180 Approval PDF (en)",
+                        "fileExtension": "pdf",
+                        "checksum": "SHA-256=13F51D6646016EEC4C1B228986DB9C62CE51CED8A6C1AA1945ADBBD1D2F3D3BE"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "PDF",
+                    "formatVariant": "CPDF",
+                    "contentLanguage": [
+                        "fr"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2005-06-07",
+                    "version": 1,
+                    "pages": 30,
+                    "rfc5141urn": "iso:std:iso:9000:fdis:ed-3:v1:fr",
+                    "contentRef": {
+                        "id": "0a40e185-01bd-4355-91c0-f0020f2c3671",
+                        "url": "https://data.iso.org/publications/std/dms/0a40e185-01bd-4355-91c0-f0020f2c3671",
+                        "contentLength": 1128193,
+                        "mimeType": "application/pdf",
+                        "fileName": "ISO 9000;2005 ed.3 - id.42180 Approval PDF (fr)",
+                        "fileExtension": "pdf",
+                        "checksum": "SHA-256=B762FE456E771C5ED7651557E26FC9F9D0036EF9EEEE5F61E084B743DE4F4057"
+                    }
+                }
+            ],
+            "project": {
+                "urn": "iso:proj:42180",
+                "urnAlt": []
+            },
+            "lastChangeTimestamp": "2026-01-06T07:35:32.777"
+        },
+        {
+            "urn": "iso:pub:std:DIS:40906",
+            "urnAlt": [
+                "iso:std:iso:9000:dis:ed-2"
+            ],
+            "publicationType": "STANDARD",
+            "reference": "ISO 9000:2000/DAmd 1",
+            "originator": "ISO",
+            "stdType": "IS",
+            "stdNumber": "9000",
+            "edition": "2",
+            "version": 1,
+            "supplType": "AMD",
+            "supplNumber": "1",
+            "title": [
+                {
+                    "value": "Quality management systems — Fundamentals and vocabulary — Amendment 1",
+                    "lang": "en"
+                },
+                {
+                    "value": "Systèmes de management de la qualité — Principes essentiels et vocabulaire — Amendement 1",
+                    "lang": "fr"
+                }
+            ],
+            "committee": {
+                "urn": "iso:committee:53888",
+                "urnAlt": [],
+                "reference": "ISO/TC 176/SC 1"
+            },
+            "abstract": [],
+            "classifications": [
+                {
+                    "type": "ICS",
+                    "value": "03.100.70"
+                },
+                {
+                    "type": "ICS",
+                    "value": "01.040.03"
+                },
+                {
+                    "type": "LOGO",
+                    "value": "ISO"
+                }
+            ],
+            "status": "WITHDRAWN",
+            "publicationStage": "DIS",
+            "priceInfo": {
+                "priceCode": "iso:B",
+                "basePrice": {
+                    "amount": 67,
+                    "currency": "CHF"
+                }
+            },
+            "releaseItems": [
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "PDF",
+                    "formatVariant": "CPDF",
+                    "contentLanguage": [
+                        "en"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2004-06-24",
+                    "version": 1,
+                    "pages": 19,
+                    "rfc5141urn": "iso:std:iso:9000:dis:ed-2:v1:amd:1:v1:en",
+                    "contentRef": {
+                        "id": "f80aab41-9abb-4b04-9897-3ffa9f2f181d",
+                        "url": "https://data.iso.org/publications/std/dms/f80aab41-9abb-4b04-9897-3ffa9f2f181d",
+                        "contentLength": 240137,
+                        "mimeType": "application/pdf",
+                        "fileName": "ISO 9000;2000_DAmd 1 ed.2 - id.40906 Enquiry PDF (en)",
+                        "fileExtension": "pdf",
+                        "checksum": "SHA-256=E88E2A80DF688519CE4BC47975533ECAEF0A1B32738651BA201F338192CD8BE6"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "PDF",
+                    "formatVariant": "CPDF",
+                    "contentLanguage": [
+                        "fr"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2004-06-24",
+                    "version": 1,
+                    "pages": 20,
+                    "rfc5141urn": "iso:std:iso:9000:dis:ed-2:v1:amd:1:v1:fr",
+                    "contentRef": {
+                        "id": "5aebbd37-8ef9-49c1-9fb9-c658a9a8e108",
+                        "url": "https://data.iso.org/publications/std/dms/5aebbd37-8ef9-49c1-9fb9-c658a9a8e108",
+                        "contentLength": 253319,
+                        "mimeType": "application/pdf",
+                        "fileName": "ISO 9000;2000_DAmd 1 ed.2 - id.40906 Enquiry PDF (fr)",
+                        "fileExtension": "pdf",
+                        "checksum": "SHA-256=11EC22517C01CA5E6C4E215210C9ED98FE5A584A626C6F7186AF34D19C7293B3"
+                    }
+                }
+            ],
+            "project": {
+                "urn": "iso:proj:40906",
+                "urnAlt": []
+            },
+            "lastChangeTimestamp": "2026-01-06T07:34:48.360"
+        },
+        {
+            "urn": "iso:pub:std:IS:29280",
+            "urnAlt": [
+                "iso:std:iso:9000:ed-2"
+            ],
+            "publicationType": "STANDARD",
+            "reference": "ISO 9000:2000",
+            "originator": "ISO",
+            "stdType": "IS",
+            "stdNumber": "9000",
+            "edition": "2",
+            "version": 1,
+            "title": [
+                {
+                    "value": "Quality management systems — Fundamentals and vocabulary",
+                    "lang": "en"
+                },
+                {
+                    "value": "Systèmes de management de la qualité — Principes essentiels et vocabulaire",
+                    "lang": "fr"
+                }
+            ],
+            "committee": {
+                "urn": "iso:committee:53888",
+                "urnAlt": [],
+                "reference": "ISO/TC 176/SC 1"
+            },
+            "abstract": [
+                {
+                    "format": "text/html",
+                    "content": "<p>This International Standard describes fundamentals of quality management systems, which form the subject of the ISO 9000 family, and defines related terms.</p>\n<p>This International Standard is applicable to the following:</p>\n<ol><li>organizations seeking advantage through the implementation of a quality management system;</li><li>organizations seeking confidence from their suppliers that their product requirements will be satisfied;</li><li>users of the products;</li><li>those concerned with a mutual understanding of the terminology used in quality management (e.g. suppliers, customers, regulators);</li><li>those internal or external to the organization who assess the quality management system or audit it for conformity with the requirements of ISO 9001 (e.g. auditors, regulators, certification/registration bodies);</li><li>those internal or external to the organization who give advice or training on the quality management system appropriate to that organization;</li><li>developers of related standards.</li></ol>\n",
+                    "lang": "en"
+                },
+                {
+                    "format": "text/html",
+                    "content": "<p>La présente Norme internationale décrit les principes essentiels des systèmes de management de la qualité, objet de la famille des normes ISO 9000, et en définit les termes associés.</p>\n<p>La présente Norme internationale est applicable</p>\n<ol><li>aux organismes cherchant à progresser par la mise en puvre d'un système de management de la qualité;</li><li>aux organismes qui cherchent à s'assurer que leurs fournisseurs satisferont leurs exigences relatives aux produits;</li><li>aux utilisateurs des produits;</li><li>à ceux qui sont concernés par une compréhension mutuelle de la terminologie utilisée dans le domaine du management de la qualité (par exemple, fournisseurs, clients, autorités réglementaires);</li><li>à ceux, en interne ou à l'extérieur de l'organisme, qui évaluent ou auditent le système de management de la qualité en termes de conformité aux exigences de l'ISO 9001 (par exemple, auditeurs, autorités réglementaires, organismes de certification/enregistrement);</li><li>aux personnes internes ou externes à l'organisme qui donnent des conseils ou fournissent une formation sur le système de management de la qualité qui lui convient;</li><li>à ceux qui élaborent des normes apparentées.</li></ol>\n",
+                    "lang": "fr"
+                }
+            ],
+            "classifications": [
+                {
+                    "type": "ICS",
+                    "value": "03.100.70"
+                },
+                {
+                    "type": "ICS",
+                    "value": "01.040.03"
+                },
+                {
+                    "type": "ICS",
+                    "value": "03.120.10"
+                },
+                {
+                    "type": "LOGO",
+                    "value": "ISO"
+                }
+            ],
+            "status": "WITHDRAWN",
+            "publicationStage": "IS",
+            "publicationDate": "2000-12-08",
+            "priceInfo": {
+                "priceCode": "iso:B",
+                "basePrice": {
+                    "amount": 67,
+                    "currency": "CHF"
+                }
+            },
+            "releaseItems": [
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "PDF",
+                    "formatVariant": "CPDF",
+                    "contentLanguage": [
+                        "ar"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2005-11-03",
+                    "version": 1,
+                    "pages": 35,
+                    "rfc5141urn": "iso:std:iso:9000:ed-2:v1:ar",
+                    "contentRef": {
+                        "id": "a0953d2a-09b9-4834-8db5-d22e3a50c944",
+                        "url": "https://data.iso.org/publications/std/dms/a0953d2a-09b9-4834-8db5-d22e3a50c944",
+                        "contentLength": 1544835,
+                        "mimeType": "application/pdf",
+                        "fileName": "ISO 9000;2000 ed.2 - id.29280 Publication PDF (ar)",
+                        "fileExtension": "pdf",
+                        "checksum": "SHA-256=AEA831045FF457CE0572E642654E0B8688FB4C1156DF74151FB9B9800B701DCD"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "PDF",
+                    "formatVariant": "CPDF",
+                    "contentLanguage": [
+                        "en"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2000-12-08",
+                    "version": 1,
+                    "pages": 29,
+                    "rfc5141urn": "iso:std:iso:9000:ed-2:v1:en",
+                    "contentRef": {
+                        "id": "ea4b0690-c464-4942-bee3-e87d6f3568b3",
+                        "url": "https://data.iso.org/publications/std/dms/ea4b0690-c464-4942-bee3-e87d6f3568b3",
+                        "contentLength": 1228110,
+                        "mimeType": "application/pdf",
+                        "fileName": "ISO 9000;2000 ed.2 - id.29280 Publication PDF (en)",
+                        "fileExtension": "pdf",
+                        "checksum": "SHA-256=8D0104AF2BDFDBA9A89DB5880A8841ED672F9C7A07944EB9E94F92B47929C4CD"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "PDF",
+                    "formatVariant": "CPDF",
+                    "contentLanguage": [
+                        "es"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2000-12-21",
+                    "version": 1,
+                    "pages": 33,
+                    "rfc5141urn": "iso:std:iso:9000:ed-2:v1:es",
+                    "contentRef": {
+                        "id": "7be06fd0-8280-401c-804a-9e457eec7250",
+                        "url": "https://data.iso.org/publications/std/dms/7be06fd0-8280-401c-804a-9e457eec7250",
+                        "contentLength": 324147,
+                        "mimeType": "application/pdf",
+                        "fileName": "ISO 9000;2000 ed.2 - id.29280 Publication PDF (es)",
+                        "fileExtension": "pdf",
+                        "checksum": "SHA-256=70A07C0B0CE2107436EA08F7DC5DF87B43EA94786E39B718C6E183E57F26DAE8"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "PDF",
+                    "formatVariant": "CPDF",
+                    "contentLanguage": [
+                        "fr"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2000-12-08",
+                    "version": 1,
+                    "pages": 30,
+                    "rfc5141urn": "iso:std:iso:9000:ed-2:v1:fr",
+                    "contentRef": {
+                        "id": "1ebb9b31-548a-4680-babc-14e3c752996a",
+                        "url": "https://data.iso.org/publications/std/dms/1ebb9b31-548a-4680-babc-14e3c752996a",
+                        "contentLength": 1320771,
+                        "mimeType": "application/pdf",
+                        "fileName": "ISO 9000;2000 ed.2 - id.29280 Publication PDF (fr)",
+                        "fileExtension": "pdf",
+                        "checksum": "SHA-256=E8DD77273ECA6D21702C2F21DA0A2C852CA87C58404B68B7B80B365EC2351B77"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "PDF",
+                    "formatVariant": "CPDF",
+                    "contentLanguage": [
+                        "ru"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2000-12-14",
+                    "version": 1,
+                    "pages": 32,
+                    "rfc5141urn": "iso:std:iso:9000:ed-2:v1:ru",
+                    "contentRef": {
+                        "id": "445e82c1-5d16-418f-bfd6-13e71d4c8a1e",
+                        "url": "https://data.iso.org/publications/std/dms/445e82c1-5d16-418f-bfd6-13e71d4c8a1e",
+                        "contentLength": 665916,
+                        "mimeType": "application/pdf",
+                        "fileName": "ISO 9000;2000 ed.2 - id.29280 Publication PDF (ru)",
+                        "fileExtension": "pdf",
+                        "checksum": "SHA-256=2370968B8BC7886A299921E2977128FE794C97C44A14173B1C8FCE0A70579B3F"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "WORD",
+                    "contentLanguage": [
+                        "ru"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2000-12-14",
+                    "version": 1,
+                    "pages": 32,
+                    "rfc5141urn": "iso:std:iso:9000:ed-2:v1:ru",
+                    "contentRef": {
+                        "id": "18ec9802-fb59-440d-8bb8-8fecec7ddf82",
+                        "url": "https://data.iso.org/publications/std/dms/18ec9802-fb59-440d-8bb8-8fecec7ddf82",
+                        "contentLength": 1024512,
+                        "mimeType": "application/msword",
+                        "fileName": "ISO 9000;2000 ed.2 - id.29280 Publication Word (ru)",
+                        "fileExtension": "doc",
+                        "checksum": "SHA-256=E344CC753607359A9DF6FF3326228B84BBC3F4EB60C59225D41482328D804EA3"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "NOTE",
+                    "format": "TEXT",
+                    "contentLanguage": [
+                        "en"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2000-12-08",
+                    "rfc5141urn": "iso:std:iso:9000:ed-2:en",
+                    "contentRef": {
+                        "id": "1b568165-cc6b-4fe7-9fe8-a9ffa859aaaf",
+                        "url": "https://data.iso.org/publications/std/dms/1b568165-cc6b-4fe7-9fe8-a9ffa859aaaf",
+                        "contentLength": 2843,
+                        "mimeType": "text/plain",
+                        "fileName": "ISO 9000;2000 ed.2 - id.29280 Publication SGML packaging notes",
+                        "fileExtension": "txt",
+                        "checksum": "SHA-256=620058F863E4D9785F0323F28AD5F31F272D8831675E9120B3956D371FBE0C82"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "NOTE",
+                    "format": "TEXT",
+                    "contentLanguage": [
+                        "fr"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "2000-12-08",
+                    "rfc5141urn": "iso:std:iso:9000:ed-2:fr",
+                    "contentRef": {
+                        "id": "e6725a72-08f3-4edb-b423-c5fd5aaec762",
+                        "url": "https://data.iso.org/publications/std/dms/e6725a72-08f3-4edb-b423-c5fd5aaec762",
+                        "contentLength": 3074,
+                        "mimeType": "text/plain",
+                        "fileName": "ISO 9000;2000 ed.2 - id.29280 Publication SGML production notes_fr",
+                        "fileExtension": "txt",
+                        "checksum": "SHA-256=B6DC6D72A82154B87C02C0CE3C49807E410C68EF676A0EE171A5963AC70592B1"
+                    }
+                }
+            ],
+            "project": {
+                "urn": "iso:proj:29280",
+                "urnAlt": []
+            },
+            "lastChangeTimestamp": "2026-01-06T07:29:20.043"
+        },
+        {
+            "urn": "iso:pub:std:FDIS:29280",
+            "urnAlt": [
+                "iso:std:iso:9000:fdis:ed-2"
+            ],
+            "publicationType": "STANDARD",
+            "reference": "ISO 9000:2000",
+            "originator": "ISO",
+            "stdType": "IS",
+            "stdNumber": "9000",
+            "edition": "2",
+            "version": 1,
+            "title": [
+                {
+                    "value": "Quality management systems — Fundamentals and vocabulary",
+                    "lang": "en"
+                },
+                {
+                    "value": "Systèmes de management de la qualité — Principes essentiels et vocabulaire",
+                    "lang": "fr"
+                }
+            ],
+            "committee": {
+                "urn": "iso:committee:53888",
+                "urnAlt": [],
+                "reference": "ISO/TC 176/SC 1"
+            },
+            "abstract": [
+                {
+                    "format": "text/html",
+                    "content": "<p>This International Standard describes fundamentals of quality management systems, which form the subject of the ISO 9000 family, and defines related terms.</p>\n<p>This International Standard is applicable to the following:</p>\n<ol><li>organizations seeking advantage through the implementation of a quality management system;</li><li>organizations seeking confidence from their suppliers that their product requirements will be satisfied;</li><li>users of the products;</li><li>those concerned with a mutual understanding of the terminology used in quality management (e.g. suppliers, customers, regulators);</li><li>those internal or external to the organization who assess the quality management system or audit it for conformity with the requirements of ISO 9001 (e.g. auditors, regulators, certification/registration bodies);</li><li>those internal or external to the organization who give advice or training on the quality management system appropriate to that organization;</li><li>developers of related standards.</li></ol>\n",
+                    "lang": "en"
+                },
+                {
+                    "format": "text/html",
+                    "content": "<p>La présente Norme internationale décrit les principes essentiels des systèmes de management de la qualité, objet de la famille des normes ISO 9000, et en définit les termes associés.</p>\n<p>La présente Norme internationale est applicable</p>\n<ol><li>aux organismes cherchant à progresser par la mise en puvre d'un système de management de la qualité;</li><li>aux organismes qui cherchent à s'assurer que leurs fournisseurs satisferont leurs exigences relatives aux produits;</li><li>aux utilisateurs des produits;</li><li>à ceux qui sont concernés par une compréhension mutuelle de la terminologie utilisée dans le domaine du management de la qualité (par exemple, fournisseurs, clients, autorités réglementaires);</li><li>à ceux, en interne ou à l'extérieur de l'organisme, qui évaluent ou auditent le système de management de la qualité en termes de conformité aux exigences de l'ISO 9001 (par exemple, auditeurs, autorités réglementaires, organismes de certification/enregistrement);</li><li>aux personnes internes ou externes à l'organisme qui donnent des conseils ou fournissent une formation sur le système de management de la qualité qui lui convient;</li><li>à ceux qui élaborent des normes apparentées.</li></ol>\n",
+                    "lang": "fr"
+                }
+            ],
+            "classifications": [
+                {
+                    "type": "ICS",
+                    "value": "03.100.70"
+                },
+                {
+                    "type": "ICS",
+                    "value": "01.040.03"
+                },
+                {
+                    "type": "ICS",
+                    "value": "03.120.10"
+                },
+                {
+                    "type": "LOGO",
+                    "value": "ISO"
+                }
+            ],
+            "status": "WITHDRAWN",
+            "publicationStage": "FDIS",
+            "publicationDate": "2000-12-08",
+            "priceInfo": {
+                "priceCode": "iso:B",
+                "basePrice": {
+                    "amount": 67,
+                    "currency": "CHF"
+                }
+            },
+            "releaseItems": [
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "PDF",
+                    "formatVariant": "CPDF",
+                    "contentLanguage": [
+                        "en"
+                    ],
+                    "multilingual": false,
+                    "version": 1,
+                    "rfc5141urn": "iso:std:iso:9000:fdis:ed-2:v1:en",
+                    "contentRef": {
+                        "id": "264cdf21-011f-46a9-83fd-cae81e89219a",
+                        "url": "https://data.iso.org/publications/std/dms/264cdf21-011f-46a9-83fd-cae81e89219a",
+                        "contentLength": 1225307,
+                        "mimeType": "application/pdf",
+                        "fileName": "ISO 9000;2000 ed.2 - id.29280 Approval PDF (en)",
+                        "fileExtension": "pdf",
+                        "checksum": "SHA-256=8A751EB029AA7B5848CD4606E1031E66B3560972420C02F0B8AC3FF66442D193"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "PDF",
+                    "formatVariant": "CPDF",
+                    "contentLanguage": [
+                        "fr"
+                    ],
+                    "multilingual": false,
+                    "version": 1,
+                    "rfc5141urn": "iso:std:iso:9000:fdis:ed-2:v1:fr",
+                    "contentRef": {
+                        "id": "bca66f0d-ce77-434b-bb41-d355270fab82",
+                        "url": "https://data.iso.org/publications/std/dms/bca66f0d-ce77-434b-bb41-d355270fab82",
+                        "contentLength": 318048,
+                        "mimeType": "application/pdf",
+                        "fileName": "ISO 9000;2000 ed.2 - id.29280 Approval PDF (fr)",
+                        "fileExtension": "pdf",
+                        "checksum": "SHA-256=449802820E108AF59DF8378ED7E32A6DCBCDED2B194D02793BB689DC321FEDE2"
+                    }
+                }
+            ],
+            "project": {
+                "urn": "iso:proj:29280",
+                "urnAlt": []
+            },
+            "lastChangeTimestamp": "2026-01-06T07:29:19.908"
+        },
+        {
+            "urn": "iso:pub:std:IS:26363",
+            "urnAlt": [
+                "iso:std:iso:9000:-2:ed-2"
+            ],
+            "publicationType": "STANDARD",
+            "reference": "ISO 9000-2:1997",
+            "originator": "ISO",
+            "stdType": "IS",
+            "stdNumber": "9000",
+            "stdPartNumber": "2",
+            "edition": "2",
+            "version": 1,
+            "title": [
+                {
+                    "value": "Quality management and quality assurance standards — Part 2: Generic guidelines for the application of ISO 9001, ISO 9002 and ISO 9003",
+                    "lang": "en"
+                },
+                {
+                    "value": "Normes pour le management de la qualité et l'assurance de la qualité — Partie 2: Lignes directrices génériques pour l'application de l'ISO 9001, l'ISO 9002 et l'ISO 9003",
+                    "lang": "fr"
+                }
+            ],
+            "committee": {
+                "urn": "iso:committee:53896",
+                "urnAlt": [],
+                "reference": "ISO/TC 176/SC 2"
+            },
+            "abstract": [],
+            "classifications": [
+                {
+                    "type": "ICS",
+                    "value": "03.100.70"
+                },
+                {
+                    "type": "ICS",
+                    "value": "03.120.10"
+                },
+                {
+                    "type": "LOGO",
+                    "value": "ISO"
+                }
+            ],
+            "status": "WITHDRAWN",
+            "publicationStage": "IS",
+            "publicationDate": "1997-06-12",
+            "priceInfo": {
+                "priceCode": "iso:B",
+                "basePrice": {
+                    "amount": 67,
+                    "currency": "CHF"
+                }
+            },
+            "releaseItems": [
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "PDF",
+                    "formatVariant": "IPDF600",
+                    "contentLanguage": [
+                        "en"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "1997-06-12",
+                    "version": 1,
+                    "pages": 26,
+                    "rfc5141urn": "iso:std:iso:9000:-2:ed-2:v1:en",
+                    "contentRef": {
+                        "id": "21abe278-9c18-42de-ab0f-14c31cded5bf",
+                        "url": "https://data.iso.org/publications/std/dms/21abe278-9c18-42de-ab0f-14c31cded5bf",
+                        "contentLength": 7195304,
+                        "mimeType": "application/pdf",
+                        "fileName": "ISO 9000-2;1997 ed.2 - id.26363 Publication PDF (Image based PDF 600dpi) (en)",
+                        "fileExtension": "pdf",
+                        "checksum": "SHA-256=577ADA324C039530A953D33EB588A79E21668423C98328CDF8529BA92C0762ED"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "PDF",
+                    "formatVariant": "IPDF600",
+                    "contentLanguage": [
+                        "fr"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "1997-06-12",
+                    "version": 1,
+                    "pages": 26,
+                    "rfc5141urn": "iso:std:iso:9000:-2:ed-2:v1:fr",
+                    "contentRef": {
+                        "id": "2415c632-f5cd-44b3-98f0-c3cea5c3e592",
+                        "url": "https://data.iso.org/publications/std/dms/2415c632-f5cd-44b3-98f0-c3cea5c3e592",
+                        "contentLength": 6955758,
+                        "mimeType": "application/pdf",
+                        "fileName": "ISO 9000-2;1997 ed.2 - id.26363 Publication PDF (Image based PDF 600dpi) (fr)",
+                        "fileExtension": "pdf",
+                        "checksum": "SHA-256=ABFA0D090177C71DFE19D2C7971A99E3685A854ABE8299CC68895696D2C5B12C"
+                    }
+                }
+            ],
+            "project": {
+                "urn": "iso:proj:26363",
+                "urnAlt": []
+            },
+            "lastChangeTimestamp": "2026-01-06T07:28:31.087"
+        },
+        {
+            "urn": "iso:pub:std:IS:26364",
+            "urnAlt": [
+                "iso:std:iso:9000:-3:ed-2"
+            ],
+            "publicationType": "STANDARD",
+            "reference": "ISO 9000-3:1997",
+            "originator": "ISO",
+            "stdType": "IS",
+            "stdNumber": "9000",
+            "stdPartNumber": "3",
+            "edition": "2",
+            "version": 1,
+            "title": [
+                {
+                    "value": "Quality management and quality assurance standards — Part 3: Guidelines for the application of ISO 9001:1994  to the development, supply, installation and maintenance of computer software",
+                    "lang": "en"
+                },
+                {
+                    "value": "Normes pour le management de la qualité et l'assurance de la qualité — Partie 3: Lignes directrices pour l'application de l'ISO 9001:1994 au développement, à la mise à disposition, à l'installation et à la maintenance du logiciel",
+                    "lang": "fr"
+                }
+            ],
+            "committee": {
+                "urn": "iso:committee:53896",
+                "urnAlt": [],
+                "reference": "ISO/TC 176/SC 2"
+            },
+            "abstract": [],
+            "classifications": [
+                {
+                    "type": "ICS",
+                    "value": "03.100.70"
+                },
+                {
+                    "type": "ICS",
+                    "value": "03.120.10"
+                },
+                {
+                    "type": "ICS",
+                    "value": "35.080"
+                },
+                {
+                    "type": "LOGO",
+                    "value": "ISO"
+                }
+            ],
+            "status": "WITHDRAWN",
+            "publicationStage": "IS",
+            "publicationDate": "1997-12-18",
+            "priceInfo": {
+                "priceCode": "iso:B",
+                "basePrice": {
+                    "amount": 67,
+                    "currency": "CHF"
+                }
+            },
+            "releaseItems": [
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "PDF",
+                    "formatVariant": "CPDF",
+                    "contentLanguage": [
+                        "en"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "1997-12-18",
+                    "version": 1,
+                    "pages": 32,
+                    "rfc5141urn": "iso:std:iso:9000:-3:ed-2:v1:en",
+                    "contentRef": {
+                        "id": "49bc951e-d0b1-42f2-ac8a-1003b6325c0b",
+                        "url": "https://data.iso.org/publications/std/dms/49bc951e-d0b1-42f2-ac8a-1003b6325c0b",
+                        "contentLength": 167580,
+                        "mimeType": "application/pdf",
+                        "fileName": "ISO 9000-3;1997 ed.2 - id.26364 Publication PDF (en)",
+                        "fileExtension": "pdf",
+                        "checksum": "SHA-256=3D92544B9C656EDDD2B065B3EA145B85E18E089C8661D6C753C70DD8E2934778"
+                    }
+                },
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "PDF",
+                    "formatVariant": "CPDF",
+                    "contentLanguage": [
+                        "fr"
+                    ],
+                    "multilingual": false,
+                    "releaseDate": "1998-12-17",
+                    "version": 1,
+                    "pages": 39,
+                    "rfc5141urn": "iso:std:iso:9000:-3:ed-2:v1:fr",
+                    "contentRef": {
+                        "id": "7a2663d2-eb0b-4b75-ac87-0822d53cc408",
+                        "url": "https://data.iso.org/publications/std/dms/7a2663d2-eb0b-4b75-ac87-0822d53cc408",
+                        "contentLength": 191540,
+                        "mimeType": "application/pdf",
+                        "fileName": "ISO 9000-3;1997 ed.2 - id.26364 Publication PDF (fr)",
+                        "fileExtension": "pdf",
+                        "checksum": "SHA-256=0F39EF2B0DE1469C57E4C9F1FADCF838F9F349C4FE05A0C60F661AAC0EA381C0"
+                    }
+                }
+            ],
+            "project": {
+                "urn": "iso:proj:26364",
+                "urnAlt": []
+            },
+            "lastChangeTimestamp": "2026-01-06T07:28:31.053"
+        },
+        {
+            "urn": "iso:pub:std:IS:20116",
+            "urnAlt": [
+                "iso:std:iso:9000:-4:ed-1"
+            ],
+            "publicationType": "STANDARD",
+            "reference": "ISO 9000-4:1993",
+            "originator": "ISO",
+            "stdType": "IS",
+            "stdNumber": "9000",
+            "stdPartNumber": "4",
+            "edition": "1",
+            "version": 1,
+            "title": [
+                {
+                    "value": "Quality management and quality assurance standards — Part 4: Guide to dependability programme management",
+                    "lang": "en"
+                },
+                {
+                    "value": "Normes pour la gestion de la qualité et l'assurance de la qualité — Partie 4: Guide de gestion du programme de sûreté de fonctionnement",
+                    "lang": "fr"
+                }
+            ],
+            "committee": {
+                "urn": "iso:committee:53896",
+                "urnAlt": [],
+                "reference": "ISO/TC 176/SC 2"
+            },
+            "abstract": [
+                {
+                    "format": "text/html",
+                    "content": "<p>Covers the essential features of a comprehensive dependability programme for the planning, organization, direction and control of resources to produce products which will be reliable and maintainable. Is concerned with what has to be done, and why, and when and how it has to be done, but is not specific about who should do it and where. Applies to hardware and/or software products, where dependability characteristics are significant during the operation and maintenance phase. The requirements are aimed primarily at controlling influences on dependability at all product life-cycle phases from product planning to operation.</p>\n",
+                    "lang": "en"
+                },
+                {
+                    "format": "text/html",
+                    "content": "La présente partie de la CEI 300/ISO 9000 fournit un guide sur la gestion du programme de sûreté de fonctionnement. Elle couvre les caractéristiques essentielles d'un programme de sûreté de fonctionnement détaillé pour la planification, l'organisation, la direction et la maîtrise des ressources pour réaliser des produits qui seront fiables et maintenables. En termes de gestion, elle concerne ce qui doit être fait, pourquoi, quand et comment il faut le faire, mais ne spécifie pas qui le fera ni où il convient de la faire en raison de la grande diversité des organisations et des projets. La présente partie de la CEI 300/ISO 9000 est applicable aux produits matériels et/ou logiciels, pour lesquels les caractéristiques de sûreté de fonctionnement sont significatives pendant la phase d'exploitation et de maintenance. Les exigences ont pour premier objectif de maîtriser ce qui peut avoir de l'influence sur la sûreté de fonctionnement et ce, à toutes les phases du cycle de vie du produit, depuis sa planification jusqu'à son exploitation. Tout contrat utilisant le guide fourni dans cette partie de la CEI 300/ISO 9000 peut en utiliser des parties choisies po 1229ur tenir compte de circonstances particulières. Les parties impliquées doivent se mettre d'accord et consigner par écrit le degré d'application, en incluant les informations données en tant que guide dans les autres parties de la série CEI 300. Toute clause choisie, utilisée dans ce sens, devient une exigence. <br/>\n<br/>NOTES\n<ul>\n  <li>1 Le guide fourni dans cette partie de la CEI 300/ISO 9000 s'applique en\n    premier lieu à un fournisseur n'ayant qu'un petit nombre de clients\n    qualifiés, mais il peut aussi s'appliquer à l'approvisionnement\n    de produits destinés à la consommation. </li>\n  <li>2 Le guide donné dans cette partie de la CEI 300/ISO 9000 concerne\n    les phases du cycle de vie comme définies et peuvent aussi s'appliquer\n    à toute nouvelle subdivision de phases. </li>\n  <li>3 Le genre masculin est utilisé dans cette partie de la CEI 300/ISO\n    9000 pour représenter aussi le genre feminin lorsqu&#x92;on l&#x92;applique\n    à des personnes</li>\n  <li>4 Dans le contexte de cette partie de la CEI 300/ISO 9000, les termes \"document\",\n    et \" documentation\" ne sont pas limités à des supports\n    papier.</li>\n  <li>Le terme \"client\", utilisé dans cette partie de la CEI\n    3OO/lSO 9000 est synonyme du terme \"acheteur\".</li>\n</ul>\n",
+                    "lang": "fr"
+                }
+            ],
+            "classifications": [
+                {
+                    "type": "ICS",
+                    "value": "03.100.70"
+                },
+                {
+                    "type": "ICS",
+                    "value": "03.120.10"
+                },
+                {
+                    "type": "LOGO",
+                    "value": "ISO"
+                }
+            ],
+            "status": "WITHDRAWN",
+            "publicationStage": "IS",
+            "publicationDate": "1993-05-20",
+            "priceInfo": {
+                "priceCode": "iso:B",
+                "basePrice": {
+                    "amount": 67,
+                    "currency": "CHF"
+                }
+            },
+            "releaseItems": [
+                {
+                    "languageNeutral": false,
+                    "type": "STANDARD",
+                    "format": "PDF",
+                    "formatVariant": "IPDF600",
+                    "contentLanguage": [
+                        "en",
+                        "fr"
+                    ],
+                    "multilingual": true,
+                    "releaseDate": "1993-05-20",
+                    "version": 1,
+                    "pages": 21,
+                    "rfc5141urn": "iso:std:iso:9000:-4:ed-1:v1:en,fr",
+                    "contentRef": {
+                        "id": "292187b2-1937-4c6c-84c9-2e1a5aaa35d8",
+                        "url": "https://data.iso.org/publications/std/dms/292187b2-1937-4c6c-84c9-2e1a5aaa35d8",
+                        "contentLength": 5214102,
+                        "mimeType": "application/pdf",
+                        "fileName": "ISO 9000-4;1993 ed.1 - id.20116 Publication PDF (Image based PDF 600dpi) (en,fr)",
+                        "fileExtension": "pdf",
+                        "checksum": "SHA-256=CA9D0C7E4DE6ED4D376E067A1B7CBD3EA657A4D5A22CD0A6BCB510AAB55623BF"
+                    }
+                }
+            ],
+            "project": {
+                "urn": "iso:proj:20116",
+                "urnAlt": []
+            },
+            "lastChangeTimestamp": "2026-01-06T07:27:06.669"
         }
     ]
 }

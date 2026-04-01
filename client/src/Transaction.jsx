@@ -51,16 +51,16 @@ function AddTransaction() {
         road: el.road?.value || '', 
         province: selectedProv?.label || '',
         district: selectedDistrict?.label || '',
-        sub_district: selectedSubDistrict?.label || '',
-        provinceCode: selectedProv?.value || '',
-        districtCode: selectedDistrict?.value || '',
-        subDistrictCode: selectedSubDistrict?.value || '',
+        subdistrict: selectedSubDistrict?.label || '',
+        province_code: selectedProv?.value || '',
+        district_code: selectedDistrict?.value || '',
+        subdistrict_code: selectedSubDistrict?.value || '',
         postcode: selectedSubDistrict?.postcode || '',
         // ข้อมูลผู้ติดต่อ
-        title: selectedTitle?.value || '',
-        firstname: el.firstname?.value || '',
-        middlename: el.middlename?.value || '',
-        lastname: el.lastname?.value || '',
+        contact_title: selectedTitle?.value || '',
+        contact_firstname: el.contact_firstname?.value || '',
+        contact_middlename: el.contact_middlename?.value || '',
+        contact_lastname: el.contact_lastname?.value || '',
         phone: el.phone?.value || '',
         email: el.email?.value || '',
       };
@@ -131,7 +131,7 @@ function AddTransaction() {
     <div className="min-h-screen bg-slate-50 font-sans antialiased text-slate-900 pb-20 relative">
       <main className="max-w-3xl mx-auto p-6 lg:pt-16">
         <header className="mb-8 text-center">
-          <h2 className="text-3xl font-black text-slate-900 mb-2 italic uppercase">TISI E-STORE</h2>
+          <h2 className="text-3xl font-black text-slate-900 mb-2 italic uppercase">แบบฟอร์มขอใบเสนอราคาการสั่งซื้อ<br />มาตรฐานต่างประเทศ</h2>
           <p className="text-slate-500">กรุณากรอกข้อมูลเพื่อใช้ประกอบการออกเอกสารมาตรฐาน</p>
         </header>
 
@@ -150,13 +150,12 @@ function AddTransaction() {
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="bg-white p-8 rounded-b-3xl shadow-xl border-x border-b border-slate-100">
             <div className="flex items-center gap-2 mb-6 pb-2 border-b border-slate-50">
-              <span className="text-blue-600 font-bold">Step 1:</span>
-              <h3 className="font-bold text-slate-800 uppercase tracking-wider text-sm">ข้อมูลผู้สั่งซื้อ</h3>
+              <span className="font-bold text-blue-700 uppercase tracking-wider text-xl">ข้อมูลผู้สั่งซื้อ</span>
             </div>
             <div className="space-y-5">
               <input required type="text" name="company_name" 
                 className="w-full p-4 border border-slate-200 rounded-2xl outline-none focus:border-blue-500 transition-all" 
-                placeholder={IsPersonalType ? "ชื่อบริษัท / ชื่อหน่วยงาน" : "ชื่อ-นามสกุล (สำหรับพิมพ์ลายน้ำ)"} />
+                placeholder={IsPersonalType ? "ชื่อบริษัท / ชื่อหน่วยงาน (สำหรับพิมพ์ลายน้ำ)" : "ชื่อ-นามสกุล (สำหรับพิมพ์ลายน้ำ)"} />
               
               <input required type="text" name="tax_id" pattern="[0-9]{13}" maxLength="13" 
                 className="w-full p-4 border border-slate-200 rounded-2xl outline-none font-mono focus:border-blue-500 transition-all" 
@@ -166,8 +165,7 @@ function AddTransaction() {
 
           <div className="bg-white p-8 rounded-3xl shadow-xl border border-slate-100">
             <div className="mb-6 pb-2 border-b border-slate-50 flex items-center gap-2">
-              <span className="text-blue-600 font-bold">Step 2:</span>
-              <label className="font-bold text-slate-800 text-sm uppercase tracking-wider">ที่อยู่จัดส่งเอกสาร</label>
+              <span className="font-bold text-blue-700 uppercase tracking-wider text-xl">ที่อยู่จัดส่งเอกสาร</span>
             </div>
             <div className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -194,8 +192,7 @@ function AddTransaction() {
 
           <div className="bg-white p-8 rounded-3xl shadow-xl border border-slate-100">
             <div className="flex items-center gap-2 mb-6 pb-2 border-b border-slate-50">
-              <span className="text-blue-600 font-bold">Step 3:</span>
-              <h3 className="font-bold text-slate-800 text-sm uppercase tracking-wider">ข้อมูลผู้ติดต่อ</h3>
+              <span className="font-bold text-blue-700 uppercase tracking-wider text-xl">ข้อมูลผู้ติดต่อ</span>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-8 gap-4">
               <div className="md:col-span-3">
