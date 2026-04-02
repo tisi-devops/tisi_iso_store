@@ -1,15 +1,15 @@
-// โหลด Environment Variables ทันทีที่เริ่มรันไฟล์
-require('dotenv').config();
+import 'dotenv/config';
+import { formatInTimeZone } from 'date-fns-tz';
+import express, { json } from 'express';
+import cors from 'cors';
+import axios from 'axios';
+import { createPool } from 'mysql2/promise';
+import rateLimit from 'express-rate-limit';
+import { createTransport } from 'nodemailer';
 
-const { formatInTimeZone } = require('date-fns-tz');
-const express = require('express');
-const cors = require('cors');
-const axios = require('axios');
-const mysql = require('mysql2/promise'); // 🌟 เปลี่ยน Library
 const app = express();
-const rateLimit = require('express-rate-limit');
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT;
 const ISO_API_KEY = process.env.ISO_API_KEY;
 const ISO_SECRET_KEY = process.env.ISO_SECRET_KEY;
 const ISO_GEN_TOKEN = process.env.ISO_GEN_TOKEN;
@@ -26,17 +26,6 @@ let tokenCache = {
     expiresAt: null
 };
 
-// 🛡️ 1. แบบทั่วไป (General Limit)
-// ป้องกันการยิง API รัวๆ ทั่วไป (เช่น 1 นาที ยิงได้ไม่เกิน 100 ครั้ง)
-const generalLimiter = rateLimit({
-  windowMs: 1 * 60 * 1000, // 1 นาที
-  max: 100, 
-  message: { error: "คุณทำรายการบ่อยเกินไป กรุณาลองใหม่ในอีกสักครู่" },
-  standardHeaders: true, // ส่งข้อมูล Rate Limit ไปใน Header ด้วย (Limit, Remaining)
-  legacyHeaders: false,
-});
-
-// 🛡️ 2. แบบเข้มงวด (Strict Limit สำหรับ OTP)
 // ป้องกันคนแกล้งส่งเมลรัวๆ (เช่น 15 นาที ขอ OTP ได้แค่ 3 ครั้ง)
 const otpLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 นาที
@@ -46,8 +35,7 @@ const otpLimiter = rateLimit({
 });
 
 // สำหรับส่งอีเมล
-const nodemailer = require('nodemailer');
-const transporter = nodemailer.createTransport({
+const transporter = createTransport({
     service: 'gmail',
     auth: {
         user: process.env.EMAIL_USER,
@@ -69,16 +57,16 @@ app.use(cors({
     }
   }
 }));
-app.use(express.json());
+app.use(json());
 
 // สร้างการเชื่อมต่อ (Connection Pool) กับ MySQL
 async function initDatabase() {
     try {
-        db = mysql.createPool({
-            host: process.env.DB_HOST || 'localhost',
-            user: process.env.DB_USER || 'root',
-            password: process.env.DB_PASS || '',
-            database: process.env.DB_NAME || 'tisi_store',
+        db = createPool({
+            host: process.env.DB_HOST,
+            user: process.env.DB_USER,
+            password: process.env.DB_PASS,
+            database: process.env.DB_NAME,
             waitForConnections: true,
             connectionLimit: 10,
             queueLimit: 0
@@ -103,10 +91,8 @@ async function getExchangeRate() {
                 headers: { 'Accept': '*/*', 'Authorization': BOT_CLIENT_ID }
             });
             const detail = response.data.result?.data?.data_detail?.[0];
-            if (detail && detail.mid_rate) {
-                exchangeData = { 
-                    mid_rate: detail.mid_rate,
-                    selling_rate: detail.selling,
+            if (detail && detail.buying_transfer) {
+                exchangeData = {
                     buying_transfer: detail.buying_transfer,
                     period: detail.period,
                     start_day: formatStr,
@@ -125,11 +111,11 @@ async function getExchangeRate() {
 // ฟังก์ชันนี้จะเช็คว่าเรามีข้อมูลอัตราแลกเปลี่ยนที่เก็บไว้ในแคชหรือไม่และยังไม่หมดอายุ (ตั้งไว้ 1 ชั่วโมง)
 async function cachingExhangRate() {
     const now = new Date();
-    // 1. เช็คก่อนว่ามีของเก่าและยังไม่หมดอายุไหม
+    // เช็คก่อนว่ามีของเก่าและยังไม่หมดอายุไหม
     if (cachedExchangeRate && lastFetchTime && (now - lastFetchTime < 3600000)) {
         return cachedExchangeRate;
     }
-    // 2. ถ้าไม่มีหรือหมดอายุ ค่อยไปดึงใหม่
+    // ถ้าไม่มีหรือหมดอายุ ค่อยไปดึงใหม่
     const freshData = await getExchangeRate(); 
     if (freshData) { 
         cachedExchangeRate = freshData; 
@@ -223,21 +209,21 @@ app.post('/api/send-otp', otpLimiter, async (req, res) => {
     const expiresAt = new Date(Date.now() + 5 * 60000); 
 
     try {
-        await db.execute(`DELETE FROM otp_storage WHERE expires_at < NOW()`);
+        await db.execute(`DELETE FROM ISO_STORE_TB_otp_storage WHERE expires_at < NOW()`);
         await db.execute(
-            `INSERT INTO otp_storage (email, otp_code, ref_code, expires_at) 
+            `INSERT INTO ISO_STORE_TB_otp_storage (email, otp_code, ref_code, expires_at) 
              VALUES (?, ?, ?, ?) 
              ON DUPLICATE KEY UPDATE otp_code = VALUES(otp_code), ref_code = VALUES(ref_code), expires_at = VALUES(expires_at)`,
             [email, otp, refCode, expiresAt]
         );
         try {
             await transporter.sendMail({
-                from: `"TISI E-Store" <${process.env.EMAIL_USER}>`,
+                from: `"TISI ISO-Store" <${process.env.EMAIL_USER}>`,
                 to: email,
                 subject: `รหัส OTP ของคุณคือ ${otp} (Ref: ${refCode})`,
                 html: `
                     <div style="font-family: sans-serif; padding: 20px; border: 1px solid #eee; border-radius: 10px; max-w-md">
-                        <h2 style="color: #1e3a8a;">TISI E-Store</h2>
+                        <h2 style="color: #1e3a8a;">TISI ISO-Store</h2>
                         <p>รหัสยืนยันตัวตน (OTP) สำหรับการสั่งซื้อมาตรฐาน ISO ของคุณคือ:</p>
                         <h1 style="background: #f1f5f9; padding: 15px; text-align: center; letter-spacing: 5px; color: #333;">${otp}</h1>
                         <p><strong>รหัสอ้างอิง (Ref):</strong> ${refCode}</p>
@@ -264,13 +250,13 @@ app.post('/api/verify-otp', otpLimiter, async (req, res) => {
     const { email, otp } = req.body;
     try {
         const [rows] = await db.execute(
-            `SELECT * FROM otp_storage 
+            `SELECT * FROM ISO_STORE_TB_otp_storage 
              WHERE email = ? AND otp_code = ? AND expires_at > NOW() 
              ORDER BY created_at DESC LIMIT 1`,
             [email, otp]
         );
         if (rows.length > 0) {
-            await db.execute(`DELETE FROM otp_storage WHERE email = ?`, [email]);
+            await db.execute(`DELETE FROM ISO_STORE_TB_otp_storage WHERE email = ?`, [email]);
             res.json({ success: true, message: "ยืนยันตัวตนสำเร็จ" });
         } else {
             res.status(400).json({ success: false, message: "รหัส OTP ไม่ถูกต้องหรือหมดอายุ" });
@@ -289,27 +275,21 @@ app.get('/api/search-iso', async (req, res) => {
         const accessToken = await getValidAccessToken();
         const isoData = await axios.get(ISO_BASE_URL, {
             params: { 
-                stdNumber: q || "", 
-                // กำหนดให้แสดงเฉพาะมาตรฐานที่มีสถานะเผยแพร่แล้ว (Published) เท่านั้น 
-                publicationStatus: "PUBLISHED", 
-                // กำหนดให้แสดงเฉพาะมาตรฐานที่อยู่ในช่วง IS (International Standard) เท่านั้น
-                publicationStage: "IS" 
+                stdNumber: q || "",
+                publicationStatus: "PUBLISHED", // กำหนดให้แสดงเฉพาะมาตรฐานที่มีสถานะเผยแพร่แล้ว (Published) เท่านั้น
+                publicationStage: "IS" // กำหนดให้แสดงเฉพาะมาตรฐานที่อยู่ในช่วง IS (International Standard) เท่านั้น
             },
             headers: { 'Authorization': `Bearer ${accessToken}`, 'Accept': 'application/json' }
         });  
         const publications = isoData.data.publication || [];
         const results = publications.map(pub => ({
-            id: pub.urn,
-            code: pub.reference,
-            title: pub.title && pub.title.length > 0 ? (pub.title[0].value || pub.title[0].content) : "No Title",
-            // ราคาที่ดึงมาจาก ISO API จะเป็นราคาในหน่วย CHF
-            RawPriceCHF: pub.priceInfo?.basePrice?.amount || 0,
-            // ราคาที่แปลงเป็น THB แล้ว (ใช้สูตร CHF * อัตราแลกเปลี่ยน)
-            PriceTHB: Math.round(((pub.priceInfo?.basePrice?.amount || 0) * rate)),
-            // ราคาที่แปลงเป็น THB แล้วและลด 30% (ใช้สูตร CHF * อัตราแลกเปลี่ยน - ส่วนลด 30%)
-            SpecialPriceTHB: Math.round(((pub.priceInfo?.basePrice?.amount || 0) * rate) * (1 - 0.3)),
-            // สถานะของมาตรฐาน (เช่น PUBLISHED, DRAFT, etc.)
-            status: pub.status
+            id: pub.urn, // ใช้ URN เป็น ID เพราะมันมีความเฉพาะเจาะจงมากกว่ารหัสมาตรฐาน (reference) ที่อาจซ้ำกันได้ในบางกรณี
+            code: pub.reference, // รหัสมาตรฐาน เช่น ISO 9001
+            title: pub.title && pub.title.length > 0 ? (pub.title[0].value || pub.title[0].content) : "No Title", // ชื่อมาตรฐาน
+            RawPriceCHF: pub.priceInfo?.basePrice?.amount || 0, // ราคาที่ดึงมาจาก ISO API จะเป็นราคาในหน่วย CHF
+            PriceTHB: Math.round(((pub.priceInfo?.basePrice?.amount || 0) * rate)), // ราคาที่แปลงเป็น THB แล้ว (ใช้สูตร CHF * อัตราแลกเปลี่ยน)
+            SpecialPriceTHB: Math.round(((pub.priceInfo?.basePrice?.amount || 0) * rate) * (1 - 0.3)), // ราคาที่แปลงเป็น THB แล้วและลด 30% (ใช้สูตร CHF * อัตราแลกเปลี่ยน - ส่วนลด 30%)
+            status: pub.status // สถานะของมาตรฐาน
         }));
         res.json(results);
     } catch (error) {
@@ -320,10 +300,9 @@ app.get('/api/search-iso', async (req, res) => {
 
 // API สำหรับหน้า Product Detail ดึงเจาะจง 1 รายการด้วย projectUrn (ซึ่งมาจากการแปลง Publication URN เป็น Project URN แล้วในฝั่ง Frontend)
 app.get('/api/get-iso-detail', async (req, res) => {
-    // รับ projectUrn จาก query parameter (ซึ่งมาจากการแปลง Publication URN เป็น Project URN แล้วในฝั่ง Frontend)
-    const { projectUrn } = req.query;
+    const { projectUrn } = req.query; // รับ projectUrn จาก query parameter (ซึ่งมาจากการแปลง Publication URN เป็น Project URN แล้วในฝั่ง Frontend)
     const exchangeData = await cachingExhangRate();
-    const rate = exchangeData ? parseFloat(exchangeData.buying_transfer) : 40.0;
+    const rate = parseFloat(exchangeData.buying_transfer);
     if (!projectUrn) return res.status(400).json({
         error: "Missing projectUrn parameter" 
     });
@@ -346,18 +325,15 @@ app.get('/api/get-iso-detail', async (req, res) => {
         }
         const exactMatch = publications[0];
         const result = {
-            id: exactMatch.urn,
-            code: exactMatch.reference,
-            title: exactMatch.title && exactMatch.title.length > 0 ? (exactMatch.title[0].value || exactMatch.title[0].content) : "No Title",
-            // ราคาที่ดึงมาจาก ISO API จะเป็นราคาในหน่วย CHF
-            RawPriceCHF: exactMatch.priceInfo?.basePrice?.amount || 0,
-            // ราคาที่แปลงเป็น THB แล้ว (ใช้สูตร CHF * อัตราแลกเปลี่ยน - ส่วนลด 30%)
-            PriceTHB: Math.round(((exactMatch.priceInfo?.basePrice?.amount || 0) * rate)),
-            // ราคาที่แปลงเป็น THB แล้วและลด 30% (ใช้สูตร CHF * อัตราแลกเปลี่ยน - ส่วนลด 30%)
-            SpecialPriceTHB: Math.round(((exactMatch.priceInfo?.basePrice?.amount || 0) * rate) * (1 - 0.3)),
-            status: exactMatch.status,
-            publicationStage: exactMatch.publicationStage,
-            abstract: exactMatch.abstract?.[0]?.content
+            id: exactMatch.urn, // ใช้ URN เป็น ID เพราะมันมีความเฉพาะเจาะจงมากกว่ารหัสมาตรฐาน (reference) ที่อาจซ้ำกันได้ในบางกรณี
+            code: exactMatch.reference, // รหัสมาตรฐาน เช่น ISO 9001
+            title: exactMatch.title && exactMatch.title.length > 0 ? (exactMatch.title[0].value || exactMatch.title[0].content) : "No Title", // ชื่อมาตรฐาน
+            RawPriceCHF: exactMatch.priceInfo?.basePrice?.amount || 0, // ราคาที่ดึงมาจาก ISO API จะเป็นราคาในหน่วย CHF
+            PriceTHB: Math.round(((exactMatch.priceInfo?.basePrice?.amount || 0) * rate)), // ราคาที่แปลงเป็น THB แล้ว (ใช้สูตร CHF * อัตราแลกเปลี่ยน)
+            SpecialPriceTHB: Math.round(((exactMatch.priceInfo?.basePrice?.amount || 0) * rate) * (1 - 0.3)), // ราคาที่แปลงเป็น THB แล้วและลด 30% (ใช้สูตร CHF * อัตราแลกเปลี่ยน - ส่วนลด 30%)
+            status: exactMatch.status, // สถานะของมาตรฐาน
+            publicationStage: exactMatch.publicationStage, // ช่วงของมาตรฐาน (เช่น IS, WD, CD, etc.)
+            abstract: exactMatch.abstract?.[0]?.content // เนื้อหาสรุปของมาตรฐาน (ถ้ามี)
         };
         res.json(result);
     } catch (error) {
@@ -370,7 +346,7 @@ app.get('/api/get-iso-detail', async (req, res) => {
 app.post('/api/submit-transaction', async (req, res) => {
     const { customer, items, totalAmount } = req.body;
     const exchangeData = await cachingExhangRate();
-    const currentRate = exchangeData ? parseFloat(exchangeData.buying_transfer) : 40.0;
+    const currentRate = parseFloat(exchangeData.buying_transfer);
     const connection = await db.getConnection();
     await connection.beginTransaction();
     try {
@@ -380,7 +356,7 @@ app.post('/api/submit-transaction', async (req, res) => {
         const formatted = formatInTimeZone(utcDate, timeZone, 'yyyyMMddHHmmss');
         const transactionId = `TISI${formatted}`;
         await connection.execute(
-            `INSERT INTO transactions 
+            `INSERT INTO ISO_STORE_TB_transactions 
             (transaction_id, company_name, tax_id, person_type, house_number, building_name, moo, soi, road, 
              subdistrict, district, province, subdistrict_code, district_code, province_code, postcode, 
              contact_title, contact_firstname, contact_middlename, contact_lastname, 
@@ -414,7 +390,7 @@ app.post('/api/submit-transaction', async (req, res) => {
                 'PENDING'
             ]
         );
-        const itemSql = `INSERT INTO transaction_items 
+        const itemSql = `INSERT INTO ISO_STORE_TB_transaction_items 
                          (transaction_id, product_code, product_option, price_at_purchase, quantity) 
                          VALUES (?, ?, ?, ?, ?)`;
         for (const item of items) {
@@ -444,15 +420,15 @@ app.get('/api/orders', async (req, res) => {
         const [rows] = await connection.execute(`
             SELECT 
                 t.transaction_id AS id,
-                t.company_name AS company,
+                ANY_VALUE(t.company_name) AS company,
                 GROUP_CONCAT(ti.product_code SEPARATOR ', ') AS standard,
-                t.created_at AS date,
-                t.total_amount AS price,
-                t.status AS status
-            FROM transactions t
-            LEFT JOIN transaction_items ti ON t.transaction_id = ti.transaction_id
+                ANY_VALUE(t.created_at) AS date,
+                ANY_VALUE(t.total_amount) AS price,
+                ANY_VALUE(t.status) AS status
+            FROM ISO_STORE_TB_transactions t
+            LEFT JOIN ISO_STORE_TB_transaction_items ti ON t.transaction_id = ti.transaction_id
             GROUP BY t.transaction_id
-            ORDER BY t.created_at DESC
+            ORDER BY ANY_VALUE(t.created_at) DESC
         `);
         res.json(rows);
     } catch (error) {
@@ -469,14 +445,14 @@ app.get('/api/orders/:id', async (req, res) => {
     const connection = await db.getConnection();
     try {
         const [masterRows] = await connection.execute(
-            `SELECT * FROM transactions WHERE transaction_id = ?`, 
+            `SELECT * FROM ISO_STORE_TB_transactions WHERE transaction_id = ?`, 
             [id]
         );
         if (masterRows.length === 0) {
             return res.status(404).json({ error: "ไม่พบข้อมูลรายการสั่งซื้อนี้" });
         }
         const [itemRows] = await connection.execute(
-            `SELECT * FROM transaction_items WHERE transaction_id = ?`, 
+            `SELECT * FROM ISO_STORE_TB_transaction_items WHERE transaction_id = ?`, 
             [id]
         );
         const result = {
@@ -492,8 +468,34 @@ app.get('/api/orders/:id', async (req, res) => {
     }
 });
 
+// API สำหรับอัปเดตสถานะคำสั่งซื้อ (เมื่อแอดมินกดปุ่มอนุมัติ/ปฏิเสธ)
+app.put('/api/orders/:id/status', async (req, res) => {
+    const { id } = req.params;     // รับรหัส order จาก URL
+    const { status } = req.body;   // รับสถานะใหม่ที่ส่งมาจาก Frontend
+
+    try {
+        // อัปเดตตาราง transactions ให้เป็นสถานะใหม่
+        const [result] = await db.execute(
+            `UPDATE ISO_STORE_TB_transactions SET status = ? WHERE transaction_id = ?`,
+            [status, id]
+        );
+        
+        // ถ้าไม่มีการเปลี่ยนแปลง (หาออเดอร์ไม่เจอ)
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ error: "ไม่พบข้อมูลรายการสั่งซื้อนี้" });
+        }
+        
+        // ถ้าอัปเดตสำเร็จ ส่งข้อความกลับไปบอก Frontend
+        res.json({ success: true, message: "อัปเดตสถานะเรียบร้อยแล้ว" });
+        
+    } catch (error) {
+        console.error("❌ Update Status Error:", error.message);
+        res.status(500).json({ error: "เซิร์ฟเวอร์ขัดข้อง ไม่สามารถอัปเดตสถานะได้" });
+    }
+});
+
 initDatabase().then(async () => {
-    const initialExchangeData = await cachingExhangRate();
+    await cachingExhangRate();
     app.listen(PORT, () => {
         console.log(`\n=============================================`);
         console.log(`🚀 TISI BACKEND SERVER STARTED`);

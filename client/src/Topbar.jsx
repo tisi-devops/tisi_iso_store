@@ -6,9 +6,6 @@ function Topbar() {
   const [isBillOpen, setIsBillOpen] = useState(false);
   const [data, setData] = useState({ currency: 0, daynow: '-' });
   const location = useLocation();
-
-  // ✅ 1. ย้ายการดึงข้อมูลจาก Session มาไว้ที่ Initial State (แก้ Cascading Renders)
-  // วิธีนี้จะทำให้ค่าถูกดึงมาทันทีที่เริ่มรันหน้าเว็บ และไม่ประกาศตัวแปรซ้ำ
   const [customerInfo, setCustomerInfo] = useState(() => {
     const saved = sessionStorage.getItem('customerData');
     return saved ? JSON.parse(saved) : null;
@@ -25,7 +22,6 @@ function Topbar() {
     return items.length;
   });
 
-  // ✅ 2. ฟังก์ชัน Logout (อยู่นอก useEffect เสมอ)
   const logout = () => {
     Swal.fire({
       title: 'ยืนยันการล้างข้อมูล?',
@@ -59,7 +55,6 @@ function Topbar() {
     });
   };
 
-  // ✅ 3. รวม useEffect สำหรับดึงข้อมูล API และ Event Listeners
   useEffect(() => {
     // ดึงข้อมูลค่าเงินจาก Backend
     fetch('http://localhost:5000/api/hello')
@@ -104,7 +99,7 @@ function Topbar() {
 
       <div className="flex gap-3 md:gap-6 items-center">
         <div className="hidden sm:flex flex-col items-end border-r border-slate-100 pr-4">
-          <span className="text-[20px] font-black text-slate-600 uppercase">อัตราแลกเปลี่ยน ณ วันที่ {data.daynow || '-'}</span>
+          <span className="text-[20px] font-black text-slate-600 uppercase">อัตราแลกเปลี่ยน ณ {data.daynow || '-'}</span>
           <div className="flex gap-2 mt-1">
              <span className="text-[11px] font-bold text-blue-600">1 CHF : {data.currency} THB</span>
           </div>
@@ -137,7 +132,7 @@ function Topbar() {
                       <span className="font-bold text-slate-800">{customerInfo.contact_firstname} {customerInfo.contact_middlename || ''} {customerInfo.contact_lastname}</span>
                     </div>
                     <div className="flex justify-between text-xs">
-                      <span className="text-slate-500">หน่วยงาน:</span>
+                      <span className="text-slate-500">บริษัท / หน่วยงาน:</span>
                       <span className="font-bold text-slate-800 text-right max-w-40 truncate" title={customerInfo.company_name}>
                         {customerInfo.company_name}
                       </span>

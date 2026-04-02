@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
 
@@ -7,7 +7,7 @@ function AddTransaction() {
   const navigate = useNavigate();
   const baseURL = 'http://localhost:5000/api';
 
-  // --- States สำหรับที่อยู่ ---
+  // States สำหรับที่อยู่
   const [provinces, setProvinces] = useState([]);
   const [districts, setDistricts] = useState([]);
   const [subDistricts, setSubDistricts] = useState([]);
@@ -15,7 +15,7 @@ function AddTransaction() {
   const [selectedDistrict, setSelectedDistrict] = useState(null);
   const [selectedSubDistrict, setSelectedSubDistrict] = useState(null);
 
-  // --- States สำหรับระบบ OTP & ฟอร์ม ---
+  // States สำหรับระบบ OTP & ฟอร์ม
   const [IsPersonalType, setIsPersonalType] = useState(false);
   const [showOTPModal, setShowOTPModal] = useState(false);
   const [otpInput, setOtpInput] = useState('');
@@ -31,19 +31,17 @@ function AddTransaction() {
     { value: 'นางสาว', label: 'นางสาว (Ms.)' },
   ];
 
-  // 1. ฟังก์ชันส่ง OTP (Handle Submit)
+  // ฟังก์ชันส่ง OTP (Handle Submit)
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSending(true);
     const el = e.target.elements;
 
     try {
-      // ✅ ใช้ ?. เพื่อป้องกัน Error กรณีหา Element ไม่พบ
       const formData = {
         person_type: IsPersonalType,
         company_name: el.company_name?.value || '',
         tax_id: el.tax_id?.value || 'INDIVIDUAL',
-        // ข้อมูลที่อยู่ (ดึง Label มาบันทึกลง DB)
         house_number: el.house_number?.value || '',
         building_name: el.building_name?.value || '',
         moo: el.moo?.value || '',   
@@ -56,7 +54,6 @@ function AddTransaction() {
         district_code: selectedDistrict?.value || '',
         subdistrict_code: selectedSubDistrict?.value || '',
         postcode: selectedSubDistrict?.postcode || '',
-        // ข้อมูลผู้ติดต่อ
         contact_title: selectedTitle?.value || '',
         contact_firstname: el.contact_firstname?.value || '',
         contact_middlename: el.contact_middlename?.value || '',
@@ -98,29 +95,37 @@ function AddTransaction() {
     }
   };
 
-  // --- Logic การดึงข้อมูลที่อยู่จาก Database ---
   useEffect(() => {
     axios.get(`${baseURL}/provinces`)
       .then(res => setProvinces(res.data))
       .catch(err => console.error("Fetch Provinces Error:", err));
   }, []);
 
+// เมื่อเปลี่ยนจังหวัด -> ล้างค่าอำเภอ/ตำบลเดิมทิ้งก่อน แล้วค่อยดึงอำเภอใหม่
   useEffect(() => {
+    setDistricts([]); 
+    setSubDistricts([]); 
+    setSelectedDistrict(null); 
+    setSelectedSubDistrict(null);
+
     if (selectedProv) {
       axios.get(`${baseURL}/amphoes/${selectedProv.value}`)
-        .then(res => setDistricts(res.data));
+        .then(res => setDistricts(res.data))
+        .catch(err => console.error("Fetch Amphoes Error:", err)); // เพิ่ม .catch
     }
-    setDistricts([]); setSubDistricts([]); setSelectedDistrict(null); setSelectedSubDistrict(null);
   }, [selectedProv]);
 
+// เมื่อเปลี่ยนอำเภอ -> ล้างค่าตำบลเดิมทิ้งก่อน แล้วค่อยดึงตำบลใหม่
   useEffect(() => {
+    setSubDistricts([]); 
+    setSelectedSubDistrict(null);
+
     if (selectedDistrict) {
       axios.get(`${baseURL}/districts/${selectedDistrict.value}`)
-        .then(res => setSubDistricts(res.data));
+        .then(res => setSubDistricts(res.data))
+        .catch(err => console.error("Fetch SubDistricts Error:", err)); // เพิ่ม .catch
     }
-    setSubDistricts([]); setSelectedSubDistrict(null);
   }, [selectedDistrict]);
-
   const customStyles = {
     control: (base, state) => ({
       ...base, borderRadius: '1rem', padding: '8px', borderColor: state.isFocused ? '#2563eb' : '#e2e8f0', boxShadow: 'none'

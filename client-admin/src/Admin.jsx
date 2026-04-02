@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-dom';
 import Dashboard from './Dashboard.jsx'; // 🌟 Import Component เข้ามา
 import Orders from './Orders.jsx';
+import OrderDetail from './OrderDetail.jsx'; // 🌟 Import Component รายละเอียดออเดอร์
 
 // ==========================================
 // โครงสร้างหลัก (Sidebar + Content)
@@ -16,9 +17,9 @@ function AdminLayout() {
       <aside className="w-64 bg-slate-900 text-white flex flex-col shadow-xl z-10">
         <div className="p-6 border-b border-slate-800">
           <h1 className="text-2xl font-black tracking-tight text-white">
-            TISI <span className="text-blue-500">E-Store</span>
+            TISI <span className="text-blue-500">ISO-Store</span>
           </h1>
-          <p className="text-slate-400 text-sm mt-1">ระบบจัดการหลังบ้าน สมอ.</p>
+          <p className="text-slate-400 text-sm mt-1">ระบบจัดการคำสั่งซื้อมาตรฐาน ISO</p>
         </div>
 
         <nav className="flex-1 p-4 space-y-2">
@@ -56,6 +57,8 @@ function AdminLayout() {
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/Orders" element={<Orders />} />
+          {/* 🌟 2. เพิ่ม Route สำหรับหน้ารายละเอียดออเดอร์ */}
+          <Route path="/Orders/:id" element={<OrderDetail />} />
         </Routes>
       </main>
 
