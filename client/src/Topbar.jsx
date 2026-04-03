@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom' 
 import Swal from 'sweetalert2';
+import tisiLogo from './assets/tisi-logo.jpg';
 
 function Topbar() {
   const [isBillOpen, setIsBillOpen] = useState(false);
@@ -57,7 +58,7 @@ function Topbar() {
 
   useEffect(() => {
     // ดึงข้อมูลค่าเงินจาก Backend
-    fetch('http://localhost:5000/api/hello')
+    fetch('/api-iso-store/hello')
       .then(res => res.json())
       .then(resData => {
         setData(resData);
@@ -84,7 +85,7 @@ function Topbar() {
     <nav className="bg-white border-b border-slate-200 px-6 py-3 flex justify-between items-center sticky top-0 z-50 shadow-sm">
       <div className="flex items-center gap-8">
         <Link to="/" className="flex items-center gap-3">
-          <img src="/image/tisi-logo.jpg" className="h-12 md:h-16 w-auto object-contain" alt="TISI Logo" />
+          <img src={tisiLogo} className="h-12 md:h-16 w-auto object-contain" alt="TISI Logo" />
           <div className="hidden md:block">
             <h1 className="text-xl font-black text-blue-700 leading-none">TISI <span className="text-slate-400 font-light tracking-tight">ISO-Store</span></h1>
             <p className="text-[10px] text-slate-400 uppercase font-bold tracking-widest mt-1">Official Standard Service</p>

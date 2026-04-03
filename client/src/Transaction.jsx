@@ -5,7 +5,7 @@ import Select from 'react-select';
 
 function AddTransaction() {
   const navigate = useNavigate();
-  const baseURL = 'http://localhost:5000/api';
+  const baseURL = '/api-iso-store';
 
   // States สำหรับที่อยู่
   const [provinces, setProvinces] = useState([]);

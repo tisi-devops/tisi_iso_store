@@ -147,11 +147,11 @@ async function getValidAccessToken() {
 
 // หน้าแรกกันหน้าขาว (เวลาเข้า localhost:5000 ตรงๆ จะได้ไม่ขึ้น Cannot GET /)
 app.get('/', (req, res) => {
-    res.send("<h1>✅ TISI Backend Server is Running!</h1><p>API Endpoint: /api/...</p>");
+    res.send("<h1>✅ TISI Backend Server is Running!</h1><p>API Endpoint: /api-iso-store/...</p>");
 });
 
 // ส่วนทดสอบ API ว่าระบบทำงานปกติหรือไม่ และแสดงอัตราแลกเปลี่ยนปัจจุบันด้วย (ถ้ามี)
-app.get('/api/hello', async (req, res) => {
+app.get('/api-iso-store/hello', async (req, res) => {
     const exchangeData = await cachingExhangRate();
     const now = new Date();
     const thaiDate = new Intl.DateTimeFormat('th-TH', {
@@ -166,7 +166,7 @@ app.get('/api/hello', async (req, res) => {
 });
 
 // API สำหรับดึงข้อมูลจังหวัดจากฐานข้อมูล
-app.get('/api/provinces', async (req, res) => {
+app.get('/api-iso-store/provinces', async (req, res) => {
     try {
         const [rows] = await db.execute("SELECT province_code as value, province as label FROM tr14_province ORDER BY province ASC");
         res.json(rows);
@@ -176,7 +176,7 @@ app.get('/api/provinces', async (req, res) => {
 });
 
 // API สำหรับดึงข้อมูลอำเภอจากฐานข้อมูล (กรองด้วย province_code)
-app.get('/api/amphoes/:p_code', async (req, res) => {
+app.get('/api-iso-store/amphoes/:p_code', async (req, res) => {
     try {
         const [rows] = await db.execute(
             "SELECT district_code as value, district as label FROM tr14_district WHERE province_code = ? ORDER BY district ASC",
@@ -189,7 +189,7 @@ app.get('/api/amphoes/:p_code', async (req, res) => {
 });
 
 // API สำหรับดึงข้อมูลตำบลและรหัสไปรษณีย์จากฐานข้อมูล (กรองด้วย district_code)
-app.get('/api/districts/:d_code', async (req, res) => {
+app.get('/api-iso-store/districts/:d_code', async (req, res) => {
     try {
         const [rows] = await db.execute(
             "SELECT subdistrict_code as value, subdistrict as label, postcode FROM tr14_subdistrict WHERE district_code = ? ORDER BY subdistrict ASC",
@@ -202,7 +202,7 @@ app.get('/api/districts/:d_code', async (req, res) => {
 });
 
 // API สำหรับส่ง OTP ไปยังอีเมลของลูกค้า (ใช้สำหรับยืนยันตัวตนก่อนสั่งซื้อ) โดยจะมีการจำกัดจำนวนครั้งในการขอ OTP เพื่อป้องกันการแกล้งส่งเมลรัวๆ
-app.post('/api/send-otp', otpLimiter, async (req, res) => {
+app.post('/api-iso-store/send-otp', otpLimiter, async (req, res) => {
     const { email } = req.body;
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
     const refCode = Math.random().toString(36).substring(2, 6).toUpperCase();
@@ -246,7 +246,7 @@ app.post('/api/send-otp', otpLimiter, async (req, res) => {
 });
 
 // API สำหรับตรวจสอบ OTP ที่ลูกค้ากรอกเข้ามา (ใช้สำหรับยืนยันตัวตนก่อนสั่งซื้อ) โดยจะเช็คว่า OTP นี้ตรงกับอีเมลนี้และยังไม่หมดอายุหรือไม่ ถ้าตรวจผ่านก็จะลบ OTP นี้ทิ้งเลยเพื่อป้องกันการใช้ซ้ำ
-app.post('/api/verify-otp', otpLimiter, async (req, res) => {
+app.post('/api-iso-store/verify-otp', otpLimiter, async (req, res) => {
     const { email, otp } = req.body;
     try {
         const [rows] = await db.execute(
@@ -267,7 +267,7 @@ app.post('/api/verify-otp', otpLimiter, async (req, res) => {
 });
 
 // API สำหรับค้นหามาตรฐานมาแสดงหน้า Store
-app.get('/api/search-iso', async (req, res) => {
+app.get('/api-iso-store/search-iso', async (req, res) => {
     const { q } = req.query || "";
     const exchangeData = await cachingExhangRate();
     const rate = exchangeData ? parseFloat(exchangeData.buying_transfer) : 40.0;
@@ -299,7 +299,7 @@ app.get('/api/search-iso', async (req, res) => {
 });
 
 // API สำหรับหน้า Product Detail ดึงเจาะจง 1 รายการด้วย projectUrn (ซึ่งมาจากการแปลง Publication URN เป็น Project URN แล้วในฝั่ง Frontend)
-app.get('/api/get-iso-detail', async (req, res) => {
+app.get('/api-iso-store/get-iso-detail', async (req, res) => {
     const { projectUrn } = req.query; // รับ projectUrn จาก query parameter (ซึ่งมาจากการแปลง Publication URN เป็น Project URN แล้วในฝั่ง Frontend)
     const exchangeData = await cachingExhangRate();
     const rate = parseFloat(exchangeData.buying_transfer);
@@ -343,7 +343,7 @@ app.get('/api/get-iso-detail', async (req, res) => {
 }); 
 
 // API สำหรับรับข้อมูลการสั่งซื้อจากหน้าบ้าน (ข้อมูลลูกค้า + รายการมาตรฐานที่สั่งซื้อ) แล้วบันทึกลงฐานข้อมูล (ทั้งตารางแม่และตารางลูก)
-app.post('/api/submit-transaction', async (req, res) => {
+app.post('/api-iso-store/submit-transaction', async (req, res) => {
     const { customer, items, totalAmount } = req.body;
     const exchangeData = await cachingExhangRate();
     const currentRate = parseFloat(exchangeData.buying_transfer);
@@ -414,7 +414,7 @@ app.post('/api/submit-transaction', async (req, res) => {
 });
 
 // API สำหรับดึงข้อมูลคำสั่งซื้อทั้งหมด (ใช้สำหรับหน้า Order History) โดยจะดึงข้อมูลจากตารางแม่และตารางลูกมารวมกันเพื่อให้แสดงผลได้ง่ายขึ้น
-app.get('/api/orders', async (req, res) => {
+app.get('/api-iso-store/orders', async (req, res) => {
     const connection = await db.getConnection();
     try {
         const [rows] = await connection.execute(`
@@ -440,7 +440,7 @@ app.get('/api/orders', async (req, res) => {
 });
 
 // API สำหรับดึงข้อมูลรายละเอียดของ 1 คำสั่งซื้อ (ตารางแม่ + ตารางลูก)
-app.get('/api/orders/:id', async (req, res) => {
+app.get('/api-iso-store/orders/:id', async (req, res) => {
     const { id } = req.params;
     const connection = await db.getConnection();
     try {
@@ -469,7 +469,7 @@ app.get('/api/orders/:id', async (req, res) => {
 });
 
 // API สำหรับอัปเดตสถานะคำสั่งซื้อ (เมื่อแอดมินกดปุ่มอนุมัติ/ปฏิเสธ)
-app.put('/api/orders/:id/status', async (req, res) => {
+app.put('/api-iso-store/orders/:id/status', async (req, res) => {
     const { id } = req.params;     // รับรหัส order จาก URL
     const { status } = req.body;   // รับสถานะใหม่ที่ส่งมาจาก Frontend
 
@@ -492,6 +492,11 @@ app.put('/api/orders/:id/status', async (req, res) => {
         console.error("❌ Update Status Error:", error.message);
         res.status(500).json({ error: "เซิร์ฟเวอร์ขัดข้อง ไม่สามารถอัปเดตสถานะได้" });
     }
+});
+
+// ดักจับ Path API ที่ไม่มีอยู่จริง (ป้องกัน Error Unexpected token <)
+app.use('/api-iso-store', (req, res) => {
+    res.status(404).json({ error: "ไม่พบ Path นี้ในระบบ API" });
 });
 
 initDatabase().then(async () => {
