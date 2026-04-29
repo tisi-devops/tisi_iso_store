@@ -367,7 +367,7 @@ app.post('/api-iso-store/submit-transaction', async (req, res) => {
                 transactionId,
                 customer.company_name || null,
                 customer.tax_id || null,
-                customer.person_type ? 2 : 1,
+                customer.person_type ? 'นิติบุคคล/หน่วยงาน' : 'บุคคลธรรมดา',
                 customer.house_number || null,
                 customer.building_name || null,
                 customer.moo || null,

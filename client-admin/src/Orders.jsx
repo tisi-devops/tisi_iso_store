@@ -12,7 +12,7 @@ export default function Orders() {
   const fetchOrders = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:5000/api/orders');
+      const response = await axios.get('/api-iso-store/orders');
       setOrders(response.data);
     } catch (error) {
       console.error("Error fetching orders:", error);
@@ -28,8 +28,8 @@ export default function Orders() {
 
   const getStatusColor = (status) => {
     switch(status) {
-      case 'PENDING': return 'bg-yellow-200 text-yellow-800 border-yellow-200';
-      case 'PAID': return 'bg-blue-200 text-blue-800 border-blue-200';
+      case 'รอชำระเงิน': return 'bg-yellow-200 text-yellow-800 border-yellow-200';
+      case 'ชำระเงินแล้ว/รอจัดส่ง': return 'bg-blue-200 text-blue-800 border-blue-200';
       case 'COMPLETED': return 'bg-green-200 text-green-800 border-green-200';
       case 'CANCELED': return 'bg-red-200 text-red-800 border-red-200';
       default: return 'bg-slate-100 text-slate-800 border-slate-200';
@@ -82,7 +82,7 @@ export default function Orders() {
                   <td className="p-4 text-center">
                     {/* 🌟 เปลี่ยนปุ่มธรรมดา ให้มี onClick สั่งเปลี่ยนหน้า */}
                     <button 
-                      onClick={() => navigate(`/Orders/${order.id}`)}
+                      onClick={() => navigate(`/App/Orders/${order.id}`)}
                       className="text-white bg-slate-800 hover:bg-blue-600 px-3 py-1.5 rounded-lg font-bold text-xs transition-colors shadow-sm"
                     >
                       ตรวจสอบ

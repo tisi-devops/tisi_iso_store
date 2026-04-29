@@ -16,7 +16,7 @@ export default function OrderDetail() {
   const fetchOrderDetail = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`http://localhost:5000/api/orders/${id}`);
+      const response = await axios.get(`/api-iso-store/orders/${id}`);
       setOrderData(response.data);
     } catch (err) {
       console.error("Fetch Error:", err);
@@ -48,7 +48,7 @@ export default function OrderDetail() {
 
     if (confirm.isConfirmed) {
       try {
-        await axios.put(`http://localhost:5000/api/orders/${id}/status`, {
+        await axios.put(`/api-iso-store/orders/${id}/status`, {
           status: newStatus
         });
         
