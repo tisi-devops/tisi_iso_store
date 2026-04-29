@@ -71,8 +71,6 @@ function AdminLayout() {
 // ==========================================
 export default function App() {
   return (
-    <BrowserRouter>
-      <AdminLayout />
-    </BrowserRouter>
+    <AdminLayout />
   );
 }

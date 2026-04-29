@@ -12,7 +12,7 @@ import Cart from './Cart.jsx'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     {/* <BrowserRouter> */}
-    <BrowserRouter basename="/tisi_iso_store/client/dist">
+    <BrowserRouter basename="/client">
       <Topbar/>
       <Routes>
         <Route path="/" element={<AddTransaction/>} />
