@@ -14,11 +14,11 @@ function ProductDetail() {
     const fetchProductDetail = async () => {
       try {
         setLoading(true);
-        const realUrn = decodeURIComponent(id);
+        const realUrn = decodeURIComponent(id); 
         const projectNumberMatch = realUrn.match(/\d+$/);
         const projectNumber = projectNumberMatch[0];
         const projectUrn = `iso:proj:${projectNumber}`;
-        const response = await fetch(`http://localhost:5000/api/get-iso-detail?projectUrn=${encodeURIComponent(projectUrn)}`);
+        const response = await fetch(`/api-iso-store/get-iso-detail?projectUrn=${encodeURIComponent(projectUrn)}`);
         
         if (!response.ok) throw new Error("ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ หรือไม่พบข้อมูลมาตรฐานนี้");
         const data = await response.json();

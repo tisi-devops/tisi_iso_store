@@ -47,6 +47,7 @@ const transporter = createTransport({
 const allowedOrigins = [
   process.env.ADMIN_FRONTEND_URL, 
   process.env.USER_FRONTEND_URL,
+  'https://dev.tisi.go.th',
 ];
 app.use(cors({ 
   origin: function (origin, callback) {

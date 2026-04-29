@@ -58,7 +58,7 @@ function Cart() {
       });
 
       // ยิง API ไปที่ Backend (ตัวที่เราจะเขียนในข้อถัดไป)
-      const response = await fetch('http://localhost:5000/api/submit-transaction', {
+      const response = await fetch('/api-iso-store/submit-transaction', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(orderData)

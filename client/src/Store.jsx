@@ -32,7 +32,7 @@ function App() {
 
     try {
       //ยิง API ไปที่ Backend ของเรา
-      const response = await fetch(`http://localhost:5000/api/search-iso?q=${encodeURIComponent(inputValue)}`);
+      const response = await fetch(`/api-iso-store/search-iso?q=${encodeURIComponent(inputValue)}`);
       
       if (!response.ok) {
         throw new Error('ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้');
